@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Edukasi • Nutri Herbal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/vid.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner-brand"></div></div>
+
+    <!-- Navbar -->
+    <nav
+        class="navbar navbar-expand-lg bg-success shadow-sm sticky-top animate__animated animate__fadeInDown">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="awal.html">
+                <i class="fa-solid fa-leaf me-2"></i> Nutri Herbal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li>
+                        <a class="nav-link" href="awal.html"> <i class="fa-solid fa-home"></i>
+                            <strong>Beranda</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-circle-info"></i>
+                            <strong>Informasi</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
+                            Edukasi</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i> <strong>Grafik</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <!-- Breadcrumbs (Opsi 4) -->
+        <nav aria-label="breadcrumb" class="mb-3 animate__animated animate__fadeInLeft">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="awal.html">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Video Edukasi</li>
+            </ol>
+        </nav>
+
+        <!-- Widget Tips Sehat (Opsi 5) -->
+        <div id="dailyHealthTip"></div>
+
+        <section class="hero d-flex justify-content-between align-items-start gap-3 mb-4">
+            <div>
+                <h1><i class="fa-solid fa-leaf me-2"></i> Video Edukasi</h1>
+                <p>Video singkat & mudah dipahami tentang hipertensi, pola makan, dan gaya hidup sehat.</p>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#watchlistOffcanvas" aria-controls="watchlistOffcanvas">
+                    <i class="fa-regular fa-bookmark me-2"></i> Tonton Nanti
+                </button>
+            </div>
+        </section>
+
+        <div class="row align-items-center mb-3 g-3">
+            <div class="col-md-8">
+                <input id="videoSearch" class="form-control form-control-lg" placeholder="Cari video (judul / tag)..."
+                    aria-label="Cari video">
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div id="chipsWrap" class="d-inline-flex gap-2 flex-wrap"></div>
+            </div>
+        </div>
+        
+        <!-- Pesan jika pencarian kosong -->
+        <div id="noResults" class="text-center py-5 d-none animate__animated animate__fadeIn">
+            <div class="text-muted mb-2"><i class="fa-solid fa-magnifying-glass fa-3x"></i></div>
+            <h5>Video tidak ditemukan</h5>
+            <p class="text-muted">Coba kata kunci lain atau reset filter.</p>
+        </div>
+
+        <div id="videosGrid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+            <!-- Video items: data-video-id, data-title, data-tags (comma) -->
+            <div class="col" data-title="APA YA HIPERTENSI ITU?" data-tags="hipertensi,pengetahuan">
+                <div class="card video-card h-100">
+                    <div class="video-poster" data-video-id="IQv4DBxsjz4" aria-label="Putar: APA YA HIPERTENSI ITU?">
+                        <img src="https://img.youtube.com/vi/IQv4DBxsjz4/hqdefault.jpg" loading="lazy"
+                            alt="APA YA HIPERTENSI ITU?">
+                        <div class="play-badge"><i class="fa-solid fa-circle-play fa-3x"></i></div>
+                        <div class="meta-badge">Definisi & Risiko</div>
+                        <span class="duration-badge">03:45</span>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="mb-1 text-success">APA YA HIPERTENSI ITU?</h5>
+                        <p class="mb-1 small-muted">Definisi hipertensi, faktor risiko, dan dampak.</p>
+                        <div class="video-badges">
+                            <div class="tag">Hipertensi</div>
+                            <div class="tag">Pengetahuan</div>
+                        </div>
+                        <div class="card-actions mt-2">
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="Lpi0fUn4stA"><i
+                                    class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="Lpi0fUn4stA"><i
+                                    class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col" data-title="MENJAGA POLA MAKAN BAGI PENDERITA HIPERTENSI" data-tags="hipertensi,gizi">
+                <div class="card video-card h-100">
+                    <div class="video-poster" data-video-id="uf4lr89s314"
+                        aria-label="Putar: MENJAGA POLA MAKAN BAGI PENDERITA HIPERTENSI">
+                        <img src="https://img.youtube.com/vi/uf4lr89s314/hqdefault.jpg" loading="lazy"
+                            alt="MENJAGA POLA MAKAN BAGI PENDERITA HIPERTENSI">
+                        <div class="play-badge"><i class="fa-solid fa-circle-play fa-3x"></i></div>
+                        <div class="meta-badge">Gizi & Pola Makan</div>
+                        <span class="duration-badge">05:12</span>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="mb-1 text-success">MENJAGA POLA MAKAN BAGI PENDERITA HIPERTENSI</h5>
+                        <p class="mb-1 small-muted">Panduan lengkap menjaga pola makan untuk hipertensi.</p>
+                        <div class="video-badges">
+                            <div class="tag">Hipertensi</div>
+                            <div class="tag">Gizi</div>
+                        </div>
+                        <div class="card-actions mt-2">
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="uf4lr89s314"><i
+                                    class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="uf4lr89s314"><i
+                                    class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" data-title="ATURAN KONSUMSI GULA, GARAM DAN LEMAK" data-tags="gizi,gula,garam,lemak">
+                <div class="card video-card h-100">
+                    <div class="video-poster" data-video-id="3sdSNU2gLhQ"
+                        aria-label="Putar: ATURAN KONSUMSI GULA, GARAM DAN LEMAK">
+                        <img src="https://img.youtube.com/vi/3sdSNU2gLhQ/hqdefault.jpg" loading="lazy"
+                            alt="ATURAN KONSUMSI GULA, GARAM DAN LEMAK">
+                        <div class="play-badge"><i class="fa-solid fa-circle-play fa-3x"></i></div>
+                        <div class="meta-badge">Aturan Konsumsi</div>
+                        <span class="duration-badge">04:20</span>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="mb-1 text-success">ATURAN KONSUMSI GULA, GARAM DAN LEMAK</h5>
+                        <p class="mb-1 small-muted">Tips anjuran konsumsi harian.</p>
+                        <div class="video-badges">
+                            <div class="tag">Gizi</div>
+                            <div class="tag">Gula</div>
+                        </div>
+                        <div class="card-actions mt-2">
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="63AUbOlmej8"><i
+                                    class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="63AUbOlmej8"><i
+                                    class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" data-title="MINUMAN HERBAL BAGI PENDERITA HIPERTENSI" data-tags="herbal,hipertensi">
+                <div class="card video-card h-100">
+                    <div class="video-poster" data-video-id="41J772a9_jM"
+                        aria-label="Putar: MINUMAN HERBAL BAGI PENDERITA HIPERTENSI">
+                        <img src="https://img.youtube.com/vi/41J772a9_jM/hqdefault.jpg" loading="lazy"
+                            alt="MINUMAN HERBAL BAGI PENDERITA HIPERTENSI">
+                        <div class="play-badge"><i class="fa-solid fa-circle-play fa-3x"></i></div>
+                        <div class="meta-badge">Herbal & Praktis</div>
+                        <span class="duration-badge">06:15</span>
+                    </div>
+                    <div class="video-body">
+                        <h5 class="mb-1 text-success">MINUMAN HERBAL BAGI PENDERITA HIPERTENSI</h5>
+                        <p class="mb-1 small-muted">Resep minuman herbal yang aman di rumah.</p>
+                        <div class="video-badges">
+                            <div class="tag">Herbal</div>
+                            <div class="tag">Hipertensi</div>
+                        </div>
+                        <div class="card-actions mt-2">
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="-lY8C5qoUt8"><i
+                                    class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="-lY8C5qoUt8"><i
+                                    class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- Modal pemutar -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9" id="videoContainer" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas Watchlist -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="watchlistOffcanvas" aria-labelledby="watchlistLabel">
+        <div class="offcanvas-header">
+            <h5 id="watchlistLabel">Tonton Nanti</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Tutup"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="watchlistList" class="list-group list-group-flush"></div>
+            <div id="watchlistEmpty" class="small text-muted mt-2">Belum ada video tersimpan.</div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Berhasil disimpan!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/vid.js"></script>
+
+
+    <!-- Back to Home Floating Button -->
+    <div class="back-home-float">
+        <a href="awal.html" title="Kembali ke Beranda">
+            <i class="fa-solid fa-house"></i>
+        </a>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/6281572616074" target="_blank" title="Chat WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scroll Top Button (Opsi 3) -->
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Kembali ke Atas">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="main-footer py-4 mt-5 animate__animated animate__fadeInUp">
+        <div class="container">
+            <div class="row align-items-center g-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 fw-bold">&copy; 2025 Nutri Herbal</p>
+                    <small class="opacity-75">Sehat mulai dari diri sendiri.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-links">
+                        <a href="mailto:info@nutriherbal.com" class="text-decoration-none me-3"><i class="fa-solid fa-envelope me-1"></i> Hubungi Kami</a>
+                        <a href="https://instagram.com" target="_blank" class="me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,380 @@
+body {
+    background: var(--bg-body);
+}
+
+.hero-section {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    background: url("../images/herbal.jpg") center/cover no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    background: rgba(39, 174, 96, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.carousel-item img {
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(39, 174, 96, 0.15);
+    transition: transform 0.3s;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.04);
+}
+
+.accordion-button {
+    font-size: 1.1rem;
+}
+
+.accordion-button i {
+    margin-right: 8px;
+    color: var(--brand);
+}
+
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(90deg, #e9f7ef 0%, #d4efdf 100%);
+    color: var(--brand);
+}
+
+.card-instansi {
+    background: linear-gradient(135deg, #e9f7ef 0%, #d4efdf 100%);
+    border: none;
+    box-shadow: 0 4px 24px rgba(39, 174, 96, 0.08);
+}
+
+.instansi-img {
+    margin: 0 20px;
+    transition: transform 0.3s;
+}
+
+.instansi-img:hover {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+/* cek-card: lebar mengikuti container / accordion */
+.cek-card {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.08);
+    border-left: 6px solid var(--brand);
+    transition: transform .25s ease, box-shadow .25s ease;
+    animation: popIn .35s ease;
+}
+
+/* AKG card: lebar mengikuti container / accordion */
+.akg-card {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(39, 174, 96, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(39, 174, 96, 0.06);
+    border-left: 6px solid var(--brand);
+}
+
+.akg-card .card-body {
+    padding: 20px;
+    /* samakan dengan cek-card */
+}
+
+/* AKG: header & tip khusus usia 30-50 */
+.akg-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.akg-header .icon {
+    font-size: 1.5rem;
+    color: var(--brand);
+    background: rgba(39, 174, 96, 0.08);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.akg-tip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: linear-gradient(90deg, #fff7e6, #fffbe9);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: #8a6d00;
+}
+
+.akg-tip.d-none {
+    display: none !important;
+}
+
+.akg-tip.highlight {
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.08);
+    border-left: 6px solid #ffb84d;
+}
+
+.result-box.highlight {
+    box-shadow: 0 8px 30px rgba(39, 174, 96, 0.06);
+    border-left: 6px solid var(--brand);
+    transform: scale(1.01);
+    transition: transform .24s;
+}
+
+/* input & tombol lebih nyaman untuk target 30-50 */
+.akg-card .form-control,
+.cek-card .form-control {
+    font-size: 1rem;
+    padding: 10px 12px;
+}
+
+.akg-btn,
+.btn-cek {
+    font-size: 1rem;
+    padding: 10px 14px;
+}
+
+.cek-card .form-control:focus {
+    box-shadow: 0 6px 18px rgba(30, 195, 255, 0.12);
+    border-color: var(--accent);
+    outline: none;
+}
+
+.btn-cek {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--brand) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.16);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn-cek:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(39, 174, 96, 0.20);
+}
+
+.result {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .28s ease, transform .28s ease;
+    display: inline-block;
+    width: 100%;
+}
+
+.result.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result.normal {
+    background: linear-gradient(90deg, #d4edda, #e6fbef);
+    color: #155724;
+    border-left: 4px solid var(--brand);
+}
+
+.result.elevated {
+    background: linear-gradient(90deg, #fff6db, #fff3cd);
+    color: #856404;
+    border-left: 4px solid #ffb84d;
+}
+
+.result.stage1 {
+    background: linear-gradient(90deg, #fff0d6, #ffeeba);
+    color: #856404;
+    border-left: 4px solid #ff9f1a;
+}
+
+.result.stage2 {
+    background: linear-gradient(90deg, #ffd6d8, #f8d7da);
+    color: #721c24;
+    border-left: 4px solid #e74c3c;
+}
+
+/* hasil AKG menggunakan kelas result agar konsisten dengan cek tekanan darah */
+.result.safe {
+    background: linear-gradient(90deg, #e6fbef, #f0fff6);
+    color: #155724;
+    border-left: 4px solid var(--brand);
+}
+
+.result.warning {
+    background: linear-gradient(90deg, #fffaf0, #fff7e6);
+    color: #856404;
+    border-left: 4px solid #ffb84d;
+}
+
+.result.danger {
+    background: linear-gradient(90deg, #ffecec, #fff0f0);
+    color: #721c24;
+    border-left: 4px solid var(--danger);
+}
+
+.shake {
+    animation: shake .46s ease;
+}
+
+/* Hasil AKG natrium */
+.result-box {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.safe {
+    background-color: #e6f7ee;
+    color: #1e7f4f;
+}
+
+.warning {
+    background-color: #fff8e1;
+    color: #9c6f19;
+}
+
+.danger {
+    background-color: #fdecea;
+    color: #b42318;
+}
+
+/* AKG Natrium card: samakan lebar & padding dengan cek-card */
+.akg-card {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(39, 174, 96, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(39, 174, 96, 0.06);
+    border-left: 6px solid var(--brand);
+}
+
+.akg-card .card-body {
+    padding: 20px;
+    /* samakan dengan cek-card */
+}
+
+/* tombol & spinner */
+.akg-btn {
+    position: relative;
+}
+
+.akg-btn .spinner-border {
+    vertical-align: middle;
+}
+
+.akg-reset {
+    margin-top: 8px;
+}
+
+@media (max-width: 576px) {
+    .akg-card {
+        margin: 12px;
+    }
+}
+
+/* Quick Access Bar */
+.quick-access-bar::-webkit-scrollbar {
+    height: 4px;
+}
+.quick-access-bar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+.quick-access-bar .btn {
+    border-width: 1.5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 16px;
+    transition: all 0.2s;
+}
+.quick-access-bar .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Card Color Variants */
+.card-icon {
+    font-size: 1.35rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+}
+
+/* Natrium (Blue) */
+.card-natrium {
+    border-left-color: #5c9ded !important;
+    background: linear-gradient(165deg, #ffffff 40%, #f1f8ff 100%);
+}
+.card-natrium .card-icon { color: #5c9ded; background: rgba(92, 157, 237, 0.1); }
+.card-natrium .btn-cek { background: linear-gradient(135deg, #5c9ded 0%, #4a8ad4 100%); border: none; box-shadow: 0 4px 12px rgba(92, 157, 237, 0.25); }
+.card-natrium .btn-cek:hover { background: linear-gradient(135deg, #4a8ad4 0%, #3b75b5 100%); transform: translateY(-2px); }
+
+/* Lemak (Orange/Warning) */
+.card-lemak {
+    border-left-color: #f5b041 !important;
+    background: linear-gradient(165deg, #ffffff 40%, #fffbf2 100%);
+}
+.card-lemak .card-icon { color: #f5b041; background: rgba(245, 176, 65, 0.1); }
+.card-lemak .btn-cek { background: linear-gradient(135deg, #f5b041 0%, #e67e22 100%); color: #fff; border: none; box-shadow: 0 4px 12px rgba(245, 176, 65, 0.25); }
+.card-lemak .btn-cek:hover { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); color: #fff; transform: translateY(-2px); }
+
+/* IMT (Info/Cyan/Teal) */
+.card-imt {
+    border-left-color: #1abc9c !important;
+    background: linear-gradient(165deg, #ffffff 40%, #f2fdfb 100%);
+}
+.card-imt .card-icon { color: #1abc9c; background: rgba(26, 188, 156, 0.1); }
+.card-imt .btn-cek { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); color: #fff; border: none; box-shadow: 0 4px 12px rgba(26, 188, 156, 0.25); }
+.card-imt .btn-cek:hover { background: linear-gradient(135deg, #16a085 0%, #149174 100%); color: #fff; transform: translateY(-2px); }
+
+/* Tensi (Red) */
+.card-tensi {
+    border-left-color: #ec7063 !important;
+    background: linear-gradient(165deg, #ffffff 40%, #fff5f5 100%);
+}
+.card-tensi .card-icon { color: #ec7063; background: rgba(236, 112, 99, 0.1); }
+.card-tensi .btn-cek { background: linear-gradient(135deg, #ec7063 0%, #c0392b 100%); border: none; box-shadow: 0 4px 12px rgba(236, 112, 99, 0.25); }
+.card-tensi .btn-cek:hover { background: linear-gradient(135deg, #c0392b 0%, #a93226 100%); transform: translateY(-2px); }
+
+/* Input Group Styling */
+.input-group-text {
+    background-color: #fff;
+    border-color: #e0e0e0;
+    color: #6c757d;
+}
+.card-natrium .input-group-text { color: #5c9ded; background: #f4f9ff; border-color: #dbeafe; }
+.card-lemak .input-group-text { color: #f5b041; background: #fffdf5; border-color: #fceabb; }
+.card-imt .input-group-text { color: #1abc9c; background: #f2fdfb; border-color: #d1f2eb; }
+.card-tensi .input-group-text { color: #ec7063; background: #fff8f8; border-color: #fadbd8; }

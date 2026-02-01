@@ -1,0 +1,9 @@
+{
+    "editor.guides.bracketPairsHorizontal": false,
+    "editor.guides.highlightActiveBracketPair": false,
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.guides.indentation": false,
+    "workbench.tree.renderIndentGuides": "none",
+    "indentRainbow.indicatorStyle": "light",
+    "liveServer.settings.port": 5501
+}
