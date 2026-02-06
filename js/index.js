@@ -29,9 +29,11 @@ const NATRIUM_KEY = 'kalkulator_natrium_v1'; // Kunci localStorage
 // konversi gram garam ke perkiraan ukuran sendok teh (sederhana)
 function konversiSendokTeh(gram) {
     if (gram <= 1.25) return "¼ sendok teh";
-    if (gram <= 2) return "⅓ sendok teh";
-    if (gram <= 3) return "½ sendok teh";
-    if (gram <= 4) return "¾ sendok teh";
+    if (gram <= 1.67) return "⅓ sendok teh";
+    if (gram <= 2.5) return "½ sendok teh";
+    if (gram <= 3.75) return "¾ sendok teh";
+    if (gram <= 5) return "1 sendok teh";
+    if (gram <= 6.3) return "1 ¼ sendok teh";
     return "≈ 1 sendok teh";
 }
 
@@ -73,8 +75,8 @@ function hitungAKGv5() {
         }
 
         const natrium = rekomendasi.mg;
-        // konversi natrium -> garam yang lebih akurat (~393.4 mg Na per 1 g NaCl)
-        const garam = +(natrium / 393.4).toFixed(2);
+        // konversi natrium -> garam yang lebih akurat (~400 mg Na per 1 g NaCl)
+        const garam = +(natrium / 400).toFixed(2);
         const sendokTeh = konversiSendokTeh(garam);
         const pct = Math.round((natrium / 2300) * 100);
 
@@ -93,12 +95,12 @@ function hitungAKGv5() {
             </div>
             <hr style="margin:.5rem 0;">
             <div><strong>Kebutuhan Natrium Harian:</strong> <span style="color:#28a745">${natrium} mg</span></div>
-            <div><strong>Setara Garam:</strong> ± ${garam} g/hari <small class="text-muted">(${sendokTeh})</small></div>
+            <div><strong>Setara Garam:</strong> ± ${garam} g/hari <small class="text-muted">(${sendokTeh}) sudah termasuk kedalam bahan makanan dan bumbu yang dikonsumsi dalam sehari</small></div>
             <div class="mt-2">
                 <div class="progress" style="height:10px">
                     <div class="progress-bar" role="progressbar" style="width:${pct}%"></div>
                 </div>
-                <small class="small-muted">${pct}% dari batas WHO (2300 mg/hari)</small>
+                <small class="small-muted">${pct}% dari batas AKG (2300 mg/hari)</small>
             </div>
         `;
 

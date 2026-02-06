@@ -1,7 +1,7 @@
 // Slider Script dengan Dots
 (function () {
     let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
+    const slides = document.querySelectorAll(".hero-slider .slide");
     const dotsContainer = document.querySelector('.slider-dots');
 
     if (!slides.length || !dotsContainer) return;
@@ -65,14 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     const subtitleText = "Mari cegah hipertensi sedari dini, karena sehat mulai dari diri sendiri.";
 
-    // Cek jika animasi sudah berjalan di sesi ini
-    if (sessionStorage.getItem('typingAnimationDone')) {
-        typeWriterElement.innerHTML = `<span style="color:${textSegments[0].color}">${textSegments[0].text}</span><span style="color:${textSegments[1].color}">${textSegments[1].text}</span>`;
-        if (subtitleElement) subtitleElement.textContent = subtitleText;
-        cursorElement.style.display = 'none'; // Sembunyikan kursor jika tidak ada animasi
-        return;
-    }
-
     let segmentIndex = 0;
     let charIndex = 0;
     const typingSpeed = 100; // ms per karakter
@@ -98,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (subtitleElement) {
             // Mulai mengetik subtitle setelah judul selesai
             setTimeout(typeSubtitle, 300);
+        } else {
+            // Jika tidak ada subtitle, sembunyikan kursor di sini
+            cursorElement.style.display = 'none';
         }
     }
 
@@ -108,10 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
             subIndex++;
             setTimeout(typeSubtitle, 40); // Kecepatan mengetik subtitle sedikit lebih cepat
         } else {
-            // Tandai bahwa animasi sudah selesai untuk sesi ini
-            sessionStorage.setItem('typingAnimationDone', 'true');
+            // Sembunyikan kursor setelah semua selesai
+            cursorElement.style.display = 'none';
         }
     }
+
+    // Reset teks dan kursor sebelum memulai
+    typeWriterElement.innerHTML = '';
+    if (subtitleElement) subtitleElement.textContent = '';
+    cursorElement.style.display = ''; // Pastikan kursor terlihat
 
     // Mulai mengetik setelah delay singkat (1 detik) agar animasi masuk selesai dulu
     setTimeout(type, 1000);

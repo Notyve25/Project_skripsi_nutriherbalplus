@@ -66,7 +66,7 @@ body {
     overflow: hidden;
 }
 
-.slide {
+.hero-slider .slide {
     position: absolute;
     top: 0;
     left: 0;
@@ -79,7 +79,7 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
-.slide.active {
+.hero-slider .slide.active {
     opacity: 1;
     z-index: 1;
 }
@@ -270,10 +270,11 @@ body {
 
 /* Tentang Kami Section */
 .tentang-kami-section {
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
+/* visi misi */
 .visi-misi-card {
     background: linear-gradient(135deg, #f0f4f8 0%, #f8f9f9 100%);
     border-radius: 16px;
@@ -554,4 +555,16 @@ a.text-decoration-none:hover {
 @keyframes blink-cursor {
     from, to { opacity: 1; }
     50% { opacity: 0; }
+}
+
+/* Slider Tentang Kami Images */
+.tentang-kami-img {
+    height: 350px;
+    object-fit: cover;
+    width: 100%;
+}
+@media (max-width: 768px) {
+    .tentang-kami-img {
+        height: 250px;
+    }
 }

@@ -43,51 +43,6 @@ var keluhankesehatanoptions = {
 var keluhankesehatanchart = new ApexCharts(document.querySelector("#chart-keluhan-kesehatan"), keluhankesehatanoptions);
 keluhankesehatanchart.render();
 
-// Jaminan Kesehatan
-var jaminankesehatanoptions = {
-    series: [{
-        name: 'wilayah puskesmas sleman',
-        data: [77.5, 63.3, 53.92, 40.3, 39.56]
-    }],
-    chart: {
-        type: 'bar',
-        height: 320,
-        toolbar: { show: false },
-        animations: { enabled: true }
-    },
-    plotOptions: {
-        bar: {
-            horizontal: false,
-            columnWidth: '40%',
-            borderRadius: 8,
-        },
-    },
-    colors: ['#28a745'],
-    dataLabels: { enabled: true },
-    stroke: {
-        show: true,
-        width: 2,
-        colors: ['transparent']
-    },
-    xaxis: {
-        categories: ['Triharjo', 'Caturharjo', 'Tridadi', 'Trimulyo', 'Pendowoharjo'],
-        title: { text: 'Desa' }
-    },
-    yaxis: {
-        title: { text: 'Persentase (%)' }
-    },
-    fill: { opacity: 0.9 },
-    tooltip: {
-        y: {
-            formatter: function (val) {
-                return val + " %"
-            }
-        }
-    }
-};
-var jaminankesehatanchart = new ApexCharts(document.querySelector("#chart-jaminan-kesehatan"), jaminankesehatanoptions);
-jaminankesehatanchart.render();
-
 // Animasi Counter Up untuk Statistik
 document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.counter');
