@@ -16,7 +16,9 @@
 
 <body id="main-body">
     <!-- Preloader -->
-    <div id="preloader"><div class="spinner-brand"></div></div>
+    <div id="preloader">
+        <div class="spinner-brand"></div>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top animate__animated animate__fadeInDown">
@@ -41,10 +43,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
-                            Edukasi</strong></a>
+                                Edukasi</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i> <strong>Grafik</strong></a>
+                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i>
+                            <strong>Grafik</strong></a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +97,8 @@
                     <div class="fitur-card text-center h-100">
                         <div class="fitur-icon"><i class="fa-solid fa-calculator"></i></div>
                         <h5 class="fw-bold mb-2">Kalkulator Sehat</h5>
-                        <p class="mb-0">Hitung kebutuhan kecukupan lemak dan natrium harian Anda dengan mudah dan cepat.</p>
+                        <p class="mb-0">Hitung kebutuhan kecukupan lemak dan natrium harian Anda dengan mudah dan cepat.
+                        </p>
                     </div>
                 </a>
             </div>
@@ -135,40 +139,75 @@
     <section id="tentang-kami" class="container tentang-kami-section reveal">
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-                <h3 class="fw-bold mb-2 text-success" style="font-size: 1.8rem;"><i class="fa-solid fa-info-circle"></i>
+                <h3 class="fw-bold mb-2 text-success" style="font-size: 1.8rem;"><i
+                        class="fa-solid fa-info-circle"></i>
                     Tentang Kami</h3>
-                <p class="text-muted" style="font-size: 1.1rem;">Mengenal lebih jauh tentang Nutri Herbal dan tim kami
+                <p class="text-muted" style="font-size: 1.1rem;">Mengenal lebih jauh tentang Nutri Herbal dan tim
+                    kami
                 </p>
             </div>
         </div>
 
-        <!-- Deskripsi Nutri Herbal -->
+        <!-- Deskripsi Nutri Herbal & Slider -->
         <div class="row align-items-center mb-5">
             <div class="col-md-6 mb-4 mb-md-0">
                 <h4 class="fw-bold text-success mb-3">Apa itu Nutri Herbal plus?</h4>
                 <p style="font-size: 1.05rem; line-height: 1.8; color: #555;">
-                    <strong>Nutri Herbal</strong> adalah multi-platform edukasi cetak dan digital yang berdedikasi untuk
+                    <strong>Nutri Herbal</strong> adalah multi-platform edukasi cetak dan digital yang berdedikasi
+                    untuk
                     meningkatkan kesadaran masyarakat tentang pentingnya dalam menjaga kesehatan. Kami percaya bahwa
                     pencegahan adalah kunci utama dalam menjalani hidup yang sehat dan berkualitas.
                 </p>
                 <p style="font-size: 1.05rem; line-height: 1.8; color: #555;">
-                    Melalui video edukasi, informasi mendalam, dan kalkulator interaktif, kami membantu Anda memahami
+                    Melalui video edukasi, informasi mendalam, dan kalkulator interaktif, kami membantu Anda
+                    memahami
                     manfaat herbal dan cara penggunaannya secara tepat untuk mencegah penyakit kronis seperti
                     hipertensi.
                 </p>
             </div>
+            <!---slider tentang kami-->
             <div class="col-md-6">
-                <img src="https://images.pexels.com/photos/3962286/pexels-photo-3962286.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nutri Herbal" class="img-fluid rounded-4" style="box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);">
+                <div id="carouselTentangKami" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselTentangKami" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselTentangKami" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselTentangKami" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselTentangKami" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    </div>
+                    <div class="carousel-inner rounded-4" style="box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);">
+                        <div class="carousel-item active">
+                            <img src="https://i.pinimg.com/1200x/a2/9c/ce/a29cce618ff29ae43d48b42bf1b73d04.jpg" class="d-block w-100 tentang-kami-img" alt="Minuman jus timun">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://i.pinimg.com/736x/87/62/a0/8762a060a0ef13b4031a330e9d541123.jpg" class="d-block w-100 tentang-kami-img" alt="minuman jus seamngka">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://i.pinimg.com/736x/01/88/8e/01888e23d25500397609f9eaf958be4e.jpg" class="d-block w-100 tentang-kami-img" alt="Pengecekan Tensi Darah">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://i.pinimg.com/736x/83/13/fa/8313fac25fe07653b386640e5b924475.jpg" class="d-block w-100 tentang-kami-img" alt="ahli gizi ">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTentangKami" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTentangKami" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- Visi & Misi -->
-        <div class="row mb-5">
+        <div class="row mt-4 mb-5">
             <div class="col-md-6 mb-4">
                 <div class="visi-misi-card">
                     <div class="visi-misi-icon"><i class="fa-solid fa-eye"></i></div>
                     <h5 class="fw-bold text-success mb-3">Visi Kami</h5>
-                    <p style="color: #555;">Menjadi platform edukasi terdepan dalam penyebaran pengetahuan tentang
+                    <p style="color: #555;">Menjadi platform edukasi terdepan dalam penyebaran pengetahuan
+                        tentang
                         pencegahan penyakit kronis dan memberikan cara penanggulangannya di Indonesia.</p>
                 </div>
             </div>
@@ -176,7 +215,8 @@
                 <div class="visi-misi-card">
                     <div class="visi-misi-icon"><i class="fa-solid fa-bullseye"></i></div>
                     <h5 class="fw-bold text-success mb-3">Misi Kami</h5>
-                    <p style="color: #555;">Memberdayakan masyarakat dengan pengetahuan kesehatan yang akurat, mudah
+                    <p style="color: #555;">Memberdayakan masyarakat dengan pengetahuan kesehatan yang akurat,
+                        mudah
                         dipahami, dan dapat diterapkan dalam kehidupan sehari-hari.</p>
                 </div>
             </div>
@@ -186,7 +226,8 @@
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
                 <h4 class="fw-bold text-success mb-4"><i class="fa-solid fa-people-group"></i> Tim Kami</h4>
-                <p style="color: #555; font-size: 1.05rem;">Tim profesional yang berdedikasi untuk memberikan informasi
+                <p style="color: #555; font-size: 1.05rem;">Tim profesional yang berdedikasi untuk memberikan
+                    informasi
                     kesehatan terbaik</p>
             </div>
         </div>
@@ -200,7 +241,8 @@
                     </div>
                     <h5 class="fw-bold mt-3 mb-1 text-success">Prof. Dr. Tri Siswati, SKM, M.Kes.</h5>
                     <p class="text-muted mb-2">Ahli bidang kesehatan Masyarakat</p>
-                    <p style="font-size: 0.95rem; color: #666;">Dosen Spesialis kesehatan Masyarakat dengan pengalaman
+                    <p style="font-size: 0.95rem; color: #666;">Dosen Spesialis kesehatan Masyarakat dengan
+                        pengalaman
                         15+ tahun dalam bidang kesehatan.</p>
                     <div class="team-social">
                         <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -217,7 +259,9 @@
                     </div>
                     <h5 class="fw-bold mt-3 mb-1 text-success">Joko Susilo SKM, M.Kes. </h5>
                     <p class="text-muted mb-2">Ahli Gizi</p>
-                    <p style="font-size: 0.95rem; color: #666;">Dosen dan ahli gizi berpengalaman mengajar 35 tahun.</p>
+                    <p style="font-size: 0.95rem; color: #666;">Dosen dan ahli gizi berpengalaman mengajar 35
+                        tahun.
+                    </p>
                     <div class="team-social">
                         <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                         <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
@@ -234,7 +278,8 @@
                     </div>
                     <h5 class="fw-bold mt-3 mb-1 text-success">Noval Yahya</h5>
                     <p class="text-muted mb-2">Mahasiswa jurusan gizi Poltekkes kemenkes Yogyakarta</p>
-                    <p style="font-size: 0.95rem; color: #666;">Mahasiswa jurusan gizi Poltekkes kemenkes Yogyakarta
+                    <p style="font-size: 0.95rem; color: #666;">Mahasiswa jurusan gizi Poltekkes kemenkes
+                        Yogyakarta
                         dengan pengalaman dalam promosi kesehatan.</p>
                     <div class="team-social">
                         <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -248,18 +293,25 @@
         <div class="row justify-content-center mb-4">
             <div class="col-md-10">
                 <div class="trust-card">
-                    <h5 class="fw-bold text-success mb-3"><i class="fa-solid fa-shield-check"></i> Mengapa Percaya Kami?
+                    <h5 class="fw-bold text-success mb-3"><i class="fa-solid fa-shield-check"></i> Mengapa
+                        Percaya
+                        Kami?
                     </h5>
                     <ul style="list-style: none; padding: 0;">
-                        <li class="mb-2"><i class="fa-solid fa-check-circle text-success"></i> <strong>Berbasis Riset
-                                Ilmiah</strong> - Semua informasi didukung oleh penelitian dan studi ilmiah terkini</li>
+                        <li class="mb-2"><i class="fa-solid fa-check-circle text-success"></i> <strong>Berbasis
+                                Riset
+                                Ilmiah</strong> - Semua informasi didukung oleh penelitian dan studi ilmiah
+                            terkini
+                        </li>
                         <li class="mb-2"><i class="fa-solid fa-check-circle text-success"></i> <strong>Tim
                                 Profesional</strong> - Didampingi oleh ahli gizi dan ahli kesehatan masyarakat
                             bersertifikat</li>
                         <li class="mb-2"><i class="fa-solid fa-check-circle text-success"></i> <strong>Konten
                                 Akurat</strong> - Informasi diverifikasi dan diperbarui secara berkala</li>
                         <li class="mb-2"><i class="fa-solid fa-check-circle text-success"></i> <strong>Edukasi
-                                Berkelanjutan</strong> - Kami terus belajar dan mengembangkan konten terbaru untuk Anda
+                                Berkelanjutan</strong> - Kami terus belajar dan mengembangkan konten terbaru
+                            untuk
+                            Anda
                         </li>
                     </ul>
                 </div>
@@ -267,44 +319,83 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <!-- FAQ Section -->
     <section class="container faq-section reveal mb-5">
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
                 <h3 class="fw-bold mb-2 text-success"><i class="fa-solid fa-circle-question"></i> Pertanyaan Umum</h3>
                 <p class="text-muted">Jawaban singkat seputar hipertensi dan Nutri Herbal</p>
+=======
+        <!-- FAQ Section -->
+        <section class="container faq-section animate__animated animate__fadeInUp mb-5">
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-8 text-center">
+                    <h3 class="fw-bold mb-2 text-success"><i class="fa-solid fa-circle-question"></i> Pertanyaan Umum
+                    </h3>
+                    <p class="text-muted">Jawaban singkat seputar hipertensi dan Nutri Herbal</p>
+                </div>
+>>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="accordion" id="accordionFAQ">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                <strong>Apakah aplikasi ini berbayar?</strong>
-                            </button>
-                        </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
-                            <div class="accordion-body">
-                                Tidak, Nutri Herbal adalah platform edukasi gratis yang bertujuan meningkatkan kesadaran masyarakat tentang kesehatan.
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="accordion" id="accordionFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    <strong>Apakah aplikasi ini berbayar?</strong>
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Tidak, Nutri Herbal adalah platform edukasi gratis yang bertujuan meningkatkan
+                                    kesadaran masyarakat tentang kesehatan.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                <strong>Bagaimana cara menggunakan kalkulator tekanan darah?</strong>
-                            </button>
-                        </h2>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
-                            <div class="accordion-body">
-                                Masuk ke menu <strong>Informasi</strong> atau klik fitur <strong>Cek Tekanan Darah</strong> di beranda. Masukkan angka sistolik (atas) dan diastolik (bawah) hasil pengukuran Anda, lalu klik tombol Cek Hasil.
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    <strong>Bagaimana cara menggunakan kalkulator tekanan darah?</strong>
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Masuk ke menu <strong>Informasi</strong> atau klik fitur <strong>Cek Tekanan
+                                        Darah</strong> di beranda. Masukkan angka sistolik (atas) dan diastolik (bawah)
+                                    hasil pengukuran Anda, lalu klik tombol Cek Hasil.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Instansi Terkait -->
+        <main class="container institusi-section animate__animated animate__fadeInUp">
+            <div class="institusi-title"><i class="fa-solid fa-building-columns"></i> Instansi Terkait</div>
+            <div class="institusi-logos">
+                <img class="institusi-logo"
+                    src="https://kemkes.go.id/app_asset/image_content/167420049363ca45ad438f30.09191866.png"
+                    alt="Kemenkes" title="Kementerian Kesehatan RI">
+                <img class="institusi-logo" src="images/pky-image.png" alt="Poltekkes Jogja" title="Poltekkes Jogja">
+                <img class="institusi-logo"
+                    src="https://images.seeklogo.com/logo-png/39/1/puskesmas-logo-png_seeklogo-394834.png"
+                    alt="Puskesmas" title="Puskesmas">
+            </div>
+        </main>
+
+
+        <!-- Back to Home Floating Button -->
+        <div class="back-home-float">
+            <a href="awal.html" title="Kembali ke Beranda">
+                <i class="fa-solid fa-house"></i>
+            </a>
         </div>
+<<<<<<< HEAD
     </section>
     
     <!-- Instansi Terkait -->
@@ -318,10 +409,22 @@
             <img class="institusi-logo"
                 src="https://images.seeklogo.com/logo-png/39/1/puskesmas-logo-png_seeklogo-394834.png" alt="Puskesmas"
                 title="Puskesmas">
+=======
+
+        <!-- WhatsApp Floating Button -->
+        <div class="whatsapp-float">
+            <a href="https://wa.me/6281572616074" target="_blank" title="Chat WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+>>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
         </div>
-    </main>
 
+        <!-- Scroll Top Button (Opsi 3) -->
+        <button id="scrollTopBtn" class="scroll-top-btn" title="Kembali ke Atas">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
 
+<<<<<<< HEAD
     <!-- Back to Home Floating Button -->
     <div class="back-home-float">
         <a href="awal.html" title="Kembali ke Beranda">
@@ -352,6 +455,25 @@
                         <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
                         <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook fa-lg"></i></a>
                         <a href="#" class="text-white"><i class="fa-brands fa-whatsapp fa-lg"></i></a>
+=======
+        <!-- Footer -->
+        <footer class="main-footer py-4 mt-5 animate__animated animate__fadeInUp">
+            <div class="container">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0 fw-bold">&copy; 2025 Nutri Herbal</p>
+                        <small class="opacity-75">Sehat mulai dari diri sendiri.</small>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="social-links">
+                            <a href="mailto:info@nutriherbal.com" class="text-decoration-none me-3"><i
+                                    class="fa-solid fa-envelope me-1"></i> Hubungi Kami</a>
+                            <a href="https://instagram.com" target="_blank" class="me-3"><i
+                                    class="fa-brands fa-instagram fa-lg"></i></a>
+                            <a href="https://facebook.com" target="_blank"><i
+                                    class="fa-brands fa-facebook fa-lg"></i></a>
+                        </div>
+>>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6">
@@ -379,15 +501,14 @@
             <div class="text-center">
                 <p class="mb-0 small opacity-75">&copy; 2026 Nutri Herbal PLus+. Seluruh Hak Cipta Dilindungi.</p>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <!-- Custom Scripts -->
-    <script src="js/global.js"></script>
-    <script src="js/awal.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+        <!-- Custom Scripts -->
+        <script src="js/global.js"></script>
+        <script src="js/awal.js"></script>
 </body>
 
 </html>

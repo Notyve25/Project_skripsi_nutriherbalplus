@@ -1,7 +1,7 @@
 // Slider Script dengan Dots
 (function () {
     let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
+    const slides = document.querySelectorAll(".hero-slider .slide");
     const dotsContainer = document.querySelector('.slider-dots');
 
     if (!slides.length || !dotsContainer) return;
@@ -133,6 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (cursorElement) cursorElement.style.opacity = '0';
         }, 1500);
     }
+
+    // Reset teks dan kursor sebelum memulai
+    typeWriterElement.innerHTML = '';
+    if (subtitleElement) subtitleElement.textContent = '';
+    cursorElement.style.display = ''; // Pastikan kursor terlihat
 
     // Mulai mengetik
     type();

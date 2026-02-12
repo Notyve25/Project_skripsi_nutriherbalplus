@@ -9,6 +9,7 @@
     function openVideo(id) {
         modalContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
         modal.show();
+<<<<<<< HEAD
         videoModalEl.addEventListener('hidden.bs.modal', () => modalContainer.innerHTML = '', {
             once: true
         });
@@ -28,7 +29,50 @@
                 videoModalEl.msRequestFullscreen();
             }
         }, 100);
+=======
+>>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
         
+        // Handler saat modal ditutup
+        videoModalEl.addEventListener('hidden.bs.modal', () => {
+            modalContainer.innerHTML = '';
+            // Reset orientasi layar (unlock)
+            if (screen.orientation && screen.orientation.unlock) {
+                try { screen.orientation.unlock(); } catch (e) {}
+            }
+            // Keluar dari fullscreen jika masih aktif
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                try {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                } catch (e) {}
+            }
+        }, { once: true });
+
+        // Auto Fullscreen & Landscape (Coba segera agar dianggap User Gesture)
+        const requestFS = videoModalEl.requestFullscreen || 
+                          videoModalEl.webkitRequestFullscreen || 
+                          videoModalEl.mozRequestFullScreen || 
+                          videoModalEl.msRequestFullscreen;
+
+        if (requestFS) {
+            const enterFS = () => {
+                Promise.resolve(requestFS.call(videoModalEl)).then(() => {
+                    // Jika sukses fullscreen, kunci orientasi (Android/Mobile)
+                    if (screen.orientation && screen.orientation.lock) {
+                        screen.orientation.lock('landscape').catch(() => {});
+                    }
+                }).catch(() => {});
+            };
+
+            // Coba 1: Langsung (User Gesture aktif)
+            enterFS();
+
+            // Coba 2: Fallback saat modal tampil (jika Coba 1 gagal karena elemen belum siap)
+            videoModalEl.addEventListener('shown.bs.modal', () => {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) enterFS();
+            }, { once: true });
+        }
+
         // Tandai sebagai sudah ditonton
         markAsWatched(id);
     }
@@ -158,7 +202,7 @@
 
     /* Watched History Logic */
     function loadWatched() { try { return JSON.parse(localStorage.getItem(watchedKey) || '[]'); } catch { return []; } }
-    
+
     function markAsWatched(id) {
         const list = loadWatched();
         if (!list.includes(id)) {
@@ -173,7 +217,7 @@
         document.querySelectorAll('.video-card').forEach(card => {
             const poster = card.querySelector('.video-poster');
             const id = poster.getAttribute('data-video-id');
-            
+
             if (list.includes(id)) {
                 card.classList.add('is-watched');
                 // Tambahkan badge jika belum ada
