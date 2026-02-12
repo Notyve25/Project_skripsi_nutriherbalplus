@@ -146,11 +146,6 @@ document.getElementById('akgReset')?.addEventListener('click', function () {
 window.addEventListener('load', loadNatriumData);
 
 
-
-
-
-
-
 // Show/hide tip while typing age (UX)
 (function () {
     const usiaInput = document.getElementById('usia');
@@ -424,6 +419,37 @@ function hapusRiwayat() {
 // Expose to global scope for button onclick
 window.hapusRiwayat = hapusRiwayat;
 
+// Real-time validation
+const sbpInput = document.getElementById('sbp');
+const dbpInput = document.getElementById('dbp');
+const sbpValidation = document.getElementById('sbpValidation');
+const dbpValidation = document.getElementById('dbpValidation');
+
+function validateSBP() {
+    const value = parseInt(sbpInput.value);
+    if (isNaN(value) || value < 30 || value > 250) {
+        sbpValidation.classList.remove('d-none');
+        sbpInput.classList.add('is-invalid');
+    } else {
+        sbpValidation.classList.add('d-none');
+        sbpInput.classList.remove('is-invalid');
+    }
+}
+
+function validateDBP() {
+    const value = parseInt(dbpInput.value);
+    if (isNaN(value) || value < 30 || value > 200) {
+        dbpValidation.classList.remove('d-none');
+        dbpInput.classList.add('is-invalid');
+    } else {
+        dbpValidation.classList.add('d-none');
+        dbpInput.classList.remove('is-invalid');
+    }
+}
+
+sbpInput.addEventListener('input', validateSBP);
+dbpInput.addEventListener('input', validateDBP);
+
 // Cek Tekanan Darah
 (function () {
     const sbpEl = () => document.getElementById('sbp');
@@ -549,16 +575,9 @@ window.hapusRiwayat = hapusRiwayat;
             else if (kategoriRisiko.includes('sedang-tinggi')) iconRisiko = '🟠';
             else if (kategoriRisiko.includes('sedang')) iconRisiko = '🟡';
 
-            // 4. TAMPILKAN HASIL
-            showResult(
-                cssClass,
-                teksStatus +
-                '<br>' + saranTekananDarah(kategoriTD) +
-                '<hr><b>Estimasi Risiko Kardiovaskular:</b><br>' +
-                `${iconRisiko} <b>${kategoriRisiko}</b>` +
-                '<br><small>*Berdasarkan ESC/ESH Guidelines 2018*</small>' +
-                sourceText
-            );
+            // 4. TAMPILKAN HASIL - GUNAKAN STRUKTUR BARU
+            // Render menggunakan strukturbaru dengan 3 blok terpisah (kategori, risiko, interpretasi)
+            renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko);
 
             if (teksStatus) saveRiwayat(sbp, dbp, teksStatus);
         }, 400);
@@ -650,6 +669,20 @@ window.hapusRiwayat = hapusRiwayat;
         return 'Risiko rendah'; // Normal/Optimal
     }
 
+    function interpretasiEdukatif(kategoriTD) {
+        const interpretations = {
+            'optimal': 'Tekanan darah optimal menunjukkan kondisi kesehatan kardiovaskular yang sangat baik. Ini adalah hasil yang ideal dan menunjukkan risiko rendah terhadap penyakit jantung dan stroke.',
+            'normal': 'Tekanan darah dalam kategori normal menunjukkan fungsi jantung dan pembuluh darah yang baik. Pertahankan pola hidup sehat untuk mencegah peningkatan di masa depan.',
+            'high-normal': 'Kategori ini menunjukkan tekanan darah yang sedikit lebih tinggi dari normal. Meskipun belum hipertensi, ini adalah sinyal peringatan untuk mulai memperbaiki gaya hidup.',
+            'grade1': 'Hipertensi derajat 1 menunjukkan tekanan darah yang meningkat. Kondisi ini dapat dikontrol dengan perubahan gaya hidup dan mungkin memerlukan pengobatan medis.',
+            'grade2': 'Hipertensi derajat 2 adalah kondisi serius yang memerlukan perhatian medis segera. Risiko komplikasi seperti stroke dan serangan jantung meningkat signifikan.',
+            'grade3': 'Hipertensi derajat 3 adalah kondisi darurat medis. Tekanan darah yang sangat tinggi dapat menyebabkan kerusakan organ vital dalam waktu singkat.',
+            'ish': 'Hipertensi sistolik terisolasi umum terjadi pada lansia. Meskipun diastolik normal, sistolik yang tinggi tetap berisiko tinggi terhadap penyakit kardiovaskular.',
+            'hipotensi': 'Tekanan darah rendah dapat menyebabkan gejala seperti pusing dan kelelahan. Meskipun jarang berbahaya, kondisi ini perlu dipantau dan ditangani.'
+        };
+        return interpretations[kategoriTD] || 'Interpretasi tidak tersedia untuk kategori ini.';
+    }
+
     function saranTekananDarah(kategoriTD) {
         const tips = {
             'optimal': {
@@ -708,6 +741,16 @@ resetBtn.addEventListener('click', function () {
     const r = hasilEl();
     r.className = 'result';
     r.innerHTML = '';
+    // Sembunyikan wrapper hasil yang baru
+    const hasilWrapper = document.getElementById('hasilWrapper');
+    if (hasilWrapper) hasilWrapper.classList.add('d-none');
+    // Reset validasi
+    const sbpValidation = document.getElementById('sbpValidation');
+    const dbpValidation = document.getElementById('dbpValidation');
+    if (sbpValidation) sbpValidation.classList.add('d-none');
+    if (dbpValidation) dbpValidation.classList.add('d-none');
+    sbpEl().classList.remove('is-invalid');
+    dbpEl().classList.remove('is-invalid');
     sbpEl().focus();
 });
 
@@ -717,7 +760,149 @@ document.addEventListener('DOMContentLoaded', function () {
     if (dbpEl()) dbpEl().value = '';
     const r = hasilEl();
     if (r) { r.className = 'result'; r.innerHTML = ''; }
+    // Sembunyikan wrapper hasil saat load
+    const hasilWrapper = document.getElementById('hasilWrapper');
+    if (hasilWrapper) hasilWrapper.classList.add('d-none');
     renderRiwayat(); // Load history on start
 });
 
-}) (); 
+}) ();
+
+// ====== ENHANCED VALIDATION FOR TEKANAN DARAH CALCULATOR ======
+document.addEventListener('DOMContentLoaded', function() {
+    const sbpInput = document.getElementById('sbp');
+    const dbpInput = document.getElementById('dbp');
+    const sbpValidation = document.getElementById('sbpValidation');
+    const dbpValidation = document.getElementById('dbpValidation');
+
+    // Real-time Validation untuk SBP
+    if (sbpInput) {
+        sbpInput.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            
+            if (this.value === '') {
+                sbpValidation.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            } else if (isNaN(value) || value < 30 || value > 250) {
+                sbpValidation.classList.remove('d-none');
+                sbpValidation.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai sistolik harus antara 30–250 mmHg';
+                this.classList.add('is-invalid');
+            } else {
+                sbpValidation.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            }
+        });
+    }
+
+    // Real-time Validation untuk DBP
+    if (dbpInput) {
+        dbpInput.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            
+            if (this.value === '') {
+                dbpValidation.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            } else if (isNaN(value) || value < 30 || value > 200) {
+                dbpValidation.classList.remove('d-none');
+                dbpValidation.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai diastolik harus antara 30–200 mmHg';
+                this.classList.add('is-invalid');
+            } else {
+                dbpValidation.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            }
+        });
+    }
+});
+
+// ====== RENDER STRUCTURED BLOOD PRESSURE RESULTS ======
+function renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko) {
+    const hasilKategoriEl = document.getElementById('hasilKategori');
+    const hasilRisikoEl = document.getElementById('hasilRisiko');
+    const hasilInterpretasiEl = document.getElementById('hasilInterpretasi');
+    const hasilDisclaimerEl = document.getElementById('hasilDisclaimer');
+    const hasilWrapper = document.getElementById('hasilWrapper');
+
+    if (!hasilKategoriEl || !hasilRisikoEl || !hasilInterpretasiEl) return;
+
+    // 1. KATEGORI TEKANAN DARAH
+    let teksKategori = '';
+    let iconKategori = '';
+    if (sbp >= 180 || dbp >= 110) {
+        teksKategori = 'Hipertensi Derajat 3';
+        iconKategori = '🔴';
+    } else if (sbp >= 140 && dbp < 90) {
+        teksKategori = 'Hipertensi Sistolik Terisolasi';
+        iconKategori = '🟠';
+    } else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) {
+        teksKategori = 'Hipertensi Derajat 2';
+        iconKategori = '🔴';
+    } else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) {
+        teksKategori = 'Hipertensi Derajat 1';
+        iconKategori = '🟠';
+    } else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) {
+        teksKategori = 'Normal Tinggi';
+        iconKategori = '🟡';
+    } else if ((sbp >= 120 && sbp <= 129) || (dbp >= 80 && dbp <= 84)) {
+        teksKategori = 'Normal';
+        iconKategori = '🟡';
+    } else if (sbp < 90 || dbp < 60) {
+        teksKategori = 'Hipotensi (Rendah)';
+        iconKategori = '🔵';
+    } else {
+        teksKategori = 'Optimal (Ideal)';
+        iconKategori = '✅';
+    }
+
+    hasilKategoriEl.className = 'result-block kategori';
+    hasilKategoriEl.innerHTML = `
+        <h6><i class="fa-solid fa-heart-pulse me-2"></i>Kategori Tekanan Darah</h6>
+        <p><strong>${sbp}/${dbp} mmHg</strong> → <strong>${iconKategori} ${teksKategori}</strong></p>
+    `;
+
+    // 2. TINGKAT RISIKO HIPERTENSI
+    let iconRisiko = '🟢';
+    if (kategoriRisiko.includes('sangat tinggi')) iconRisiko = '🔴';
+    else if (kategoriRisiko.includes('sedang-tinggi') || kategoriRisiko.includes('tinggi')) iconRisiko = '🟠';
+    else if (kategoriRisiko.includes('sedang')) iconRisiko = '🟡';
+
+    hasilRisikoEl.className = 'result-block risiko';
+    hasilRisikoEl.innerHTML = `
+        <h6><i class="fa-solid fa-exclamation-triangle me-2"></i>Tingkat Risiko</h6>
+        <p>${iconRisiko} <strong>${kategoriRisiko}</strong></p>
+        <small style="color: #666;">Berdasarkan ESC/ESH Guidelines 2018</small>
+    `;
+
+    // 3. INTERPRETASI EDUKATIF
+    const interpretasi = getInterpretasiSederhana(kategoriTD, sbp, dbp);
+    hasilInterpretasiEl.className = 'result-block interpretasi';
+    hasilInterpretasiEl.innerHTML = `
+        <h6><i class="fa-solid fa-lightbulb me-2"></i>Interpretasi Singkat</h6>
+        <p>${interpretasi}</p>
+    `;
+
+    // 4. DISCLAIMER ILMIAH
+    hasilDisclaimerEl.className = 'alert alert-sm alert-secondary';
+    hasilDisclaimerEl.innerHTML = `
+        <i class="fa-solid fa-shield-exclamation me-2" style="color: #6c757d;"></i>
+        <strong>Disclaimer Edukatif:</strong> Hasil ini bersifat edukatif dan <strong>tidak menggantikan diagnosis profesional</strong> dari dokter atau tenaga kesehatan. 
+        Untuk evaluasi kesehatan yang komprehensif, silakan konsultasikan dengan fasilitas kesehatan terpercaya.
+    `;
+
+    // Tampilkan wrapper
+    hasilWrapper.classList.remove('d-none');
+}
+
+function getInterpretasiSederhana(kategoriTD, sbp, dbp) {
+    const intepretasi = {
+        'optimal': 'Tekanan darah Anda berada pada kondisi terbaik. Pertahankan gaya hidup sehat dengan olahraga teratur dan pola makan bergizi.',
+        'normal': 'Tekanan darah normal. Lanjutkan pemeriksaan rutin minimal 1 tahun sekali untuk monitoring kesehatan cardiovascular Anda.',
+        'high-normal': 'Tekanan darah Anda menunjukkan tren tinggi. Mulai terapkan perubahan gaya hidup seperti mengurangi konsumsi garam dan meningkatkan aktivitas fisik untuk mencegah hipertensi.',
+        'grade1': 'Anda memiliki hipertensi derajat 1. Sangat disarankan untuk berkonsultasi dengan dokter untuk evaluasi risiko dan program manajemen yang tepat.',
+        'grade2': 'Tekanan darah Anda masuk kategori hipertensi derajat 2 (mencapai 160/100 mmHg). Segera hubungi dokter karena kemungkinan memerlukan terapi farmakologis.',
+        'grade3': 'Tekanan darah Anda sangat tinggi (≥180/110). Ini adalah kondisi darurat yang memerlukan penanganan segera. Hubungi layanan kesehatan terdekat dengan segera.',
+        'ish': 'Anda memiliki hipertensi sistolik terisolasi. Kondisi ini lebih umum pada lansia akibat kekakuan arteri. Konsultasi dengan dokter untuk manajemen yang sesuai.',
+        'hipotensi': 'Tekanan darah Anda rendah. Jika mengalami gejala seperti pusing atau lemas, segera duduk atau berbaring. Pastikan asupan cairan dan nutrisi yang cukup.'
+    };
+
+    return intepretasi[kategoriTD] || intepretasi['normal'];
+} 

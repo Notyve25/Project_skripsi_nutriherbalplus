@@ -20,20 +20,52 @@ window.addEventListener('load', function() {
     }
 });
 
-// 3. Scroll Top Logic
-const scrollTopBtn = document.getElementById('scrollTopBtn');
-if (scrollTopBtn) {
+// 3. Scroll Effects (Navbar & Back to Top)
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const backToTop = document.getElementById('backToTop');
+    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('show');
+        // Navbar Glassmorphism
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
         } else {
-            scrollTopBtn.classList.remove('show');
+            navbar.classList.remove('scrolled');
+        }
+
+        // Back to Top Visibility
+        if (backToTop) {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
         }
     });
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
+
+    // Back to Top Click Action
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 4. Scroll Reveal Animation (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed
+                    // revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    }
+});
 
 // 5. Health Tip Widget Logic
 const tipsKesehatan = [

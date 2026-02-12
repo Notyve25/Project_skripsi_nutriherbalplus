@@ -142,13 +142,75 @@ body {
 }
 
 /* responsive */
+@media (max-width: 991.98px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+    
+    .hero .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-card {
+        margin: 0;
+        border-radius: 12px;
+    }
+
+    .video-poster {
+        aspect-ratio: 16 / 9;
+        min-height: auto;
+    }
+
+    .video-body {
+        padding: 14px;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+    }
+    
+    .card-actions .btn {
+        width: 100%;
+    }
+}
+
 @media (max-width: 576px) {
     .video-poster {
-        min-height: 130px;
+        aspect-ratio: 16 / 9;
+        min-height: auto;
     }
 
     .hero {
-        padding: 18px;
+        padding: 20px 15px;
+    }
+    
+    .hero h1 {
+        font-size: var(--fluid-24);
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    #chipsWrap {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 5px;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE/Edge */
+    }
+    
+    #chipsWrap::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    
+    .chip {
+        flex-shrink: 0;
     }
 }
 

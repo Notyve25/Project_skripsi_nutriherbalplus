@@ -12,57 +12,21 @@ body {
 }
 
 .hero-section {
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     min-height: 100vh;
     background-color: var(--bg-body);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
-
-
-.hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(166, 218, 191, 0.84);
-    height: auto;
-    background-size: contain;
-    background-position: center;
-
-
-}
-
-.hero-section .container {
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 900px) {
-    .hero-section {
-        min-height: 50vh;
-    }
-
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-section p.lead {
-        font-family: sans-serif;
-        font-size: 1rem;
-    }
-}
-
-
-/* bagian beranda */
 
 .hero-slider {
     position: relative;
     height: 100vh;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -89,128 +53,164 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    z-index: 10;
     text-align: center;
-    z-index: 2;
-    padding: 1rem;
-    background: rgba(0, 100, 0, 0.4);
-    /* Optional: sedikit gelap biar teks jelas */
-    border-radius: 10px;
-}
-
-.overlay h1 {
-    font-size: 3rem;
-}
-
-.overlay p {
-    margin-top: 1rem;
-    font-size: 1.3rem;
-}
-
-.cta-button {
-    display: inline-block;
-    margin-top: 20px;
-    background-color: #1e90ff;
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #005bb5;
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.6s ease-out;
-}
-
-/* biar responsive */
-/* HERO SLIDER - MAIN */
-
-/* OVERLAY CONTENT */
-.overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    text-align: center;
-    padding: 2rem;
-    background: rgba(0, 100, 0, 0.4);
-    border-radius: 12px;
+    padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+    background: rgba(15, 45, 15, 0.7); /* Lebih gelap & solid sedikit */
+    backdrop-filter: blur(15px); /* Blur lebih kuat */
+    border-radius: 28px;
     color: #fff;
-    width: 95%;
-    max-width: 1000px;
-    box-sizing: border-box;
+    width: 90%;
+    max-width: 850px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.18);
+    overflow: hidden;
 }
 
 .overlay h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
     margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Typing Cursor Customization */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: #1effec;
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { background-color: transparent; }
+    50% { background-color: #1effec; }
+}
+
+.hero-text-container {
+    min-height: 3.5rem; /* Menjaga tinggi agar tidak melompat saat teks muncul */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-subtitle-container {
+    min-height: 2rem;
+}
+
+/* CTA Buttons Initial State for Animation */
+.cta-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cta-button.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .overlay p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.cta-button {
-    background-color: var(--accent);
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
-
-.cta-button:hover {
-    background-color: #005bb5;
-    transform: scale(1.05);
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
 }
 
 /* RESPONSIVE LAYAR HP */
 @media (max-width: 768px) {
-    .overlay {
-        width: 90%;
-        padding: 1.5rem;
+    .hero-slider {
+        height: 75vh;
     }
     
-    .overlay h1 {
-        font-size: 2rem;
+    .overlay {
+        width: 88%;
+        padding: 2rem 1.25rem;
+        top: 45%; /* Naikkan sedikit di mobile agar tidak bertabrakan dengan dots */
     }
-
-    .overlay p {
+    
+    .cta-button {
+        width: 100%;
+        margin: 8px 0 !important;
+        display: block;
+        padding: 10px 20px;
         font-size: 1rem;
     }
 
-    .cta-button {
-        padding: 10px 25px;
-        font-size: 0.9rem;
+    .slider-dots {
+        bottom: 15px;
     }
 }
 
 @media (max-width: 480px) {
+    .hero-slider {
+        height: 85vh; /* Berikan ruang lebih untuk tombol yang stacked */
+    }
+    
     .overlay {
-        width: 85%;
-        padding: 1rem;
+        width: 92%;
+        padding: 1.5rem 1rem;
+        top: 42%;
     }
 
     .overlay h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .overlay p {
         font-size: 0.95rem;
+        margin-bottom: 1.5rem;
     }
+}
 
-    .cta-button {
-        padding: 8px 20px;
-        font-size: 0.85rem;
+/* Team & Cards Responsive */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 576px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-card {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+.visi-misi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+/* Institusi Terkait Responsive */
+.institusi-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+@media (max-width: 576px) {
+    .institusi-logos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .institusi-logo {
+        width: 60px;
+        height: 60px;
     }
 }
 

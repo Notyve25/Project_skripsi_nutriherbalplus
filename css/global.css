@@ -4,13 +4,17 @@
     --accent: #1ec3ff;
     --danger: #e74c3c;
     --bg-body: #f8f9f9;
-    --text-body: #212529;
+    --text-body: #2d3436; /* Warna teks lebih gelap untuk kontras tinggi */
     --bg-card: #ffffff;
-    --text-muted: #6b6b6b;
+    --text-muted: #636e72;
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Lexend', sans-serif;
 }
 
 body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-family: var(--font-main);
+    font-size: 17px; /* Ukuran dasar lebih besar untuk keterbacaan usia 40+ */
+    line-height: 1.65; /* Spasi antar baris lebih lega */
     -webkit-font-smoothing: antialiased;
     background-color: var(--bg-body);
     color: var(--text-body);
@@ -18,9 +22,114 @@ body {
     opacity: 1;
 }
 
-body.fade-out {
-    opacity: 0;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1b5e20;
 }
+
+/* 6. Page Transition Logic (Fade In/Out) */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* 7. Responsive Typography & Layout Optimization */
+:root {
+    --fluid-14: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --fluid-16: clamp(1rem, 0.925rem + 0.375vw, 1.125rem);
+    --fluid-18: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+    --fluid-20: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --fluid-24: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+    --fluid-32: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: var(--fluid-16);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-body);
+    color: var(--text-body);
+    transition: background-color 0.3s, color 0.3s, opacity 0.4s ease-in-out;
+    opacity: 1;
+}
+
+h1 { font-size: var(--fluid-32); }
+h2 { font-size: var(--fluid-24); }
+h3 { font-size: var(--fluid-20); }
+h4 { font-size: var(--fluid-18); }
+
+/* Global Container Optimization */
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Standardized Section Spacing Responsive */
+section, .section-padding {
+    padding: clamp(40px, 8vh, 80px) 0;
+}
+
+/* Responsive Navbar */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: rgba(27, 94, 32, 0.98);
+        backdrop-filter: blur(15px);
+        margin-top: 10px;
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .nav-link {
+        padding: 12px 15px !important;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+/* Floating Buttons Responsive */
+@media (max-width: 768px) {
+    #backToTop, .whatsapp-float a, .back-home-float a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    #backToTop { bottom: 85px; right: 20px; }
+    .whatsapp-float { bottom: 20px; right: 20px; }
+    .back-home-float { bottom: 20px; left: 20px; }
+    
+    .whatsapp-tooltip {
+        display: none !important; /* Sembunyikan tooltip di mobile agar tidak mengganggu */
+    }
+}
+
+@media (max-width: 576px) {
+    #backToTop { bottom: 70px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
+    .whatsapp-float { bottom: 15px; right: 15px; }
+    .whatsapp-float a { width: 40px; height: 40px; font-size: 1.2rem; }
+    .back-home-float { bottom: 15px; left: 15px; }
+    .back-home-float a { width: 40px; height: 40px; font-size: 1rem; }
+}
+
+/* 8. WhatsApp Tooltip Logic */
 
 /* Common Animations */
 @keyframes fadeInUp {
@@ -60,19 +169,126 @@ body.fade-out {
     color: var(--text-muted);
 }
 
-/* Navbar css */
+/* Navbar css with Glassmorphism */
+.navbar {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(40, 167, 69, 0.95); /* Warna brand default */
+    backdrop-filter: blur(0px);
+}
+
+.navbar.scrolled {
+    background: rgba(27, 94, 32, 0.85) !important; /* Hijau lebih gelap transparan */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
 .navbar a,
 .navbar-brand {
     color: rgb(234, 234, 234) !important;
+    font-weight: 500;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.15rem;
+    }
 }
 
 .navbar-brand:hover,
 .nav-link:hover,
 .nav-link.active {
     color: rgb(8, 238, 219) !important;
-    box-shadow: 0 4px 8px rgba(19, 20, 20, 0.2) !important;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
+}
+
+/* Floating Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: #1b5e20;
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+#backToTop:active {
+    transform: scale(0.95);
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pulse Glow Effect for Primary Buttons */
+.btn-pulse {
+    position: relative;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+
+/* Fix for Hamburger Menu not returning to horizontal on desktop */
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto !important;
+    }
+    
+    .navbar-nav {
+        flex-direction: row !important;
+    }
+
+    .nav-item {
+        margin-left: 10px;
+    }
 }
 
 /* Navbar Toggler (Hamburger Menu) White */
@@ -196,38 +412,6 @@ body.fade-out {
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* 3. Scroll Top Button */
-.scroll-top-btn {
-    position: fixed;
-    bottom: 95px; /* Jarak aman di atas tombol WhatsApp (30px + 55px + 10px gap) */
-    right: 35px; /* Sedikit lebih kecil alignmentnya agar center visual dengan WA */
-    background: var(--accent);
-    color: #fff;
-    width: 45px; /* Ukuran sedikit lebih kecil dari WA */
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    z-index: 998;
-    border: none;
-}
-.scroll-top-btn.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-.scroll-top-btn:hover {
-    background: #1aa3d6;
-    color: #fff;
-    transform: translateY(-3px);
-}
 
 /* 4. Breadcrumbs Custom */
 .breadcrumb-item a {
@@ -244,38 +428,43 @@ body.fade-out {
     background: linear-gradient(135deg, #e9f7ef 0%, #ffffff 100%);
     border-left: 5px solid var(--brand);
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: clamp(12px, 3vw, 15px) clamp(15px, 4vw, 20px);
     margin-bottom: 24px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     position: relative;
     animation: fadeInUp 0.8s;
+    width: 100%;
 }
 .health-tip-icon {
     color: var(--brand);
-    font-size: 1.5rem;
-    margin-right: 15px;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-right: 12px;
+    flex-shrink: 0;
 }
 .health-tip-content h6 {
     margin: 0 0 4px 0;
     font-weight: 700;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
     color: var(--brand);
 }
 .health-tip-content p {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 3vw, 0.95rem);
     color: #555;
     line-height: 1.4;
+    padding-right: 10px;
 }
 .health-tip-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     background: none;
     border: none;
     color: #999;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: color 0.2s;
+    padding: 5px;
 }
 .health-tip-close:hover {
     color: var(--danger);

@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const typeWriterElement = document.getElementById('typewriter');
     const subtitleElement = document.getElementById('typewriter-subtitle');
     const cursorElement = document.querySelector('.typing-cursor');
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    
     if (!typeWriterElement || !cursorElement) return;
 
     const textSegments = [
@@ -69,17 +71,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sessionStorage.getItem('typingAnimationDone')) {
         typeWriterElement.innerHTML = `<span style="color:${textSegments[0].color}">${textSegments[0].text}</span><span style="color:${textSegments[1].color}">${textSegments[1].text}</span>`;
         if (subtitleElement) subtitleElement.textContent = subtitleText;
-        cursorElement.style.display = 'none'; // Sembunyikan kursor jika tidak ada animasi
+        cursorElement.style.display = 'none';
+        ctaButtons.forEach(btn => btn.classList.add('show'));
         return;
     }
 
     let segmentIndex = 0;
     let charIndex = 0;
-    const typingSpeed = 100; // ms per karakter
-
+    
     function type() {
         if (segmentIndex < textSegments.length) {
-            // Buat span baru jika baru mulai segmen (untuk handle warna berbeda)
             if (charIndex === 0) {
                 const span = document.createElement('span');
                 span.style.color = textSegments[segmentIndex].color;
@@ -94,10 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 segmentIndex++;
                 charIndex = 0;
             }
-            setTimeout(type, typingSpeed);
+            
+            // Variasikan kecepatan mengetik agar terasa lebih natural (antara 50ms - 150ms)
+            const randomSpeed = Math.floor(Math.random() * 100) + 50;
+            setTimeout(type, randomSpeed);
         } else if (subtitleElement) {
-            // Mulai mengetik subtitle setelah judul selesai
-            setTimeout(typeSubtitle, 300);
+            setTimeout(typeSubtitle, 500);
         }
     }
 
@@ -106,13 +109,31 @@ document.addEventListener('DOMContentLoaded', function() {
         if (subIndex < subtitleText.length) {
             subtitleElement.textContent += subtitleText.charAt(subIndex);
             subIndex++;
-            setTimeout(typeSubtitle, 40); // Kecepatan mengetik subtitle sedikit lebih cepat
+            
+            // Subtitle diketik sedikit lebih cepat dan tetap natural
+            const randomSubSpeed = Math.floor(Math.random() * 40) + 20;
+            setTimeout(typeSubtitle, randomSubSpeed);
         } else {
-            // Tandai bahwa animasi sudah selesai untuk sesi ini
-            sessionStorage.setItem('typingAnimationDone', 'true');
+            showButtons();
         }
     }
 
-    // Mulai mengetik setelah delay singkat (1 detik) agar animasi masuk selesai dulu
-    setTimeout(type, 1000);
+    function showButtons() {
+        ctaButtons.forEach((btn, index) => {
+            setTimeout(() => {
+                btn.classList.add('show');
+            }, index * 200); // Muncul bergantian
+        });
+
+        // Tandai selesai
+        sessionStorage.setItem('typingAnimationDone', 'true');
+        
+        // Sembunyikan kursor setelah jeda singkat
+        setTimeout(() => {
+            if (cursorElement) cursorElement.style.opacity = '0';
+        }, 1500);
+    }
+
+    // Mulai mengetik
+    type();
 });

@@ -12,6 +12,22 @@
         videoModalEl.addEventListener('hidden.bs.modal', () => modalContainer.innerHTML = '', {
             once: true
         });
+
+        // Request fullscreen setelah modal ditampilkan
+        setTimeout(() => {
+            if (videoModalEl.requestFullscreen) {
+                videoModalEl.requestFullscreen().catch(() => {
+                    // Fallback: jika fullscreen API tidak didukung atau ditolak
+                    console.log('Fullscreen API tidak tersedia atau ditolak oleh browser');
+                });
+            } else if (videoModalEl.webkitRequestFullscreen) {
+                videoModalEl.webkitRequestFullscreen();
+            } else if (videoModalEl.mozRequestFullScreen) {
+                videoModalEl.mozRequestFullScreen();
+            } else if (videoModalEl.msRequestFullscreen) {
+                videoModalEl.msRequestFullscreen();
+            }
+        }, 100);
         
         // Tandai sebagai sudah ditonton
         markAsWatched(id);

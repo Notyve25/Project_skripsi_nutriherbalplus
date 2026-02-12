@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Media Nutri Herbal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -17,15 +22,17 @@
 
 <body id="main-body">
     <!-- Preloader -->
-    <div id="preloader"><div class="spinner-brand"></div></div>
+    <div id="preloader">
+        <div class="spinner-brand"></div>
+    </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-success shadow-sm sticky-top animate__animated animate__fadeInDown">
+    <nav class="navbar navbar-expand-lg sticky-top animate__animated animate__fadeInDown">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="awal.html">
                 <i class="fa-solid fa-leaf me-2"></i> Nutri Herbal
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,10 +49,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
-                            Edukasi</strong></a>
+                                Edukasi</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i> <strong>Grafik</strong></a>
+                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i>
+                            <strong>Grafik</strong></a>
                     </li>
                 </ul>
             </div>
@@ -56,8 +64,9 @@
     <section class="hero-section mb-4 animate__animated animate__fadeIn">
         <div class="hero-overlay"></div>
         <div class="hero-content text-center animate__animated animate__fadeInDown">
-            <h1 class="display-5 fw-bold">Selamat Datang di <span style="color:#ffe066;">Nutri Herbal PLus+</span></h1>
-            <p class="lead">Informasi, edukasi, dan inspirasi untuk hidup sehat dan mencegah hipertensi.</p>
+            <h1 class="display-5 fw-bold text-white">Selamat Datang di <span style="color:#ffe066;">Nutri Herbal
+                    PLus+</span></h1>
+            <p class="lead text-white">Informasi, edukasi, dan inspirasi untuk hidup sehat dan mencegah hipertensi.</p>
         </div>
     </section>
 
@@ -75,283 +84,517 @@
 
         <!-- Quick Access Bar (Menu Pintas) -->
         <div class="quick-access-bar d-flex gap-2 mb-4 pb-2 overflow-auto animate__animated animate__fadeInLeft">
-            <a href="#materi" class="btn btn-sm btn-outline-success rounded-pill text-nowrap"><i class="fa-solid fa-book-open me-1"></i> Materi</a>
-            <a href="#kalkulator-natrium" class="btn btn-sm btn-outline-primary rounded-pill text-nowrap"><i class="fa-solid fa-calculator me-1"></i> Natrium</a>
-            <a href="#kalkulator-lemak" class="btn btn-sm btn-outline-warning rounded-pill text-nowrap"><i class="fa-solid fa-bacon me-1"></i> Lemak</a>
-            <a href="#kalkulator-imt" class="btn btn-sm btn-outline-info rounded-pill text-nowrap"><i class="fa-solid fa-weight-scale me-1"></i> IMT</a>
-            <a href="#cek-tensi" class="btn btn-sm btn-outline-danger rounded-pill text-nowrap"><i class="fa-solid fa-heart-pulse me-1"></i> Cek Tensi</a>
+            <a href="#kalkulator-natrium" class="btn btn-sm btn-outline-primary rounded-pill text-nowrap"><i
+                    class="fa-solid fa-calculator me-1"></i> Natrium</a>
+            <a href="#kalkulator-lemak" class="btn btn-sm btn-outline-warning rounded-pill text-nowrap"><i
+                    class="fa-solid fa-bacon me-1"></i> Lemak</a>
+            <a href="#kalkulator-imt" class="btn btn-sm btn-outline-info rounded-pill text-nowrap"><i
+                    class="fa-solid fa-weight-scale me-1"></i> IMT</a>
+            <a href="#cek-tensi" class="btn btn-sm btn-outline-danger rounded-pill text-nowrap"><i
+                    class="fa-solid fa-heart-pulse me-1"></i> Cek Tensi</a>
         </div>
 
-        <!-- Carousel -->
-        <div class="row mt-1 mb-2">
-            <div class="col-lg-6 offset-lg-3 col-md-12">
-                <div id="carouselExampleAutoplaying" class="carousel slide animate__animated animate__fadeInUp"
-                    data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="images/penyakit-hipertensi.jpg" class="d-block w-100" alt="Hipertensi">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/makanan.png" class="d-block w-100" alt="Makanan Sehat">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/air-jahe.jpeg" class="d-block w-100" alt="Air Jahe">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Accordion -->
-        <div class="accordion animate__animated animate__fadeInUp" id="accordionExample" style="scroll-margin-top: 80px;">
-            <div id="materi" style="position: absolute; top: -80px;"></div> <!-- Anchor fix -->
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <i class="fa-solid fa-heart-pulse"></i> <strong>Definisi & Klasifikasi Hipertensi</strong>
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p><strong>Hipertensi</strong> adalah suatu keadaan dimana tekanan darah sistolik ( posisi jantung memompa keseluruh tubuh ) <strong>&ge; 140 mmHg</strong> dan/atau diastolik ( posisi saat jantung relaksasi dan menerima darah dari seluruh tubuh ) <strong>&ge; 90 mmHg.</strong></p>
-                        <div class="small text-muted mt-1 fst-italic">Sumber: Kementerian Kesehatan Republik Indonesia. 2021.</div>
-                        
-                        <h6 class="fw-bold mt-3">Tabel Klasifikasi Tekanan Darah</h6>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover text-center small mb-0">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th>Kategori Tekanan Darah</th>
-                                        <th>Tekanan Darah Sistolik (mmHg)</th>
-                                        <th>Tekanan Darah Diastolik (mmHg)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Optimal</td>
-                                        <td>&lt; 120</td>
-                                        <td>&lt; 80</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Normal</td>
-                                        <td>120–129</td>
-                                        <td>dan/atau 80–84</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Normal Tinggi</td>
-                                        <td>130 – 139</td>
-                                        <td>dan/atau 85–89</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hipertensi Derajat 1</td>
-                                        <td>140–159</td>
-                                        <td>dan/atau 90–99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hipertensi Derajat 2</td>
-                                        <td>160–179</td>
-                                        <td>dan/atau 100–109</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hipertensi Derajat 3</td>
-                                        <td>&ge; 180</td>
-                                        <td>dan/atau &ge; 110</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hipertensi Sistolik Terisolasi</td>
-                                        <td>&ge; 140</td>
-                                        <td>&lt; 90</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="small text-muted mt-2 fst-italic">Sumber: Kementerian Kesehatan Republik Indonesia. 2021.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>Faktor Risiko Penyebab Hipertensi</strong>
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p>Faktor risiko hipertensi dibagi menjadi dua kelompok utama:</p>
-                        
-                        <h6 class="fw-bold text-danger"><i class="fa-solid fa-lock"></i> Tidak Dapat Diubah</h6>
-                        <ul class="mb-3">
-                            <li><strong>Usia:</strong> Penurunan elastisitas pembuluh darah seiring bertambahnya umur.</li>
-                            <li><strong>Jenis Kelamin:</strong> Pria lebih berisiko di usia muda, wanita lebih berisiko setelah menopause (penurunan hormon estrogen).</li>
-                            <li><strong>Genetik:</strong> Riwayat keluarga dengan hipertensi meningkatkan risiko secara signifikan.</li>
-                        </ul>
 
-                        <h6 class="fw-bold text-success"><i class="fa-solid fa-unlock"></i> Dapat Diubah (Gaya Hidup)</h6>
-                        <ul>
-                            <li><strong>Obesitas:</strong> Meningkatkan risiko hingga 1.8x lipat karena beban kerja jantung bertambah.</li>
-                            <li><strong>Merokok:</strong> Zat kimia rokok merusak dinding arteri dan memicu penyempitan pembuluh darah.</li>
-                            <li><strong>Stres:</strong> Memicu hormon adrenalin yang memacu jantung berdetak lebih cepat.</li>
-                            <li><strong>Pola Makan Buruk:</strong> Konsumsi tinggi garam, lemak, dan makanan olahan (Junk Food).</li>
-                            <li><strong>Kurang Aktivitas Fisik:</strong> Menyebabkan penumpukan lemak dan penurunan kebugaran jantung.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="fa-solid fa-skull-crossbones"></i> <strong>Bahaya & Komplikasi ("The Silent Killer")</strong>
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p>Hipertensi sering disebut <em>"Silent Killer"</em> karena seringkali tidak bergejala namun mematikan. Jika tidak terkontrol, dapat menyebabkan kerusakan organ vital:</p>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="p-3 bg-light rounded border-start border-4 border-danger h-100">
-                                    <h6 class="fw-bold">1. Jantung & Pembuluh Darah</h6>
-                                    <p class="small mb-0">Gagal jantung, serangan jantung, dan kerusakan arteri (aterosklerosis).</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-3 bg-light rounded border-start border-4 border-danger h-100">
-                                    <h6 class="fw-bold">2. Otak (Stroke)</h6>
-                                    <p class="small mb-0">Penyumbatan atau pecahnya pembuluh darah otak yang berakibat kelumpuhan atau kematian.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-3 bg-light rounded border-start border-4 border-danger h-100">
-                                    <h6 class="fw-bold">3. Ginjal</h6>
-                                    <p class="small mb-0">Gagal ginjal kronis akibat kerusakan pembuluh darah halus di ginjal.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-3 bg-light rounded border-start border-4 border-danger h-100">
-                                    <h6 class="fw-bold">4. Mata (Retinopati)</h6>
-                                    <p class="small mb-0">Kerusakan retina yang dapat berujung pada gangguan penglihatan hingga kebutaan.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="fa-solid fa-utensils"></i> <strong>Pencegahan & Diet Sehat (DASH)</strong>
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p>Pola makan <strong>DASH (Dietary Approaches to Stop Hypertension)</strong> terbukti efektif menurunkan tekanan darah. Fokus pada konsumsi sayur, buah, biji-bijian, dan rendah lemak jenuh.</p>
-                        
-                        <div class="alert alert-success">
-                            <h6 class="fw-bold"><i class="fa-solid fa-check-circle"></i> Batas Konsumsi Harian (Permenkes No. 30/2013)</h6>
-                            <ul class="mb-0 small">
-                                <li><strong>Gula:</strong> Maksimal 4 sendok makan (50 gram).</li>
-                                <li><strong>Garam:</strong> Maksimal 1 sendok teh (5 gram).</li>
-                                <li><strong>Lemak/Minyak:</strong> Maksimal 5 sendok makan (67 gram).</li>
-                            </ul>
-                        </div>
+        <!-- Static Information Sections -->
+        <div id="materi" style="position: absolute; top: -80px;"></div> <!-- Anchor fix -->
 
-                        <h6 class="fw-bold">Tips Pola Makan Sehat:</h6>
-                        <ul class="small mb-0">
-                            <li>Kurangi penggunaan bumbu penyedap instan.</li>
-                            <li>Hindari makanan kaleng, daging olahan, dan jeroan.</li>
-                            <li>Perbanyak konsumsi makanan tinggi Kalium (pisang, alpukat, bayam).</li>
-                            <li>Cukupi kebutuhan air putih harian.</li>
-                        </ul>
+        <!-- Static Information Sections -->
+        <div id="materi" class="mt-4">
+            <!-- 1. Pengertian Hipertensi -->
+            <section class="info-section-formal border-red reveal">
+                <h2 class="section-title icon-red"><i class="fa-solid fa-heart-pulse"></i> Pengertian Hipertensi</h2>
+                <div class="section-divider"></div>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="p-4 rounded-4" style="background: #fff5f5; border-left: 4px solid #e53e3e;">
+                            <p class="section-text mb-0" style="color: #742a2a; font-weight: 500;">
+                                <strong>Hipertensi</strong> adalah kondisi medis yang ditandai dengan tekanan darah
+                                sistolik lebih dari <strong>140 mmHg</strong> dan diastolik lebih dari <strong>90
+                                    mmHg</strong>. WHO mendefinisikan hipertensi sebagai kondisi medis serius yang dapat
+                                meningkatkan risiko penyakit jantung, stroke, dan masalah kesehatan lainnya.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img src="images/penyakit-hipertensi.jpg" alt="Pengertian Hipertensi"
+                            class="img-fluid rounded-4 shadow-sm mb-3 mb-md-0"
+                            style="max-height: 200px; width: 100%; object-fit: cover;">
                     </div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        <i class="fa-solid fa-leaf"></i> <strong>Solusi Herbal & Alami (Berdasarkan Riset)</strong>
-                    </button>
+            </section>
+
+            <!-- 2. Faktor Risiko Hipertensi -->
+            <section class="info-section-formal border-orange reveal">
+                <h2 class="section-title icon-orange"><i class="fa-solid fa-triangle-exclamation"></i> Faktor Risiko
                 </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <p>Beberapa bahan pangan lokal terbukti secara ilmiah dapat membantu menurunkan tekanan darah:</p>
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 fw-bold text-success">Jus Belimbing & Wortel</h6>
+                <div class="section-divider"></div>
+                <div class="risk-intro-box mb-4">
+                    <i class="fa-solid fa-circle-info me-2 text-primary"></i>
+                    <span>Faktor risiko hipertensi dibagi menjadi dua jenis utama:</span>
+                </div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="p-3 border-0 bg-light rounded-4 h-100 shadow-sm">
+                            <h6 class="fw-bold text-danger mb-3 d-flex align-items-center">
+                                <span class="icon-circle-sm bg-danger text-white me-2"><i
+                                        class="fa-solid fa-lock"></i></span>
+                                Faktor yang tidak dapat diubah
+                            </h6>
+                            <div class="risk-cards-grid">
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-calendar-days color-usia"></i>
+                                    <strong class="color-usia">Usia</strong>
+                                    <div class="risk-desc">Risiko meningkat seiring bertambahnya usia karena penurunan
+                                        elastisitas pembuluh darah.</div>
                                 </div>
-                                <p class="mb-1 small">Kombinasi 75g belimbing manis + 100g wortel + 100ml air. Konsumsi pagi hari selama 7 hari.</p>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 fw-bold text-success">Jus Semangka</h6>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-venus-mars color-kelamin"></i>
+                                    <strong class="color-kelamin">Kelamin</strong>
+                                    <div class="risk-desc">Pria berisiko lebih awal; wanita berisiko tinggi setelah masa
+                                        menopause.</div>
                                 </div>
-                                <p class="mb-1 small">200g semangka + 100ml air. Kaya akan Citrulline yang melebarkan pembuluh darah.</p>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 fw-bold text-success">Air Rebusan Seledri</h6>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-dna color-genetik"></i>
+                                    <strong class="color-genetik">Genetik</strong>
+                                    <div class="risk-desc">Riwayat keluarga dengan hipertensi meningkatkan risiko
+                                        keturunan secara signifikan.</div>
                                 </div>
-                                <p class="mb-1 small">Rebus 3 batang seledri dengan 250ml air hingga tersisa 200ml. Minum pagi hari.</p>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="mb-1 fw-bold text-success">Jus Mentimun</h6>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-earth-asia color-ras"></i>
+                                    <strong class="color-ras">Etnis/Ras</strong>
+                                    <div class="risk-desc">Ras tertentu (seperti Afrika) secara statistik memiliki
+                                        prevalensi hipertensi lebih tinggi.</div>
                                 </div>
-                                <p class="mb-1 small">100g mentimun + 100ml air. Tinggi kalium untuk menyeimbangkan natrium tubuh.</p>
                             </div>
                         </div>
-                        <div class="mt-2 small text-muted fst-italic">*Konsultasikan dengan tenaga kesehatan jika sedang mengonsumsi obat dokter.</div>
+                    </div>
+
+                    <!-- Faktor yang dapat diubah -->
+                    <div class="col-12">
+                        <div class="p-3 border-0 bg-light rounded-4 shadow-sm">
+                            <h6 class="fw-bold text-success mb-3 d-flex align-items-center">
+                                <span class="icon-circle-sm bg-success text-white me-2"><i
+                                        class="fa-solid fa-unlock"></i></span>
+                                Faktor yang dapat diubah
+                            </h6>
+                            <div class="risk-cards-grid">
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-weight-scale color-obesitas"></i>
+                                    <strong class="color-obesitas">Obesitas</strong>
+                                    <div class="risk-desc">Kelebihan berat badan memperberat kerja jantung dan menekan
+                                        pembuluh darah.</div>
+                                </div>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-smoking color-merokok"></i>
+                                    <strong class="color-merokok">Merokok</strong>
+                                    <div class="risk-desc">Zat kimia rokok merusak dinding arteri dan menyempitkan
+                                        saluran darah.</div>
+                                </div>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-brain color-stres"></i>
+                                    <strong class="color-stres">Stres</strong>
+                                    <div class="risk-desc">Stres berkepanjangan memicu hormon yang meningkatkan tekanan
+                                        darah sementara.</div>
+                                </div>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-utensils color-makan"></i>
+                                    <strong class="color-makan">Pola Makan</strong>
+                                    <div class="risk-desc">Konsumsi garam berlebih dan lemak jenuh merupakan pemicu
+                                        utama hipertensi.</div>
+                                </div>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-person-running color-fisik"></i>
+                                    <strong class="color-fisik">Kurang Fisik</strong>
+                                    <div class="risk-desc">Kurang olahraga melemahkan jantung dan memicu penumpukan
+                                        lemak tubuh.</div>
+                                </div>
+                                <div class="risk-card-mini">
+                                    <i class="fa-solid fa-wine-glass-empty color-alkohol"></i>
+                                    <strong class="color-alkohol">Alkohol</strong>
+                                    <div class="risk-desc">Konsumsi alkohol berlebih dapat merusak jantung dan
+                                        meningkatkan tekanan darah.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- 3. Dampak Hipertensi -->
+            <section class="info-section-formal border-purple reveal">
+                <h2 class="section-title icon-purple"><i class="fa-solid fa-circle-nodes"></i> Dampak Kesehatan</h2>
+                <div class="section-divider"></div>
+                <div class="intro-box-generic intro-box-purple mb-3">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Hipertensi yang tidak terkontrol dapat menyebabkan berbagai komplikasi serius:</span>
+                </div>
+
+                <div class="impact-cards-grid">
+                    <!-- 1. Kerusakan Organ -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/mata retinopathy.jpg" alt="Kerusakan Organ">
+                        </div>
+                        <div class="impact-content">
+                            <h6>Kerusakan Organ</h6>
+                            <p>Komplikasi serius pada organ vital seperti jantung, ginjal, otak, dan retina mata.</p>
+                        </div>
+                    </div>
+                    <!-- 2. Penyakit Degeneratif -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/penyakit-hipertensi.jpg" alt="Penyakit Degeneratif">
+                        </div>
+                        <div class="impact-content">
+                            <h6>Penyakit Degeneratif</h6>
+                            <p>Memicu terjadinya stroke, penyakit jantung koroner, dan gagal ginjal kronis.</p>
+                        </div>
+                    </div>
+                    <!-- 3. Kerusakan Arteri -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/tensi.jpg" alt="Kerusakan Arteri">
+                        </div>
+                        <div class="impact-content">
+                            <h6>Kerusakan Arteri</h6>
+                            <p>Dinding arteri yang rusak meningkatkan risiko serangan jantung dan stroke.</p>
+                        </div>
+                    </div>
+                    <!-- 4. Silent Killer -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/rumahsakitjpg.jpg" alt="Silent Killer">
+                        </div>
+                        <div class="impact-content">
+                            <h6>The Silent Killer</h6>
+                            <p>Sering muncul tanpa gejala namun dapat berakibat fatal jika tidak terdeteksi dini.</p>
+                        </div>
+                    </div>
+                    <!-- 5. Masalah Psikologis -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/herbal.jpg" alt="Psikologis">
+                        </div>
+                        <div class="impact-content">
+                            <h6>Masalah Psikologis</h6>
+                            <p>Memicu gangguan kecemasan dan stres akibat kekhawatiran komplikasi jangka panjang.</p>
+                        </div>
+                    </div>
+                    <!-- 6. Kualitas Hidup -->
+                    <div class="impact-card">
+                        <div class="impact-img-wrapper">
+                            <img src="images/sepiring sayur.jpg" alt="Kualitas Hidup">
+                        </div>
+                        <div class="impact-content">
+                            <h6>Kualitas Hidup</h6>
+                            <p>Menurunkan produktivitas dan kualitas hidup akibat ketergantuan obat dan komplikasi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Penerapan Pola Makan dan Pola Hidup Sehat -->
+            <section class="info-section-formal border-teal reveal">
+                <h2 class="section-title icon-teal"><i class="fa-solid fa-seedling"></i> Pola Hidup Sehat</h2>
+                <div class="section-divider"></div>
+                <div class="intro-box-generic intro-box-teal mb-3">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <span>Untuk mencegah hipertensi, pola hidup sehat perlu diterapkan, di antaranya:</span>
+                </div>
+                <div class="lifestyle-grid">
+                    <div class="lifestyle-card ls-red">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        <span>Mengurangi konsumsi garam, lemak jenuh, dan kolesterol.</span>
+                    </div>
+                    <div class="lifestyle-card ls-green">
+                        <i class="fa-solid fa-apple-whole"></i>
+                        <span>Meningkatkan konsumsi sayuran dan buah-buahan.</span>
+                    </div>
+                    <div class="lifestyle-card ls-orange">
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                        <span>Menghindari makanan berlemak tinggi, seperti jeroan, otak, dan santan kental.</span>
+                    </div>
+                    <div class="lifestyle-card ls-blue">
+                        <i class="fa-solid fa-glass-water"></i>
+                        <span>Minum cukup air putih.</span>
+                    </div>
+                    <div class="lifestyle-card ls-teal">
+                        <i class="fa-solid fa-person-running"></i>
+                        <span>Olahraga teratur, minimal 30 menit sehari.</span>
+                    </div>
+                    <div class="lifestyle-card ls-purple">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>Menghindari stres dan menjaga keseimbangan emosional.</span>
+                    </div>
+                    <div class="lifestyle-card ls-red">
+                        <i class="fa-solid fa-smoking-ban"></i>
+                        <span>Berhenti merokok dan menghindari konsumsi alkohol.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Aturan Anjuran Konsumsi Gula, Garam, dan Lemak -->
+            <section class="info-section-formal border-blue reveal">
+                <h2 class="section-title icon-blue"><i class="fa-solid fa-scale-balanced"></i> Batas Konsumsi Harian
+                </h2>
+                <div class="section-divider"></div>
+                <div class="intro-box-generic intro-box-blue mb-4">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span>Menurut <strong>Permenkes No. 30 Tahun 2013</strong>, batas konsumsi harian untuk mencegah
+                        hipertensi adalah:</span>
+                </div>
+
+                <div class="row justify-content-center g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3"
+                            style="border-radius: 20px; background: #fff5f5;">
+                            <div class="card-body">
+                                <i class="fa-solid fa-cubes-stacked fs-2 mb-2" style="color: #e53e3e;"></i>
+                                <h6 class="fw-bold" style="color: #c53030;">Gula</h6>
+                                <p class="small mb-0" style="color: #9b2c2c;">Maksimal <strong>3-4 sendok makan</strong>
+                                    (56,4 gram) per hari.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3"
+                            style="border-radius: 20px; background: #ebf8ff;">
+                            <div class="card-body">
+                                <i class="fa-solid fa-spoon fs-2 mb-2" style="color: #3182ce;"></i>
+                                <h6 class="fw-bold" style="color: #2b6cb0;">Garam</h6>
+                                <p class="small mb-0" style="color: #2c5282;">Maksimal <strong>1-2 sendok teh</strong>
+                                    (&lt;5 gram) per hari.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm text-center p-3"
+                            style="border-radius: 20px; background: #fffaf0;">
+                            <div class="card-body">
+                                <i class="fa-solid fa-droplet fs-2 mb-2" style="color: #d69e2e;"></i>
+                                <h6 class="fw-bold" style="color: #b7791f;">Lemak/Minyak</h6>
+                                <p class="small mb-0" style="color: #975a16;">Maksimal <strong>5 sendok makan</strong>
+                                    (&lt;67 gram) per hari.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="advice-box-modern advice-blue">
+                    <div class="advice-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <p class="advice-text">
+                        <strong>Tips Sehat:</strong> Menghindari makanan tinggi garam seperti makanan cepat saji,
+                        makanan berpengawet, dan camilan asin dapat membantu menjaga tekanan darah tetap stabil.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 6. Herbal Pendukung -->
+            <section class="info-section-formal border-green animate__animated animate__fadeInUp">
+                <h2 class="section-title icon-green"><i class="fa-solid fa-leaf"></i> Minuman Herbal Lokal</h2>
+                <div class="section-divider"></div>
+                <div class="intro-box-generic intro-box-green mb-4">
+                    <i class="fa-solid fa-mortar-pestle"></i>
+                    <span>Bahan pangan lokal kaya flavonoid dan kalium dapat membantu menurunkan tekanan darah secara
+                        alami.</span>
+                </div>
+
+                <div class="herbal-grid-compact">
+                    <!-- 1. Jus Belimbing Manis & Wortel -->
+                    <div class="herbal-card-new shadow-sm herbal-orange">
+                        <div class="herbal-img-wrapper">
+                            <img src="images/herbal.jpg" alt="Herbal">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-mortar-pestle me-2"></i>Jus Belimbing &
+                                Wortel</h6>
+                            <p class="recipe-brief mb-2"><strong>Bahan:</strong> ½ Belimbing manis, 1 Wortel sedang,
+                                100ml air.</p>
+                            <div class="small mb-2"><strong>Cara:</strong> Blender semua bahan hingga halus, lalu
+                                saring.</div>
+                            <div class="alert alert-success py-1 px-2 mb-0 small">
+                                <strong>Dosis:</strong> 1 gelas (150ml) / pagi hari.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Jus Semangka -->
+                    <div class="herbal-card-new shadow-sm herbal-red">
+                        <div class="herbal-img-wrapper">
+                            <img src="images/air-jahe.jpeg" alt="Semangka">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-wine-glass-empty me-2"></i>Jus Semangka</h6>
+                            <p class="recipe-brief mb-2"><strong>Bahan:</strong> 200g Semangka (tanpa biji), 100ml air.
+                            </p>
+                            <div class="small mb-2"><strong>Cara:</strong> Potong kecil, blender dengan air, saring jika
+                                perlu.</div>
+                            <div class="alert alert-success py-1 px-2 mb-0 small">
+                                <strong>Dosis:</strong> 1 gelas (300ml) / pagi hari.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Air Rebusan Seledri -->
+                    <div class="herbal-card-new shadow-sm herbal-green">
+                        <div class="herbal-img-wrapper">
+                            <img src="images/sepiring sayur.jpg" alt="Seledri">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-mug-hot me-2"></i>Rebusan Seledri</h6>
+                            <p class="recipe-brief mb-2"><strong>Bahan:</strong> 3 batang seledri, 250ml air.</p>
+                            <div class="small mb-2"><strong>Cara:</strong> Rebus seledri hingga air tersisa 200ml, lalu
+                                saring.</div>
+                            <div class="alert alert-success py-1 px-2 mb-0 small">
+                                <strong>Dosis:</strong> 1 gelas (200ml) / pagi hari.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Jus Mentimun -->
+                    <div class="herbal-card-new shadow-sm herbal-teal">
+                        <div class="herbal-img-wrapper">
+                            <img src="images/makanan.png" alt="Mentimun">
+                        </div>
+                        <div class="p-3">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-glass-water me-2"></i>Jus Mentimun</h6>
+                            <p class="recipe-brief mb-2"><strong>Bahan:</strong> 100g Mentimun, 100ml air.</p>
+                            <div class="small mb-2"><strong>Cara:</strong> Cuci, potong kecil, blender dengan air,
+                                saring.</div>
+                            <div class="alert alert-success py-1 px-2 mb-0 small">
+                                <strong>Dosis:</strong> 1 gelas (200ml) / pagi hari.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="advice-box-modern advice-green mt-4">
+                    <div class="advice-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <p class="advice-text">
+                        <strong>Aturan Konsumsi:</strong> Lakukan secara rutin selama 3-7 hari untuk hasil yang optimal
+                        dalam membantu menurunkan tekanan darah secara alami.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 7. Sumber Informasi -->
+            <section class="info-section-formal border-purple reveal">
+                <h2 class="section-title icon-purple"><i class="fa-solid fa-book-bookmark"></i> Sumber Informasi</h2>
+                <div class="section-divider"></div>
+                <div class="advice-box-modern advice-purple mb-4">
+                    <div class="advice-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <p class="advice-text">
+                        Informasi dalam media ini disusun berdasarkan pedoman resmi <strong>Kementerian Kesehatan
+                            Republik Indonesia</strong>, <strong>WHO</strong>, and literatur ilmiah terpercaya terkait
+                        hipertensi.
+                    </p>
+                </div>
+
+                <div class="accordion references-accordion" id="accordionSource">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseSource" aria-expanded="false" aria-controls="collapseSource">
+                                <i class="fa-solid fa-book-bookmark me-2"></i> Lihat Daftar Referensi Lengkap
+                            </button>
+                        </h2>
+                        <div id="collapseSource" class="accordion-collapse collapse" data-bs-parent="#accordionSource">
+                            <div class="accordion-body">
+                                <div class="ref-item">
+                                    Bardiansyah, D., Syahlani, A., dan Hakim, A.R. (2023), “Perbandingan Efektivitas Jus
+                                    Buah Semangka dan Rebusan Daun Seledri Terhadap Lansia Hipertensi”, Jurnal
+                                    Keperawatan, Banjarmasin, hlm. 1531–1540.
+                                </div>
+                                <div class="ref-item">
+                                    Clarisa, G.A., Della, Nuryanto, K., Sandra P, I.P. Gede Y., dan Damayanti, I.A.M.
+                                    (2021), “Hubungan Pola Makan dengan Derajat Hipertensi pada Lansia Puskesmas Ubud
+                                    1”, Jurnal Riset Kesehatan Nasional, Vol. 5, hlm. 80–86.
+                                </div>
+                                <div class="ref-item">
+                                    Falo, A., Ayubbana, S., dan Keperawatan Dharma Wacana Metro, A. (2023), “Hipertensi
+                                    di Wilayah Kerja UPTD Puskesmas Rawat Inap Banjarsari Kota Metro: Implementation of
+                                    Deep Breath Relaxation on Blood Pressure of Hypertension Patients in the Work Area
+                                    of UPTD Puskesmas Inspiring Banjarsari Metro City”, Jurnal Cendikia Muda, Vol. 3 No.
+                                    1.
+                                </div>
+                                <div class="ref-item">
+                                    Kartika, M., dan Mirsiyanto, E. (2021), “Faktor-Faktor Risiko yang Berhubungan
+                                    dengan Hipertensi di Wilayah Kerja Puskesmas Rawang Kota Sungai Penuh Tahun 2020:
+                                    Risk Factors Related to Hypertension at Rawang Community Health Center Working Area,
+                                    Sungai Penuh District 2020”, Jurnal Kesmas Jambi (JKMJ), Jambi, Vol. 5 No. 1, hlm.
+                                    2–9.
+                                </div>
+                                <div class="ref-item">
+                                    Khotimah, A., Sigit Purnomo, P., Yulina Amry, R., Studi Kesehatan Masyarakat, P.,
+                                    Surya Global Yogyakarta, S., Studi Keperawatan, P., dan Surya Global Yogyakarta
+                                    Abstrak, S. (2021), “Pengaruh Keturunan, Obesitas, dan Gaya Hidup yang Mempengaruhi
+                                    Risiko Hipertensi pada Lansia di Wilayah Kerja Puskesmas Pandak II Bantul DIY Tahun
+                                    2019: The Influence of Heredity, Obesity and Lifestyle which Affect the Risk of
+                                    Hypertension in the Elderly in the Working Area of Puskesmas Pandak II Bantul DIY
+                                    2019”, Jurnal Ilmiah Kesehatan Masyarakat, Vol. 13 No. 1, hlm. 34–40.
+                                </div>
+                                <div class="ref-item">
+                                    Nurhaeni, A., Aimatun Nisa, N., dan Marisa, D.E. (2022), “Literature Review Hubungan
+                                    Merokok dengan Kejadian Hipertensi”, Jurnal Kesehatan Mahardika, STIKes Mahardika
+                                    Cirebon, Vol. 9 No. 2, hlm. 46–51, doi: 10.54867/jkm.v9i2.110.
+                                </div>
+                                <div class="ref-item">
+                                    Makmun, I., Amini, A., Amilia, R., dan Siswari, B.D. (2025), “Jus Timun (Cucumis
+                                    Sativus) Menurunkan Tekanan Darah Penderita Hipertensi pada Wanita Usia Subur”,
+                                    Jurnal Kebidanan Malakbi, Vol. 6 No. 1, hlm. 45, doi: 10.33490/b.v6i1.1682.
+                                </div>
+                                <div class="ref-item">
+                                    Moonti, M.A., Subantara, D.O., Rohim, A., dan Hakim, R.N. (2024), “Pengaruh
+                                    Kombinasi Jus Wortel dengan Buah Belimbing Manis terhadap Penurunan Tekanan Darah”,
+                                    Journal of Nursing Practice and Education, Vol. 5 No. 1, hlm. 147–154, doi:
+                                    10.34305/jnpe.v5i1.1435.
+                                </div>
+                                <div class="ref-item">
+                                    Suharyati, Hartati, B., Kresnawan, T., Sunarti, Hudayani, Fitri, dan Damarini,
+                                    Ferina. (2019), Penuntun Diet dan Terapi Gizi, disunting oleh Suharyati, Hartati,
+                                    B., Kresnawan, T., Sunarti, Hudayani, Fitri, dan Damarini, Ferina, edisi ke-4,
+                                    Penerbit Buku Kedokteran, Jakarta.
+                                </div>
+                                <div class="ref-item">
+                                    Trianaputri, R.A., Rantung, J., Kunci, K., dan Hipertensi, A. (2025), “Jurnal
+                                    Impresi Indonesia (JII): Faktor-Faktor yang Mempengaruhi Risiko Terjadinya
+                                    Hipertensi pada Mahasiswa Fakultas Ilmu Keperawatan di Universitas Advent
+                                    Indonesia”, No. 4, doi: 10.58344/jii.v4i4.6435.
+                                </div>
+                                <div class="ref-item">
+                                    Yunus, M., Aditya, I.W.C., dan Eksa, D.R. (2021), “Hubungan Usia dan Jenis Kelamin
+                                    dengan Kejadian Hipertensi di Puskesmas Haji Pemanggilan Kecamatan Anak Tuha Kab.
+                                    Lampung Tengah”, Jurnal Ilmu Kedokteran dan Kesehatan, Vol. 8 No. 3, hlm. 229–239.
+                                </div>
+                                <div class="ref-item">
+                                    Ogunniyi, M.O., Commodore-Mensah, Y., dan Ferdinand, K.C. (2021), “Race, Ethnicity,
+                                    Hypertension, and Heart Disease: JACC Focus Seminar 1/9”, Journal of the American
+                                    College of Cardiology, Elsevier Inc., 14 Desember, doi: 10.1016/j.jacc.2021.06.017.
+                                </div>
+                                <div class="ref-item">
+                                    WHO. (2021), Guideline for the Pharmacological Treatment of Hypertension in Adults.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="small text-muted mt-2"><em>*Klik tombol di atas untuk melihat detail literatur ilmiah.</em>
+                </p>
+            </section>
         </div>
 
-        <!-- Daftar Pustaka (Collapsible) -->
-        <div class="mt-4">
-            <button class="btn btn-sm btn-outline-secondary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#daftarPustaka" aria-expanded="false">
-                <i class="fa-solid fa-book me-2"></i> Lihat Daftar Pustaka / Referensi
-            </button>
-            <div class="collapse mt-2" id="daftarPustaka">
-                <div class="card card-body bg-light small text-muted" style="max-height: 300px; overflow-y: auto;">
-                    <ul class="list-unstyled mb-0" style="font-size: 0.85rem;">
-                        <li class="mb-2">Azizah, W., Hasanah, U., Pakarti, A.T., Dharma, A.K. and Metro, W. (2022), “Penerapan Slow Deep Breathing Terhadap Tekanan Darah Pada Pasien Hipertensi”, Jurnal Cendikia Muda, Vol. 2 No. 4.</li>
-                        <li class="mb-2">Bardiansyah, D., Syahlani, A. and Hakim, A.R. (2023), “Perbandingan Efektivitas Jus Buah Semangka Dan Rebusan Daun Seledri Terhadap Lansia Hipertensi”, Jurnal Keperawatan.</li>
-                        <li class="mb-2">Clarisa, G.A., et al. (2021), “Hubungan Pola Makan Dengan Derajat Hipertensi Pada Lansia”, Jurnal Riset Kesehatan Nasional.</li>
-                        <li class="mb-2">Falo, A., Ayubbana, S. (2023), “Hipertensi Di Wilayah Kerja UPTD Puskesmas Rawat Inap Banjarsari”, Jurnal Cendikia Muda.</li>
-                        <li class="mb-2">Ferencia, C., Rahayu, N.S. and Purwaningtyas, D.R. (2023), “Hubungan Konsumsi Gula, Garam, Lemak dan Sedentary Lifestyle Terhadap Tekanan Darah”, Muhammadiyah Journal of Geriatric.</li>
-                        <li class="mb-2">Johnson, H.M., et al. (2025), “2025 AHA/ACC Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults”, Circulation.</li>
-                        <li class="mb-2">Keputusan Menteri Kesehatan Republik Indonesia Nomor HK.01.07/MENKES/4634/2021 tentang Pedoman Nasional Pelayanan Kedokteran Tata Laksana Hipertensi Dewasa. Jakarta: Kementerian Kesehatan Republik Indonesia.</li>
-                        <li class="mb-2">Kartika, M. and Mirsiyanto, E. (2021), “Faktor-Faktor Risiko Yang Berhubungan Dengan Hipertensi”, Jurnal Kesmas Jambi.</li>
-                        <li class="mb-2">Makmun, I., et al. (2025), “Jus Timun Menurunkan Tekanan Darah Penderita Hipertensi”, Jurnal Kebidanan Malakbi.</li>
-                        <li class="mb-2">Moonti, M.A., et al. (2024), “Pengaruh kombinasi jus wortel dengan buah belimbing manis terhadap penurunan tekanan darah”, Journal of Nursing Practice and Education.</li>
-                        <li class="mb-2">Nurhayanti, U.A., et al. (2023), “Hubungan Usia Dan Jenis Kelamin Terhadap Kejadian Hipertensi”, Prosiding Seminar Nasional LPPM Universitas ’Aisyiyah Yogyakarta.</li>
-                        <li class="mb-2">Suharyati, et al. (2019), Penuntun Diet Dan Terapi Gizi, Penerbit Buku Kedokteran, Jakarta.</li>
-                        <li class="mb-2">Trianaputri, R.A., et al. (2025), “Faktor-Faktor Yang Mempengaruhi Risiko Terjadinya Hipertensi”, Jurnal Impresi Indonesia.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
         <!-- Kalkulator Natrium Harian (UI diperbarui, logic JS tetap sama) -->
-        <section class="my-4" id="kalkulator-natrium" style="scroll-margin-top: 80px;">
+        <section class="my-2 reveal" id="kalkulator-natrium" style="scroll-margin-top: 80px;">
             <div class="card akg-card card-natrium">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
-                        <div class="me-2 card-icon"><i
-                                class="fa-solid fa-calculator"></i>
+                        <div class="me-2 card-icon"><i class="fa-solid fa-calculator"></i>
                         </div>
                         <div>
                             <h4 class="mb-0">Kalkulator AKG Natrium</h4>
@@ -365,7 +608,8 @@
                             <label for="usia">Usia (tahun)</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-user-clock"></i></span>
-                                <input type="number" id="usia" class="form-control" placeholder="Mis. 45" min="1" aria-describedby="usiaHelp">
+                                <input type="number" id="usia" class="form-control" placeholder="Mis. 45" min="1"
+                                    aria-describedby="usiaHelp">
                                 <span class="input-group-text">Tahun</span>
                             </div>
                             <div id="usiaHelp" class="form-text">Masukkan usia dalam tahun (contoh: 45).</div>
@@ -407,7 +651,7 @@
         <!-- End Kalkulator Natrium Harian -->
 
         <!-- Kalkulator Kebutuhan Lemak Harian -->
-        <section class="my-4" id="kalkulator-lemak" style="scroll-margin-top: 80px;">
+        <section class="my-2 reveal" id="kalkulator-lemak" style="scroll-margin-top: 80px;">
             <div class="card akg-card card-lemak">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
@@ -424,7 +668,8 @@
                             <label for="usiaLemak">Usia (tahun)</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-user-clock"></i></span>
-                                <input type="number" id="usiaLemak" class="form-control" placeholder="Masukkan usia" min="10">
+                                <input type="number" id="usiaLemak" class="form-control" placeholder="Masukkan usia"
+                                    min="10">
                                 <span class="input-group-text">Tahun</span>
                             </div>
                         </div>
@@ -443,7 +688,8 @@
                     <div class="d-flex gap-2 mt-3">
                         <button class="btn btn-cek flex-fill" id="lemakBtn" onclick="hitungLemak()">
                             <span id="lemakBtnLabel">Hitung Kebutuhan Lemak</span>
-                            <span id="lemakSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                            <span id="lemakSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"
+                                aria-hidden="true"></span>
                         </button>
                         <button class="btn btn-outline-secondary" onclick="resetLemak()">Reset</button>
                     </div>
@@ -455,7 +701,7 @@
         <!-- End Kalkulator Kebutuhan Lemak Harian -->
 
         <!-- Kalkulator IMT (Indeks Massa Tubuh) -->
-        <section class="my-4" id="kalkulator-imt" style="scroll-margin-top: 80px;">
+        <section class="my-2 reveal" id="kalkulator-imt" style="scroll-margin-top: 80px;">
             <div class="card akg-card card-imt">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
@@ -472,7 +718,8 @@
                             <label for="beratBadan">Berat Badan (kg)</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-weight-hanging"></i></span>
-                                <input type="number" id="beratBadan" class="form-control" placeholder="Contoh: 60" min="1">
+                                <input type="number" id="beratBadan" class="form-control" placeholder="Contoh: 60"
+                                    min="1">
                                 <span class="input-group-text">kg</span>
                             </div>
                         </div>
@@ -480,7 +727,8 @@
                             <label for="tinggiBadan">Tinggi Badan (cm)</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-ruler-vertical"></i></span>
-                                <input type="number" id="tinggiBadan" class="form-control" placeholder="Contoh: 170" min="1">
+                                <input type="number" id="tinggiBadan" class="form-control" placeholder="Contoh: 170"
+                                    min="1">
                                 <span class="input-group-text">cm</span>
                             </div>
                         </div>
@@ -489,7 +737,8 @@
                     <div class="d-flex gap-2 mt-3">
                         <button class="btn btn-cek flex-fill" id="imtBtn" onclick="hitungIMT()">
                             <span id="imtBtnLabel">Hitung IMT</span>
-                            <span id="imtSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                            <span id="imtSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"
+                                aria-hidden="true"></span>
                         </button>
                         <button class="btn btn-outline-secondary" onclick="resetIMT()">Reset</button>
                     </div>
@@ -501,37 +750,48 @@
         <!-- End Kalkulator IMT -->
 
         <!-- Cek Tekanan Darah (section terpisah) -->
-        <section class="my-4" id="cek-tensi" style="scroll-margin-top: 80px;">
+        <section class="my-2 reveal" id="cek-tensi" style="scroll-margin-top: 80px;">
             <div class="cek-card card-tensi">
-                <div class="d-flex align-items-center mb-2">
-                    <div class="me-2 card-icon"><i
-                            class="fa-solid fa-stethoscope"></i></div>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="me-2 card-icon"><i class="fa-solid fa-stethoscope"></i></div>
                     <div>
                         <h3 class="mb-0">Cek Tekanan Darah</h3>
-                        <div class="small-muted">Masukkan hasil pengukuran untuk melihat kategori tekanan darah Anda.
-                        </div>
+                        <div class="small-muted">Masukkan hasil pengukuran tekanan darah Anda untuk melihat kategori dan
+                            interpretasi edukatif.</div>
                     </div>
                 </div>
-                <div class="row g-2">
+
+                <div class="row g-3">
                     <div class="col-md-6">
-                        <label for="sbp">Sistolik (mmHg)</label>
-                        <div class="input-group">
+                        <label for="sbp" class="form-label"><strong>Sistolik (mmHg)</strong></label>
+                        <div class="input-group mb-2">
                             <span class="input-group-text"><i class="fa-solid fa-heart-pulse"></i></span>
-                            <input type="number" id="sbp" class="form-control" placeholder="Contoh: 120" min="30" max="250" aria-describedby="sbpHelp">
+                            <input type="number" id="sbp" class="form-control" placeholder="Contoh: 120" min="30"
+                                max="250" aria-describedby="sbpHelp">
                             <span class="input-group-text">mmHg</span>
                         </div>
-                        <div id="sbpHelp" class="form-text">Angka atas (tekanan saat jantung memompa).</div>
+                        <div id="sbpHelp" class="form-text small">
+                            <i class="fa-solid fa-circle-info me-1" style="color: #ec7063;"></i> Angka atas → tekanan
+                            saat jantung memompa. <strong>Contoh normal: 120</strong>
+                        </div>
+                        <div id="sbpValidation" class="alert alert-sm alert-validation d-none mt-2"></div>
                     </div>
                     <div class="col-md-6">
-                        <label for="dbp">Diastolik (mmHg)</label>
-                        <div class="input-group">
+                        <label for="dbp" class="form-label"><strong>Diastolik (mmHg)</strong></label>
+                        <div class="input-group mb-2">
                             <span class="input-group-text"><i class="fa-solid fa-heart-pulse"></i></span>
-                            <input type="number" id="dbp" class="form-control" placeholder="Contoh: 80" min="30" max="200" aria-describedby="dbpHelp">
+                            <input type="number" id="dbp" class="form-control" placeholder="Contoh: 80" min="30"
+                                max="200" aria-describedby="dbpHelp">
                             <span class="input-group-text">mmHg</span>
                         </div>
-                        <div id="dbpHelp" class="form-text">Angka bawah (tekanan saat jantung rileks).</div>
+                        <div id="dbpHelp" class="form-text small">
+                            <i class="fa-solid fa-circle-info me-1" style="color: #ec7063;"></i> Angka bawah → tekanan
+                            saat jantung rileks. <strong>Contoh normal: 80</strong>
+                        </div>
+                        <div id="dbpValidation" class="alert alert-sm alert-validation d-none mt-2"></div>
                     </div>
                 </div>
+
                 <div class="d-flex gap-2 mt-3">
                     <button class="btn btn-cek flex-fill" id="cekTekananBtn" aria-live="polite">
                         <span id="cekLabel">Cek Hasil</span>
@@ -540,8 +800,15 @@
                     </button>
                     <button class="btn btn-outline-secondary" id="resetTekananBtn" type="button">Reset</button>
                 </div>
-                <div id="hasil" class="result mt-3" role="status" aria-live="polite"></div>
-                
+
+                <!-- Output Result: Structured Format -->
+                <div id="hasilWrapper" class="d-none mt-4 pt-3 border-top">
+                    <div id="hasilKategori" class="result-block mb-3"></div>
+                    <div id="hasilRisiko" class="result-block mb-3"></div>
+                    <div id="hasilInterpretasi" class="result-block mb-3"></div>
+                    <div id="hasilDisclaimer" class="alert alert-sm alert-secondary mt-3"></div>
+                </div>
+
                 <div id="riwayatTekanan" class="mt-4 d-none border-top pt-3">
                     <h5 class="mb-3"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pengecekan</h5>
                     <ul class="list-group mb-2" id="listRiwayat"></ul>
@@ -565,11 +832,6 @@
         </a>
     </div>
 
-    <!-- Scroll Top Button (Opsi 3) -->
-    <button id="scrollTopBtn" class="scroll-top-btn" title="Kembali ke Atas">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
@@ -577,25 +839,54 @@
     <script src="js/index.js"></script>
 
     <!-- Footer -->
-    <footer class="main-footer py-4 mt-5 animate__animated animate__fadeInUp">
+    <footer class="main-footer py-5 mt-5 reveal" style="background: #1b5e20; color: white;">
         <div class="container">
-            <div class="row align-items-center g-3">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0 fw-bold">&copy; 2025 Nutri Herbal</p>
-                    <small class="opacity-75">Sehat mulai dari diri sendiri.</small>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="social-links">
-                        <a href="mailto:info@nutriherbal.com" class="text-decoration-none me-3"><i
-                                class="fa-solid fa-envelope me-1"></i> Hubungi Kami</a>
-                        <a href="https://instagram.com" target="_blank" class="me-3"><i
-                                class="fa-brands fa-instagram fa-lg"></i></a>
-                        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook fa-lg"></i></a>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Nutri Herbal PLus+</h4>
+                    <p class="small opacity-75">Aplikasi edukasi kesehatan untuk pencegahan hipertensi melalui pola
+                        makan dan gaya hidup sehat berbasis herbal alami.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fa-brands fa-whatsapp fa-lg"></i></a>
                     </div>
                 </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Navigasi</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li class="mb-2"><a href="#faktor-risiko" class="text-white text-decoration-none">Faktor
+                                Risiko</a></li>
+                        <li class="mb-2"><a href="#pola-hidup" class="text-white text-decoration-none">Pola Hidup</a>
+                        </li>
+                        <li class="mb-2"><a href="#kalkulator-natrium"
+                                class="text-white text-decoration-none">Kalkulator</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-3">Kontak</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li class="mb-2"><i class="fa-solid fa-envelope me-2"></i> info@nutriherbal.com</li>
+                        <li class="mb-2"><i class="fa-solid fa-location-dot me-2"></i> Kampus Kesehatan, Indonesia</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-3">Slogan</h5>
+                    <p class="small italic opacity-75">"Mari cegah hipertensi sedari dini, karena sehat mulai dari diri
+                        sendiri."</p>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="text-center">
+                <p class="mb-0 small opacity-75">&copy; 2026 Nutri Herbal PLus+. Seluruh Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop" title="Kembali ke Atas">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
 </body>
 
 </html>
