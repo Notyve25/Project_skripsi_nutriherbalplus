@@ -787,6 +787,131 @@
                     </div>
                 </div>
 
+                <!-- Faktor Risiko Tambahan (Dashboard Style) -->
+                <div class="mt-4 p-4 rounded-4 bg-white border shadow-sm animate__animated animate__fadeIn" style="border-left: 5px solid #e53e3e !important;">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-danger text-white rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0 text-danger">Profil Risiko & Kondisi Kesehatan</h6>
+                            <p class="text-muted small mb-0">Lengkapi data untuk estimasi risiko kardiovaskular yang lebih akurat</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-7">
+                            <label class="form-label small fw-bold text-uppercase tracking-wider text-danger mb-3">
+                                <i class="fa-solid fa-person-walking me-1"></i> Gaya Hidup & Riwayat
+                            </label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="rf-option-card">
+                                        <input class="form-check-input rf-check d-none" type="checkbox" value="merokok" id="rfSmoking">
+                                        <label class="rf-option-label" for="rfSmoking">
+                                            <i class="fa-solid fa-smoking" style="color: #555;"></i>
+                                            <span>Merokok</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="rf-option-card">
+                                        <input class="form-check-input rf-check d-none" type="checkbox" value="obesitas" id="rfObesity">
+                                        <label class="rf-option-label" for="rfObesity">
+                                            <i class="fa-solid fa-weight-scale" style="color: #e67e22;"></i>
+                                            <span>Obesitas</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="rf-option-card">
+                                        <input class="form-check-input rf-check d-none" type="checkbox" value="kolesterol" id="rfCholesterol">
+                                        <label class="rf-option-label" for="rfCholesterol">
+                                            <i class="fa-solid fa-droplet" style="color: #f1c40f;"></i>
+                                            <span>Kolesterol</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="rf-option-card">
+                                        <input class="form-check-input rf-check d-none" type="checkbox" value="keluarga" id="rfFamily">
+                                        <label class="rf-option-label" for="rfFamily">
+                                            <i class="fa-solid fa-dna" style="color: #9b59b6;"></i>
+                                            <span>Riwayat Keluarga</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="form-label small fw-bold text-uppercase tracking-wider text-danger mb-3">
+                                <i class="fa-solid fa-hospital-user me-1"></i> Kondisi Medis Utama
+                            </label>
+                            <div class="position-relative">
+                                <select class="form-select form-select-lg border-2 shadow-none" id="medCondition" style="font-size: 0.9rem; border-color: #dee2e6;">
+                                    <option value="none" selected>Tidak Ada / Tanpa Komplikasi</option>
+                                    <option value="dm_no_organ">Diabetes Melitus (Tanpa Kerusakan Organ)</option>
+                                    <option value="dm_organ">Diabetes Melitus (Dengan Kerusakan Organ)</option>
+                                    <option value="ckd_3">Penyakit Ginjal Kronis (Stadium 3)</option>
+                                    <option value="ckd_4">Penyakit Ginjal Kronis (Stadium 4+)</option>
+                                    <option value="cvd">Penyakit Jantung / Stroke (CVD)</option>
+                                    <option value="hmod">Kerusakan Organ Terdeteksi (HMOD)</option>
+                                </select>
+                            </div>
+                            <div class="mt-3 p-2 rounded bg-light border small text-muted">
+                                <i class="fa-solid fa-circle-info me-1 text-danger"></i> 
+                                Estimasi berdasarkan standar <strong>ESC/ESH Guidelines 2018</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .rf-option-card {
+                        height: 100%;
+                    }
+                    .rf-option-label {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 12px;
+                        background: #f8f9fa;
+                        border: 2px solid #f1f3f5;
+                        border-radius: 12px;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        margin-bottom: 0;
+                        width: 100%;
+                        gap: 8px;
+                    }
+                    .rf-option-label i {
+                        font-size: 1.2rem;
+                        opacity: 0.6;
+                        transition: all 0.2s ease;
+                    }
+                    .rf-option-label span {
+                        font-size: 0.75rem;
+                        font-weight: 600;
+                        color: #495057;
+                    }
+                    .rf-check:checked + .rf-option-label {
+                        background: #fff5f5;
+                        border-color: #e53e3e;
+                    }
+                    .rf-check:checked + .rf-option-label i {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                    .rf-check:checked + .rf-option-label span {
+                        color: #c53030;
+                    }
+                    .rf-option-label:hover {
+                        background: #e9ecef;
+                        transform: translateY(-2px);
+                    }
+                </style>
+
                 <div class="d-flex gap-2 mt-3">
                     <button class="btn btn-cek flex-fill" id="cekTekananBtn" aria-live="polite">
                         <span id="cekLabel">Cek Hasil</span>
@@ -798,6 +923,7 @@
 
                 <!-- Output Result: Structured Format -->
                 <div id="hasilWrapper" class="d-none mt-4 pt-3 border-top">
+                    <div id="hasilMessage" class="mb-3"></div>
                     <div id="hasilKategori" class="result-block mb-3"></div>
                     <div id="hasilRisiko" class="result-block mb-3"></div>
                     <div id="hasilInterpretasi" class="result-block mb-3"></div>
@@ -834,7 +960,7 @@
     <script src="js/index.js"></script>
 
     <!-- Footer -->
-    <footer class="main-footer py-5 mt-5 reveal" style="background: #1b5e20; color: white;">
+    <footer class="main-footer py-4 mt-4 reveal" style="background: #1b5e20; color: white;">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">

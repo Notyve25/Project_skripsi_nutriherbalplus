@@ -270,6 +270,83 @@ body {
     border-left: 4px solid var(--danger);
 }
 
+/* Result Box Styling Enhancements (Applied to all except Tensi) */
+.result-container {
+    padding: 16px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+.result-header-gradient {
+    margin: -16px -16px 16px -16px;
+    padding: 12px 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.result-main-value {
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.result-badge-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+}
+
+.result-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.result-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.result-info-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Color Variants for new Result Box (Matching individual calculators) */
+/* Natrium */
+.res-natrium .result-header-gradient { background: linear-gradient(135deg, #5c9ded, #2c3e50); }
+.res-natrium .result-info-icon { background: rgba(92, 157, 237, 0.1); color: #5c9ded; }
+.res-natrium .main-text { color: #5c9ded; }
+
+/* Lemak */
+.res-lemak .result-header-gradient { background: linear-gradient(135deg, #f5b041, #e67e22); }
+.res-lemak .result-info-icon { background: rgba(245, 176, 65, 0.1); color: #f5b041; }
+.res-lemak .main-text { color: #f5b041; }
+
+/* IMT */
+.res-imt .result-header-gradient { background: linear-gradient(135deg, #1abc9c, #16a085); }
+.res-imt .result-info-icon { background: rgba(26, 188, 156, 0.1); color: #1abc9c; }
+.res-imt .main-text { color: #1abc9c; }
+
+/* Result Box for Tensi (Already updated, but keeping classes if needed) */
 .shake {
     animation: shake .46s ease;
 }
@@ -1078,7 +1155,7 @@ body {
 
 /* Enhanced Section Hover */
 .info-section-formal {
-    padding: 60px 0; /* Standardized Section Padding */
+    padding: 40px 0; /* Standardized Section Padding */
     margin: 0;
     transition: all 0.5s ease;
     border-bottom: 1px solid rgba(0,0,0,0.03);
@@ -1561,17 +1638,6 @@ body {
 
 .featurette-heading i {
     color: #27ae60;
-}
-
-.featurette-1 .order-md-1,
-.featurette-3 .order-md-1,
-.featurette-5 .order-md-1 {
-    /* Text di kiri, gambar di kanan */
-}
-
-.featurette-2 .order-md-1,
-.featurette-4 .order-md-1 {
-    /* Gambar di kiri, content di kanan */
 }
 
 .featurette img {

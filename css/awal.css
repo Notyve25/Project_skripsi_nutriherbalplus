@@ -273,8 +273,8 @@ body {
 
 /* Tentang Kami Section */
 .tentang-kami-section {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* visi misi */
@@ -451,7 +451,7 @@ body {
 
 /* Institusi Terkait */
 .institusi-section {
-    margin-top: 48px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -500,7 +500,7 @@ body {
 
 /* Fitur utama */
 .fitur-section {
-    margin-top: 48px;
+    margin-top: 20px;
 }
 
 .fitur-icon {

@@ -87,20 +87,47 @@ function hitungAKGv5() {
         else status = 'danger';
 
         // render hasil (konsisten dengan style .result)
-        hasil.className = `result ${status} show`;
+        hasil.className = `result-container res-natrium animate__animated animate__fadeInUp`;
         hasil.innerHTML = `
-            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;">
-                <div><strong>Kelompok Usia:</strong> ${rekomendasi.range} &nbsp; <small class="text-muted">(${jk === 'laki' ? 'Laki-laki' : 'Perempuan'})</small></div>
-                <div><small class="text-muted">Sumber: AKG — Permenkes RI No.28/2019</small></div>
-            </div>
-            <hr style="margin:.5rem 0;">
-            <div><strong>Kebutuhan Natrium Harian:</strong> <span style="color:#28a745">${natrium} mg</span></div>
-            <div><strong>Setara Garam:</strong> ± ${garam} g/hari <small class="text-muted">(${sendokTeh}) sudah termasuk kedalam bahan makanan dan bumbu yang dikonsumsi dalam sehari</small></div>
-            <div class="mt-2">
-                <div class="progress" style="height:10px">
-                    <div class="progress-bar" role="progressbar" style="width:${pct}%"></div>
+            <div class="result-header-gradient">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-calculator fs-5"></i>
+                    <span>Hasil Rekomendasi AKG</span>
                 </div>
-                <small class="small-muted">${pct}% dari batas AKG (2300 mg/hari)</small>
+                <span class="result-badge-pill">${rekomendasi.range} Thn</span>
+            </div>
+            
+            <div class="result-main-value">
+                <div class="text-muted small fw-bold text-uppercase mb-1" style="font-size: 0.65rem;">Kebutuhan Natrium Harian</div>
+                <div class="fs-2 fw-bold main-text">${natrium} <small class="fs-6 text-muted">mg</small></div>
+            </div>
+
+            <div class="result-info-grid">
+                <div class="result-info-item">
+                    <div class="result-info-icon"><i class="fa-solid fa-spoon"></i></div>
+                    <div>
+                        <div class="fw-bold small">Setara Garam</div>
+                        <div class="text-muted small">± ${garam} g/hari (${sendokTeh})</div>
+                    </div>
+                </div>
+                
+                <div class="result-info-item">
+                    <div class="result-info-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="w-100">
+                        <div class="fw-bold small">Persentase AKG</div>
+                        <div class="progress mt-1" style="height:6px">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width:${pct}%"></div>
+                        </div>
+                        <div class="text-muted mt-1" style="font-size: 0.65rem;">${pct}% dari batas AKG (2300 mg/hari)</div>
+                    </div>
+                </div>
+
+                <div class="mt-2 pt-2 border-top">
+                    <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.65rem;">
+                        <i class="fa-solid fa-book-medical"></i>
+                        <span>Sumber: AKG — Permenkes RI No.28/2019</span>
+                    </div>
+                </div>
             </div>
         `;
 
@@ -231,15 +258,37 @@ function hitungLemak() {
             sendokDisplay = `sekitar ${Math.round(lemak / 15)} sendok makan`;
         }
 
-        hasil.className = 'result safe show';
+        hasil.className = 'result-container res-lemak animate__animated animate__fadeInUp';
         hasil.innerHTML = `
-            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;">
-                <div><strong>Kelompok Usia:</strong> ${lemakData.umurMin}–${lemakData.umurMax} thn &nbsp; <small class="text-muted">(${jk === 'L' ? 'Laki-laki' : 'Perempuan'})</small></div>
-                <div><small class="text-muted">Sumber: AKG — Permenkes RI No.28/2019</small></div>
+            <div class="result-header-gradient">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-bacon fs-5"></i>
+                    <span>Kebutuhan Lemak Harian</span>
+                </div>
+                <span class="result-badge-pill">${lemakData.umurMin}–${lemakData.umurMax} Thn</span>
             </div>
-            <hr style="margin:.5rem 0;">
-            <div><strong>Kebutuhan Lemak Harian:</strong> <span style="color:#28a745">${lemak} gram</span></div>
-            <div><strong>Setara Minyak/Lemak:</strong> ± ${sendokDisplay}</div>
+
+            <div class="result-main-value">
+                <div class="text-muted small fw-bold text-uppercase mb-1" style="font-size: 0.65rem;">Kebutuhan Lemak</div>
+                <div class="fs-2 fw-bold main-text">${lemak} <small class="fs-6 text-muted">gram</small></div>
+            </div>
+
+            <div class="result-info-grid">
+                <div class="result-info-item">
+                    <div class="result-info-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <div>
+                        <div class="fw-bold small">Setara Minyak/Lemak</div>
+                        <div class="text-muted small">± ${sendokDisplay}</div>
+                    </div>
+                </div>
+
+                <div class="mt-2 pt-2 border-top">
+                    <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.65rem;">
+                        <i class="fa-solid fa-book-medical"></i>
+                        <span>Sumber: AKG — Permenkes RI No.28/2019</span>
+                    </div>
+                </div>
+            </div>
         `;
 
         // restore button
@@ -332,14 +381,42 @@ function hitungIMT() {
             saran = 'Segera konsultasikan dengan ahli gizi atau dokter untuk penanganan lebih lanjut.' + sourceText;
         }
 
-        hasil.className = `result ${cssClass} show`;
+        hasil.className = `result-container res-imt animate__animated animate__fadeInUp`;
         hasil.innerHTML = `
-            <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;">
-                <div><strong>IMT Anda:</strong> <span style="font-size:1.2rem">${imtFixed}</span></div>
-                <div><small class="text-muted">Kategori: ${status}</small></div>
+            <div class="result-header-gradient" style="background: linear-gradient(135deg, ${cssClass === 'safe' ? '#27ae60' : cssClass === 'warning' ? '#f1c40f' : '#e74c3c'}, #2c3e50);">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-weight-scale fs-5"></i>
+                    <span>Hasil Indeks Massa Tubuh</span>
+                </div>
+                <span class="result-badge-pill">${status.split(' ')[0]}</span>
             </div>
-            <hr style="margin:.5rem 0;">
-            <div><strong>Saran:</strong> ${saran}</div>
+
+            <div class="result-main-value">
+                <div class="text-muted small fw-bold text-uppercase mb-1" style="font-size: 0.65rem;">Skor IMT Anda</div>
+                <div class="fs-2 fw-bold main-text">${imtFixed}</div>
+                <div class="badge rounded-pill mt-2" style="background: ${cssClass === 'safe' ? '#27ae60' : cssClass === 'warning' ? '#f1c40f' : '#e74c3c'}20; color: ${cssClass === 'safe' ? '#27ae60' : cssClass === 'warning' ? '#f1c40f' : '#e74c3c'}; font-size: 0.75rem;">
+                    ${status}
+                </div>
+            </div>
+
+            <div class="result-info-grid">
+                <div class="result-info-item">
+                    <div class="result-info-icon" style="background: ${cssClass === 'safe' ? '#27ae60' : cssClass === 'warning' ? '#f1c40f' : '#e74c3c'}10; color: ${cssClass === 'safe' ? '#27ae60' : cssClass === 'warning' ? '#f1c40f' : '#e74c3c'};">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold small">Saran Kesehatan</div>
+                        <div class="text-muted small">${saran.split('<div')[0]}</div>
+                    </div>
+                </div>
+
+                <div class="mt-2 pt-2 border-top">
+                    <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.65rem;">
+                        <i class="fa-solid fa-book-medical"></i>
+                        <span>Sumber: Pedoman Gizi Seimbang 2014</span>
+                    </div>
+                </div>
+            </div>
         `;
 
         // restore button
@@ -415,6 +492,7 @@ function renderRiwayat() {
 function hapusRiwayat() {
     if (confirm('Hapus semua riwayat pengecekan?')) {
         localStorage.removeItem(RIWAYAT_KEY);
+        // Render Riwayat saat inisialisasi
         renderRiwayat();
     }
 }
@@ -422,489 +500,498 @@ function hapusRiwayat() {
 window.hapusRiwayat = hapusRiwayat;
 
 // Real-time validation
-const sbpInput = document.getElementById('sbp');
-const dbpInput = document.getElementById('dbp');
-const sbpValidation = document.getElementById('sbpValidation');
-const dbpValidation = document.getElementById('dbpValidation');
+const sbpInput_v2 = document.getElementById('sbp');
+const dbpInput_v2 = document.getElementById('dbp');
+const sbpValidation_v2 = document.getElementById('sbpValidation');
+const dbpValidation_v2 = document.getElementById('dbpValidation');
 
-function validateSBP() {
-    const value = parseInt(sbpInput.value);
-    if (isNaN(value) || value < 30 || value > 250) {
-        sbpValidation.classList.remove('d-none');
-        sbpInput.classList.add('is-invalid');
+function validateSBP_v2() {
+    if (!sbpInput_v2 || !sbpValidation_v2) return;
+    const value = parseInt(sbpInput_v2.value);
+    if (sbpInput_v2.value === '') {
+        sbpValidation_v2.classList.add('d-none');
+        sbpInput_v2.classList.remove('is-invalid');
+    } else if (isNaN(value) || value < 30 || value > 250) {
+        sbpValidation_v2.classList.remove('d-none');
+        sbpValidation_v2.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai sistolik harus antara 30–250 mmHg';
+        sbpInput_v2.classList.add('is-invalid');
     } else {
-        sbpValidation.classList.add('d-none');
-        sbpInput.classList.remove('is-invalid');
+        sbpValidation_v2.classList.add('d-none');
+        sbpInput_v2.classList.remove('is-invalid');
     }
 }
 
-function validateDBP() {
-    const value = parseInt(dbpInput.value);
-    if (isNaN(value) || value < 30 || value > 200) {
-        dbpValidation.classList.remove('d-none');
-        dbpInput.classList.add('is-invalid');
+function validateDBP_v2() {
+    if (!dbpInput_v2 || !dbpValidation_v2) return;
+    const value = parseInt(dbpInput_v2.value);
+    if (dbpInput_v2.value === '') {
+        dbpValidation_v2.classList.add('d-none');
+        dbpInput_v2.classList.remove('is-invalid');
+    } else if (isNaN(value) || value < 30 || value > 200) {
+        dbpValidation_v2.classList.remove('d-none');
+        dbpValidation_v2.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai diastolik harus antara 30–200 mmHg';
+        dbpInput_v2.classList.add('is-invalid');
     } else {
-        dbpValidation.classList.add('d-none');
-        dbpInput.classList.remove('is-invalid');
+        dbpValidation_v2.classList.add('d-none');
+        dbpInput_v2.classList.remove('is-invalid');
     }
 }
 
-sbpInput.addEventListener('input', validateSBP);
-dbpInput.addEventListener('input', validateDBP);
+if (sbpInput_v2) sbpInput_v2.addEventListener('input', validateSBP_v2);
+if (dbpInput_v2) dbpInput_v2.addEventListener('input', validateDBP_v2);
 
-// Cek Tekanan Darah
-(function () {
-    const sbpEl = () => document.getElementById('sbp');
-    const dbpEl = () => document.getElementById('dbp');
-    const hasilEl = () => document.getElementById('hasil');
-    const cekBtn = document.getElementById('cekTekananBtn');
-    const resetBtn = document.getElementById('resetTekananBtn');
-    const spinner = document.getElementById('cekSpinner');
-    const cekLabel = document.getElementById('cekLabel');
+    // Cek Tekanan Darah
+    (function () {
+        const sbpEl = () => document.getElementById('sbp');
+        const dbpEl = () => document.getElementById('dbp');
+        const hasilEl = () => document.getElementById('hasilWrapper');
+        const cekBtn = document.getElementById('cekTekananBtn');
+        const resetBtn = document.getElementById('resetTekananBtn');
+        const spinner = document.getElementById('cekSpinner');
+        const cekLabel = document.getElementById('cekLabel');
 
-    function setLoading(loading) {
-        cekBtn.disabled = loading;
-        if (loading) { spinner.classList.remove('d-none'); cekLabel.textContent = 'Mengecek...'; }
-        else { spinner.classList.add('d-none'); cekLabel.textContent = 'Cek Hasil'; }
-    }
+        if (!cekBtn) return; // Prevent errors if element not found
 
-    function showResult(type, html) {
-        const r = hasilEl();
-        r.className = 'result ' + type + ' show';
-        r.innerHTML = html;
-        r.focus?.();
-    }
-
-    cekBtn.addEventListener('click', function () {
-        const sbp = parseInt(sbpEl().value);
-        const dbp = parseInt(dbpEl().value);
-        const r = hasilEl();
-        r.className = 'result';
-        r.innerHTML = '';
-
-        if (isNaN(sbp) || isNaN(dbp) || sbp < 30 || dbp < 30) {
-            [sbpEl(), dbpEl()].forEach(el => { el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 500); });
-            showResult('', '⚠️ Harap isi SBP dan DBP dengan nilai valid.');
-            return;
+        function setLoading(loading) {
+            if (!cekBtn) return;
+            cekBtn.disabled = loading;
+            if (loading) {
+                if (spinner) spinner.classList.remove('d-none');
+                if (cekLabel) cekLabel.textContent = 'Mengecek...';
+            } else {
+                if (spinner) spinner.classList.add('d-none');
+                if (cekLabel) cekLabel.textContent = 'Cek Hasil';
+            }
         }
 
-        let statusText = '';
-        let bpCategory = '';
-        setLoading(true);
+        function showResult(type, html) {
+            const r = hasilEl();
+            const msgEl = document.getElementById('hasilMessage');
+            if (!r || !msgEl) return;
+            
+            r.classList.remove('d-none');
+            msgEl.classList.remove('d-none');
+            msgEl.innerHTML = `<div class="alert alert-${type === 'error' ? 'danger' : 'info'} animate__animated animate__fadeIn">${html}</div>`;
+            r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
 
-        // simulasi proses singkat untuk UX
-        setTimeout(() => {
-            setLoading(false);
+        cekBtn.addEventListener('click', function () {
+            const sbpVal = sbpEl().value;
+            const dbpVal = dbpEl().value;
+            const sbp = parseInt(sbpVal);
+            const dbp = parseInt(dbpVal);
+            const r = hasilEl();
+            const msgEl = document.getElementById('hasilMessage');
 
-            // Sumber referensi yang konsisten
-            const sourceText = '<div class="mt-2 pt-2 border-top small text-muted">Sumber: Guidelines for the management of arterial hypertension 2018</div>';
+            // Reset UI state
+            if (r) r.classList.add('d-none');
+            if (msgEl) {
+                msgEl.innerHTML = '';
+                msgEl.classList.add('d-none');
+            }
+            ['hasilKategori', 'hasilRisiko', 'hasilInterpretasi', 'hasilDisclaimer'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('d-none');
+            });
 
-    let kategoriTD = '';
-    let teksStatus = '';
-            let cssClass = '';
-
-            // 1. VALIDASI DATA
-            if (sbp < 50 || dbp < 30 || sbp > 300 || dbp > 200) {
-                showResult(
-                    'error',
-                    '❌ <b>Data tidak valid</b><br>' +
-                    'Nilai tekanan darah ekstrem terdeteksi. Periksa kembali alat ukur.' +
-                    sourceText
-                );
+            if (isNaN(sbp) || isNaN(dbp) || sbp < 30 || dbp < 30) {
+                [sbpEl(), dbpEl()].forEach(el => {
+                    if (el) {
+                        el.classList.add('shake');
+                        setTimeout(() => el.classList.remove('shake'), 500);
+                    }
+                });
+                showResult('error', '⚠️ Harap isi SBP dan DBP dengan nilai valid (minimal 30 mmHg).');
                 return;
             }
 
-            // 2. KLASIFIKASI TEKANAN DARAH
-            // Urutan prioritas: Derajat 3 -> ISH -> Derajat 2 -> Derajat 1 -> Normal Tinggi -> Normal -> Hipotensi -> Optimal
-            
-            if (sbp >= 180 || dbp >= 110) {
-                kategoriTD = 'grade3';
-                cssClass = 'stage2'; // Map ke CSS stage2 (merah)
-                teksStatus = '🔴 <b>Hipertensi Derajat 3</b>';
-            } else if (sbp >= 140 && dbp < 90) {
-                // Hipertensi Sistolik Terisolasi (ISH)
-                kategoriTD = 'ish';
-                // Warna indikator menyesuaikan tingkat keparahan SBP
-                if (sbp >= 160) {
-                    cssClass = 'stage2';
-                    teksStatus = '🔴 <b>Hipertensi Sistolik Terisolasi</b>';
-                } else {
-                    cssClass = 'stage1';
-                    teksStatus = '🟠 <b>Hipertensi Sistolik Terisolasi</b>';
+            setLoading(true);
+
+            // simulasi proses singkat untuk UX
+            setTimeout(() => {
+                setLoading(false);
+
+                // Sumber referensi yang konsisten
+                const sourceText = '<div class="mt-2 pt-2 border-top small text-muted">Sumber: Guidelines for the management of arterial hypertension 2018</div>';
+
+                let kategoriTD = '';
+                let teksStatus = '';
+
+                // 1. VALIDASI DATA EKSTREM
+                if (sbp < 50 || dbp < 30 || sbp > 300 || dbp > 200) {
+                    showResult(
+                        'error',
+                        '❌ <b>Data tidak valid</b><br>' +
+                        'Nilai tekanan darah ekstrem terdeteksi. Periksa kembali alat ukur.' +
+                        sourceText
+                    );
+                    return;
                 }
-            } else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) {
-                kategoriTD = 'grade2';
-                cssClass = 'stage2';
-                teksStatus = '🔴 <b>Hipertensi Derajat 2</b>';
-            } else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) {
-                kategoriTD = 'grade1';
-                cssClass = 'stage1';
-                teksStatus = '🟠 <b>Hipertensi Derajat 1</b>';
-            } else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) {
-                kategoriTD = 'high-normal';
-                cssClass = 'elevated';
-                teksStatus = '⚠️ <b>Tekanan Darah Normal Tinggi</b>';
-            } else if ((sbp >= 120 && sbp <= 129) || (dbp >= 80 && dbp <= 84)) {
-                kategoriTD = 'normal';
-                cssClass = 'normal';
-                teksStatus = '🟡 <b>Tekanan Darah Normal</b>';
-            } else if (sbp < 90 || dbp < 60) {
-                kategoriTD = 'hipotensi';
-                cssClass = 'normal';
-                teksStatus = '🔵 <b>Hipotensi</b>';
-            } else {
-                kategoriTD = 'optimal';
-                cssClass = 'safe';
-                teksStatus = '✅ <b>Tekanan Darah Optimal</b>';
-            }
 
-            // 3. ESTIMASI RISIKO HIPERTENSI (ESC/ESH 2018)
-            // Input default karena UI saat ini hanya memiliki input tekanan darah
-            // (Asumsi: 0 faktor risiko, tidak ada komorbiditas)
-            const statusKesehatan = {
-                hasHMOD: false,             // HMOD (Hypertension-Mediated Organ Damage)
-                hasDM_NoOrganDamage: false, // Diabetes tanpa kerusakan organ
-                hasDM_OrganDamage: false,   // Diabetes dengan kerusakan organ
-                ckdStage: 1,                // Derajat PGK (1-5)
-                hasCVD: false               // Penyakit Kardiovaskular (CVD)
-            };
-            
-            const kategoriRisiko = klasifikasiRisikoESC2018(sbp, dbp, 0, statusKesehatan);
-
-            // Format warna ikon berdasarkan hasil teks kategori
-            let iconRisiko = '🟢';
-            if (kategoriRisiko.includes('sangat tinggi') || kategoriRisiko === 'Risiko tinggi') iconRisiko = '🔴';
-            else if (kategoriRisiko.includes('sedang-tinggi')) iconRisiko = '🟠';
-            else if (kategoriRisiko.includes('sedang')) iconRisiko = '🟡';
-
-            // 4. TAMPILKAN HASIL - GUNAKAN STRUKTUR BARU
-            // Render menggunakan strukturbaru dengan 3 blok terpisah (kategori, risiko, interpretasi)
-            renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko);
-
-            if (teksStatus) saveRiwayat(sbp, dbp, teksStatus);
-        }, 400);
-    });
-
-    // Helper Functions
-    /**
-     * Fungsi Klasifikasi Risiko Hipertensi berdasarkan ESC/ESH Guidelines 2018
-     * Referensi: Williams B, et al. European Heart Journal. 2018;39:3021–3104.
-     * Tabel 5: Classification of hypertension stages and CAD risk.
-     * 
-     * @param {number} sbp - Tekanan Darah Sistolik
-     * @param {number} dbp - Tekanan Darah Diastolik
-     * @param {number} jumlahFaktorRisiko - Jumlah faktor risiko (0, 1-2, atau >=3)
-     * @param {Object} status - Status kesehatan { hasHMOD, hasDM_NoOrganDamage, hasDM_OrganDamage, ckdStage, hasCVD }
-     * @returns {string} Kategori risiko (Risiko rendah, sedang, sedang-tinggi, tinggi, sangat tinggi)
-     */
-    function klasifikasiRisikoESC2018(sbp, dbp, jumlahFaktorRisiko, status) {
-        const {
-            hasHMOD,
-            hasDM_NoOrganDamage,
-            hasDM_OrganDamage,
-            ckdStage,
-            hasCVD
-        } = status;
-
-        // 1. Tentukan Derajat Tekanan Darah (Kolom Tabel)
-        // Prioritas pengecekan dari yang tertinggi (Grade 3) ke terendah
-        let derajatTD = '';
+                // 2. KLASIFIKASI TEKANAN DARAH
         if (sbp >= 180 || dbp >= 110) {
-            derajatTD = 'grade3';
-        } else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) {
-            derajatTD = 'grade2';
-        } else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) {
-            derajatTD = 'grade1';
-        } else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) {
-            derajatTD = 'high_normal';
-        } else {
-            derajatTD = 'normal_optimal'; // < 130/85
-        }
+                    kategoriTD = 'grade3';
+                    teksStatus = '🔴 <b>Hipertensi Derajat 3</b>';
+                } else if (sbp >= 140 && dbp < 90) {
+                    kategoriTD = 'ish';
+                    teksStatus = (sbp >= 160) ? '🔴 <b>Hipertensi Sistolik Terisolasi</b>' : '🟠 <b>Hipertensi Sistolik Terisolasi</b>';
+                } else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) {
+                    kategoriTD = 'grade2';
+                    teksStatus = '🔴 <b>Hipertensi Derajat 2</b>';
+                } else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) {
+                    kategoriTD = 'grade1';
+                    teksStatus = '🟠 <b>Hipertensi Derajat 1</b>';
+                } else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) {
+                    kategoriTD = 'high-normal';
+                    teksStatus = '⚠️ <b>Tekanan Darah Normal Tinggi</b>';
+                } else if ((sbp >= 120 && sbp <= 129) || (dbp >= 80 && dbp <= 84)) {
+                    kategoriTD = 'normal';
+                    teksStatus = '🟡 <b>Tekanan Darah Normal</b>';
+                } else if (sbp < 90 || dbp < 60) {
+                    kategoriTD = 'hipotensi';
+                    teksStatus = '🔵 <b>Hipotensi</b>';
+                } else {
+                    kategoriTD = 'optimal';
+                    teksStatus = '✅ <b>Tekanan Darah Optimal</b>';
+                }
 
-        // 2. Tentukan Tahapan Penyakit (Baris Tabel)
-        // Pengecekan dilakukan dari Tahap 3 (terberat) ke bawah.
+                // 3. Estimasi Risiko
+                const rfCheckboxes = document.querySelectorAll('.rf-check:checked');
+                const rfSelected = Array.from(rfCheckboxes).map(cb => {
+                    const label = cb.nextElementSibling;
+                    const span = label ? label.querySelector('span') : null;
+                    return span ? span.textContent : cb.value;
+                });
+                
+                const medCondEl = document.getElementById('medCondition');
+                const medCondText = medCondEl ? medCondEl.options[medCondEl.selectedIndex].text : 'Tidak Ada';
+                const medCondVal = medCondEl ? medCondEl.value : 'none';
+                
+                const statusKesehatan = {
+                    hasHMOD: medCondVal === 'hmod',
+                    hasDM_NoOrganDamage: medCondVal === 'dm_no_organ',
+                    hasDM_OrganDamage: medCondVal === 'dm_organ',
+                    ckdStage: medCondVal === 'ckd_3' ? 3 : (medCondVal === 'ckd_4' ? 4 : 1),
+                    hasCVD: medCondVal === 'cvd'
+                };
+                const kategoriRisiko = klasifikasiRisikoESC2018(sbp, dbp, rfSelected.length, statusKesehatan);
 
-        // TAHAP 3: Penyakit Terdokumentasi (Established Disease)
-        // Kriteria: CVD, CKD grade >= 4, atau DM dengan kerusakan organ
-        if (hasCVD || ckdStage >= 4 || hasDM_OrganDamage) {
-            // Baris Tahap 3: Semua kategori TD (High Normal ke atas) adalah Very High Risk
-            if (derajatTD === 'normal_optimal') return 'Risiko sedang-tinggi'; // Estimasi konservatif
-            return 'Risiko sangat tinggi';
-        }
+                // 4. Render Hasil
+                renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko, rfSelected, medCondText);
 
-        // TAHAP 2: Penyakit Asimtomatik
-        // Kriteria: HMOD, CKD grade 3, atau DM tanpa kerusakan organ
-        if (hasHMOD || ckdStage === 3 || hasDM_NoOrganDamage) {
-            if (derajatTD === 'grade3') return 'Risiko tinggi';
-            if (derajatTD === 'grade2') return 'Risiko tinggi';
-            if (derajatTD === 'grade1') return 'Risiko tinggi'; // Tabel: Moderate to High -> Ambil High (tertinggi)
-            if (derajatTD === 'high_normal') return 'Risiko sedang-tinggi'; // Tabel: Moderate to High
-            return 'Risiko sedang';
-        }
-
-        // TAHAP 1: Tidak berkomplikasi (Hanya faktor risiko)
-        
-        // KONDISI: >= 3 Faktor Risiko
-        if (jumlahFaktorRisiko >= 3) {
-            if (derajatTD === 'grade3') return 'Risiko tinggi';
-            if (derajatTD === 'grade2') return 'Risiko tinggi';
-            if (derajatTD === 'grade1') return 'Risiko sedang-tinggi'; // Tabel: Moderate-High
-            if (derajatTD === 'high_normal') return 'Risiko sedang'; // Tabel: Low-Moderate -> Ambil Sedang
-            return 'Risiko rendah';
-        }
-
-        // KONDISI: 1-2 Faktor Risiko
-        if (jumlahFaktorRisiko >= 1) {
-            if (derajatTD === 'grade3') return 'Risiko tinggi';
-            if (derajatTD === 'grade2') return 'Risiko sedang-tinggi'; // Tabel: Moderate-High
-            if (derajatTD === 'grade1') return 'Risiko sedang'; // Tabel: Moderate
-            if (derajatTD === 'high_normal') return 'Risiko rendah'; // Tabel: Low
-            return 'Risiko rendah';
-        }
-
-        // KONDISI: 0 Faktor Risiko (No other risk factors)
-        if (derajatTD === 'grade3') return 'Risiko tinggi';
-        if (derajatTD === 'grade2') return 'Risiko sedang'; // Tabel: Moderate
-        if (derajatTD === 'grade1') return 'Risiko rendah'; // Tabel: Low
-        if (derajatTD === 'high_normal') return 'Risiko rendah'; // Tabel: Low
-        
-        return 'Risiko rendah'; // Normal/Optimal
-    }
-
-    function interpretasiEdukatif(kategoriTD) {
-        const interpretations = {
-            'optimal': 'Tekanan darah optimal menunjukkan kondisi kesehatan kardiovaskular yang sangat baik. Ini adalah hasil yang ideal dan menunjukkan risiko rendah terhadap penyakit jantung dan stroke.',
-            'normal': 'Tekanan darah dalam kategori normal menunjukkan fungsi jantung dan pembuluh darah yang baik. Pertahankan pola hidup sehat untuk mencegah peningkatan di masa depan.',
-            'high-normal': 'Kategori ini menunjukkan tekanan darah yang sedikit lebih tinggi dari normal. Meskipun belum hipertensi, ini adalah sinyal peringatan untuk mulai memperbaiki gaya hidup.',
-            'grade1': 'Hipertensi derajat 1 menunjukkan tekanan darah yang meningkat. Kondisi ini dapat dikontrol dengan perubahan gaya hidup dan mungkin memerlukan pengobatan medis.',
-            'grade2': 'Hipertensi derajat 2 adalah kondisi serius yang memerlukan perhatian medis segera. Risiko komplikasi seperti stroke dan serangan jantung meningkat signifikan.',
-            'grade3': 'Hipertensi derajat 3 adalah kondisi darurat medis. Tekanan darah yang sangat tinggi dapat menyebabkan kerusakan organ vital dalam waktu singkat.',
-            'ish': 'Hipertensi sistolik terisolasi umum terjadi pada lansia. Meskipun diastolik normal, sistolik yang tinggi tetap berisiko tinggi terhadap penyakit kardiovaskular.',
-            'hipotensi': 'Tekanan darah rendah dapat menyebabkan gejala seperti pusing dan kelelahan. Meskipun jarang berbahaya, kondisi ini perlu dipantau dan ditangani.'
-        };
-        return interpretations[kategoriTD] || 'Interpretasi tidak tersedia untuk kategori ini.';
-    }
-
-    function saranTekananDarah(kategoriTD) {
-        const tips = {
-            'optimal': {
-                saran: "Kondisi optimal! Pertahankan gaya hidup sehat ini.",
-                diet: "Lanjutkan pola makan gizi seimbang.",
-                aktivitas: "Pertahankan rutinitas olahraga Anda."
-            },
-            'normal': {
-                saran: "Tekanan darah normal. Cek rutin setidaknya 1 tahun sekali.",
-                diet: "Jaga asupan garam dan lemak agar tidak berlebih.",
-                aktivitas: "Rutin berolahraga minimal 30 menit sehari."
-            },
-            'high-normal': {
-                saran: "Waspada! Anda berisiko mengalami hipertensi. Perlu perubahan gaya hidup.",
-                diet: "Kurangi garam (< 5g/hari) dan batasi kafein.",
-                aktivitas: "Tingkatkan aktivitas fisik dan jaga berat badan ideal."
-            },
-            'grade1': {
-                saran: "Hipertensi Derajat 1. Konsultasikan dengan dokter untuk evaluasi risiko.",
-                diet: "Terapkan diet DASH (perbanyak sayur/buah, rendah garam).",
-                aktivitas: "Olahraga teratur (jalan cepat, bersepeda) sangat dianjurkan."
-            },
-            'grade2': {
-                saran: "Hipertensi Derajat 2. Segera hubungi dokter, obat-obatan mungkin diperlukan.",
-                diet: "Batasi ketat garam, lemak jenuh, dan makanan olahan.",
-                aktivitas: "Hindari aktivitas fisik berat sebelum tekanan darah terkontrol."
-            },
-            'grade3': {
-                saran: "BAHAYA! Hipertensi Derajat 3. Segera ke fasilitas kesehatan terdekat.",
-                diet: "Hentikan konsumsi garam sementara waktu.",
-                aktivitas: "Istirahat total, hindari stres, dan jangan melakukan aktivitas fisik berat."
-            },
-            'ish': {
-                saran: "Hipertensi Sistolik Terisolasi. Umum pada lansia, berisiko kaku pembuluh darah.",
-                diet: "Kurangi asupan natrium (garam) dan cukupi kebutuhan kalsium & kalium.",
-                aktivitas: "Latihan aerobik ringan seperti jalan kaki atau berenang."
-            },
-            'hipotensi': {
-                saran: "Tekanan darah rendah. Jika merasa pusing atau lemas, segera duduk/berbaring.",
-                diet: "Cukupi kebutuhan cairan (minum air putih) dan jangan terlambat makan.",
-                aktivitas: "Bangun dari posisi duduk/tidur secara perlahan untuk menghindari pusing."
-            }
-        };
-
-        const t = tips[kategoriTD] || tips['normal'];
-        return `<div class="mt-2 text-start small border-top pt-2">
-            <div class="mb-1">💡 <strong>Saran:</strong> ${t.saran}</div>
-            <div class="mb-1">🥗 <strong>Diet:</strong> ${t.diet}</div>
-            <div>🏃 <strong>Aktivitas:</strong> ${t.aktivitas}</div>
-        </div>`;
-    }
-
-resetBtn.addEventListener('click', function () {
-    sbpEl().value = '';
-    dbpEl().value = '';
-    const r = hasilEl();
-    r.className = 'result';
-    r.innerHTML = '';
-    // Sembunyikan wrapper hasil yang baru
-    const hasilWrapper = document.getElementById('hasilWrapper');
-    if (hasilWrapper) hasilWrapper.classList.add('d-none');
-    // Reset validasi
-    const sbpValidation = document.getElementById('sbpValidation');
-    const dbpValidation = document.getElementById('dbpValidation');
-    if (sbpValidation) sbpValidation.classList.add('d-none');
-    if (dbpValidation) dbpValidation.classList.add('d-none');
-    sbpEl().classList.remove('is-invalid');
-    dbpEl().classList.remove('is-invalid');
-    sbpEl().focus();
-});
-
-// inisialisasi: bersihkan saat load
-document.addEventListener('DOMContentLoaded', function () {
-    if (sbpEl()) sbpEl().value = '';
-    if (dbpEl()) dbpEl().value = '';
-    const r = hasilEl();
-    if (r) { r.className = 'result'; r.innerHTML = ''; }
-    // Sembunyikan wrapper hasil saat load
-    const hasilWrapper = document.getElementById('hasilWrapper');
-    if (hasilWrapper) hasilWrapper.classList.add('d-none');
-    renderRiwayat(); // Load history on start
-});
-
-}) ();
-
-// ====== ENHANCED VALIDATION FOR TEKANAN DARAH CALCULATOR ======
-document.addEventListener('DOMContentLoaded', function() {
-    const sbpInput = document.getElementById('sbp');
-    const dbpInput = document.getElementById('dbp');
-    const sbpValidation = document.getElementById('sbpValidation');
-    const dbpValidation = document.getElementById('dbpValidation');
-
-    // Real-time Validation untuk SBP
-    if (sbpInput) {
-        sbpInput.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            
-            if (this.value === '') {
-                sbpValidation.classList.add('d-none');
-                this.classList.remove('is-invalid');
-            } else if (isNaN(value) || value < 30 || value > 250) {
-                sbpValidation.classList.remove('d-none');
-                sbpValidation.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai sistolik harus antara 30–250 mmHg';
-                this.classList.add('is-invalid');
-            } else {
-                sbpValidation.classList.add('d-none');
-                this.classList.remove('is-invalid');
-            }
+                // 5. Simpan Riwayat
+                if (teksStatus) saveRiwayat(sbp, dbp, teksStatus);
+            }, 400);
         });
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', function () {
+                if (sbpEl()) sbpEl().value = '';
+                if (dbpEl()) dbpEl().value = '';
+                const r = hasilEl();
+                const msgEl = document.getElementById('hasilMessage');
+                if (r) {
+                    r.classList.add('d-none');
+                }
+                if (msgEl) {
+                    msgEl.innerHTML = '';
+                    msgEl.classList.add('d-none');
+                }
+                // Reset validasi
+                if (sbpValidation_v2) sbpValidation_v2.classList.add('d-none');
+                if (dbpValidation_v2) dbpValidation_v2.classList.add('d-none');
+                if (sbpEl()) {
+                    sbpEl().classList.remove('is-invalid');
+                    sbpEl().focus();
+                }
+                if (dbpEl()) dbpEl().classList.remove('is-invalid');
+
+                // Reset faktor risiko tambahan
+                document.querySelectorAll('.rf-check').forEach(cb => cb.checked = false);
+                const medCondEl = document.getElementById('medCondition');
+                if (medCondEl) medCondEl.value = 'none';
+            });
+        }
+
+        // Inisialisasi: bersihkan saat load
+        if (sbpEl()) sbpEl().value = '';
+        if (dbpEl()) dbpEl().value = '';
+        const wrapper = document.getElementById('hasilWrapper');
+        if (wrapper) {
+            wrapper.classList.add('d-none');
+        }
+        renderRiwayat();
+
+    })();
+
+// Fungsi Klasifikasi Risiko Berdasarkan Tabel 5 ESC/ESH 2018
+function klasifikasiRisikoESC2018(sbp, dbp, rf, status) {
+    // 1. Tentukan Derajat Tekanan Darah (Tabel 2)
+    let grade = 0; // 0: Optimal/Normal, 4: High-Normal, 1: Grade 1, 2: Grade 2, 3: Grade 3
+    if (sbp >= 180 || dbp >= 110) grade = 3;
+    else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) grade = 2;
+    else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) grade = 1;
+    else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) grade = 4; // High Normal
+    else grade = 0; // Normal / Optimal
+
+    // 2. Tentukan Tahapan Penyakit (Tahap 1, 2, atau 3)
+    let stage = 1;
+    if (status.hasCVD || status.ckdStage >= 4 || status.hasDM_OrganDamage) stage = 3;
+    else if (status.hasHMOD || status.ckdStage === 3 || status.hasDM_NoOrganDamage) stage = 2;
+    else stage = 1;
+
+    // 3. Matriks Risiko (Tabel 5)
+    // TAHAP 3
+    if (stage === 3) return "Risiko Sangat Tinggi";
+
+    // TAHAP 2
+    if (stage === 2) {
+        if (grade === 3) return "Risiko Sangat Tinggi";
+        if (grade === 1 || grade === 2) return "Risiko Tinggi";
+        if (grade === 4) return "Risiko Sedang - Tinggi";
+        return "Risiko Rendah"; // Optimal/Normal
     }
 
-    // Real-time Validation untuk DBP
-    if (dbpInput) {
-        dbpInput.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            
-            if (this.value === '') {
-                dbpValidation.classList.add('d-none');
-                this.classList.remove('is-invalid');
-            } else if (isNaN(value) || value < 30 || value > 200) {
-                dbpValidation.classList.remove('d-none');
-                dbpValidation.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-1"></i> Nilai diastolik harus antara 30–200 mmHg';
-                this.classList.add('is-invalid');
-            } else {
-                dbpValidation.classList.add('d-none');
-                this.classList.remove('is-invalid');
-            }
-        });
+    // TAHAP 1
+    if (stage === 1) {
+        if (grade === 3) return "Risiko Tinggi";
+        
+        if (grade === 2) {
+            if (rf >= 3) return "Risiko Tinggi";
+            if (rf >= 1) return "Risiko Sedang - Tinggi";
+            return "Risiko Sedang";
+        }
+        
+        if (grade === 1) {
+            if (rf >= 3) return "Risiko Sedang - Tinggi";
+            if (rf >= 1) return "Risiko Sedang";
+            return "Risiko Rendah";
+        }
+        
+        if (grade === 4) {
+            if (rf >= 3) return "Risiko Rendah - Sedang";
+            return "Risiko Rendah";
+        }
     }
-});
 
-// ====== RENDER STRUCTURED BLOOD PRESSURE RESULTS ======
-function renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko) {
+    return "Risiko Rendah";
+}
+
+// Fungsi Pembantu Warna Risiko
+function getRiskColor(risiko) {
+    if (!risiko) return '#27ae60';
+    const r = risiko.toLowerCase();
+    if (r.includes('sangat tinggi')) return '#c0392b';
+    if (r.includes('tinggi')) return '#e74c3c';
+    if (r.includes('sedang - tinggi')) return '#e67e22';
+    if (r.includes('sedang')) return '#f1c40f';
+    if (r.includes('rendah')) return '#27ae60';
+    return '#27ae60';
+}
+
+// Fungsi Render Hasil Terstruktur
+function renderStructuredBPResult(kategoriTD, sbp, dbp, kategoriRisiko, rfSelected, medCondText) {
+    const hasilWrapper = document.getElementById('hasilWrapper');
+    const msgEl = document.getElementById('hasilMessage');
     const hasilKategoriEl = document.getElementById('hasilKategori');
     const hasilRisikoEl = document.getElementById('hasilRisiko');
     const hasilInterpretasiEl = document.getElementById('hasilInterpretasi');
     const hasilDisclaimerEl = document.getElementById('hasilDisclaimer');
-    const hasilWrapper = document.getElementById('hasilWrapper');
 
-    if (!hasilKategoriEl || !hasilRisikoEl || !hasilInterpretasiEl) return;
+    if (!hasilWrapper || !hasilKategoriEl || !hasilRisikoEl || !hasilInterpretasiEl || !hasilDisclaimerEl) return;
 
-    // 1. KATEGORI TEKANAN DARAH
-    let teksKategori = '';
-    let iconKategori = '';
-    if (sbp >= 180 || dbp >= 110) {
-        teksKategori = 'Hipertensi Derajat 3';
-        iconKategori = '🔴';
-    } else if (sbp >= 140 && dbp < 90) {
-        teksKategori = 'Hipertensi Sistolik Terisolasi';
-        iconKategori = '🟠';
-    } else if ((sbp >= 160 && sbp <= 179) || (dbp >= 100 && dbp <= 109)) {
-        teksKategori = 'Hipertensi Derajat 2';
-        iconKategori = '🔴';
-    } else if ((sbp >= 140 && sbp <= 159) || (dbp >= 90 && dbp <= 99)) {
-        teksKategori = 'Hipertensi Derajat 1';
-        iconKategori = '🟠';
-    } else if ((sbp >= 130 && sbp <= 139) || (dbp >= 85 && dbp <= 89)) {
-        teksKategori = 'Normal Tinggi';
-        iconKategori = '🟡';
-    } else if ((sbp >= 120 && sbp <= 129) || (dbp >= 80 && dbp <= 84)) {
-        teksKategori = 'Normal';
-        iconKategori = '🟡';
-    } else if (sbp < 90 || dbp < 60) {
-        teksKategori = 'Hipotensi (Rendah)';
-        iconKategori = '🔵';
-    } else {
-        teksKategori = 'Optimal (Ideal)';
-        iconKategori = '✅';
+    // Bersihkan pesan error/info jika ada
+    if (msgEl) {
+        msgEl.innerHTML = '';
+        msgEl.classList.add('d-none');
     }
 
-    hasilKategoriEl.className = 'result-block kategori';
+    // 1. Tentukan Tema Warna & Ikon
+    let config = {
+        teks: 'Optimal',
+        icon: 'fa-circle-check',
+        colorClass: 'safe',
+        statusColor: '#27ae60'
+    };
+
+    if (kategoriTD === 'grade3') {
+        config = { teks: 'Hipertensi Derajat 3 (Berat)', icon: 'fa-circle-xmark', colorClass: 'danger', statusColor: '#e74c3c' };
+    } else if (kategoriTD === 'grade2') {
+        config = { teks: 'Hipertensi Derajat 2 (Sedang)', icon: 'fa-circle-exclamation', colorClass: 'danger', statusColor: '#e67e22' };
+    } else if (kategoriTD === 'grade1') {
+        config = { teks: 'Hipertensi Derajat 1 (Ringan)', icon: 'fa-triangle-exclamation', colorClass: 'warning', statusColor: '#f1c40f' };
+    } else if (kategoriTD === 'ish') {
+        config = { teks: 'Hipertensi Sistolik Terisolasi', icon: 'fa-circle-exclamation', colorClass: (sbp >= 160 ? 'danger' : 'warning'), statusColor: '#e67e22' };
+    } else if (kategoriTD === 'high-normal') {
+        config = { teks: 'Normal Tinggi', icon: 'fa-circle-info', colorClass: 'warning', statusColor: '#f1c40f' };
+    } else if (kategoriTD === 'normal') {
+        config = { teks: 'Normal', icon: 'fa-circle-check', colorClass: 'safe', statusColor: '#2ecc71' };
+    } else if (kategoriTD === 'hipotensi') {
+        config = { teks: 'Hipotensi (Rendah)', icon: 'fa-circle-down', colorClass: 'warning', statusColor: '#3498db' };
+    }
+
+    // 2. Render Kartu Ringkasan Utama
+    hasilKategoriEl.classList.remove('d-none');
+    hasilKategoriEl.className = `result ${config.colorClass} show animate__animated animate__fadeInDown p-0 overflow-hidden border-0 shadow-sm`;
+    hasilKategoriEl.style.borderRadius = '16px';
     hasilKategoriEl.innerHTML = `
-        <h6><i class="fa-solid fa-heart-pulse me-2"></i>Kategori Tekanan Darah</h6>
-        <p><strong>${sbp}/${dbp} mmHg</strong> → <strong>${iconKategori} ${teksKategori}</strong></p>
+        <div class="p-3 text-white d-flex align-items-center justify-content-between" style="background: linear-gradient(135deg, ${config.statusColor}, #2c3e50);">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid ${config.icon} fs-4"></i>
+                <span class="fw-bold">Status Kesehatan</span>
+            </div>
+            <span class="badge bg-white text-dark rounded-pill px-3 py-2" style="font-size: 0.75rem;">${config.teks}</span>
+        </div>
+        <div class="p-4 bg-white text-dark">
+            <div class="row align-items-center text-center mb-4">
+                <div class="col-6 border-end">
+                    <div class="text-muted small text-uppercase fw-bold" style="font-size: 0.7rem;">Sistolik</div>
+                    <div class="fs-2 fw-bold text-primary">${sbp} <small class="fs-6 text-muted">mmHg</small></div>
+                </div>
+                <div class="col-6">
+                    <div class="text-muted small text-uppercase fw-bold" style="font-size: 0.7rem;">Diastolik</div>
+                    <div class="fs-2 fw-bold text-primary">${dbp} <small class="fs-6 text-muted">mmHg</small></div>
+                </div>
+            </div>
+
+            <!-- Ringkasan Profil & Risiko -->
+            <div class="p-3 rounded-4 bg-light border mb-3">
+                <div class="row g-3">
+                    <div class="col-md-6 border-md-end">
+                        <div class="text-muted small fw-bold text-uppercase mb-2" style="font-size: 0.65rem;">Faktor Risiko Terdeteksi</div>
+                        <div class="d-flex flex-wrap gap-1">
+                            ${rfSelected.length > 0 ? rfSelected.map(rf => `<span class="badge bg-white text-danger border border-danger-subtle rounded-pill small">${rf}</span>`).join('') : '<span class="text-muted small italic">Tidak ada faktor risiko terpilih</span>'}
+                        </div>
+                    </div>
+                    <div class="col-md-6 ps-md-4">
+                        <div class="text-muted small fw-bold text-uppercase mb-2" style="font-size: 0.65rem;">Kondisi Medis Utama</div>
+                        <div class="fw-bold text-dark small">${medCondText || 'Tidak Ada'}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 rounded-4 d-flex align-items-center justify-content-between shadow-sm border" style="background: ${getRiskColor(kategoriRisiko)}10;">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" 
+                         style="width: 45px; height: 45px; background: ${getRiskColor(kategoriRisiko)};">
+                        <i class="fa-solid fa-shield-heart fs-5"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small fw-bold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">Estimasi Risiko Kardiovaskular</div>
+                        <div class="fw-bold fs-5" style="color: ${getRiskColor(kategoriRisiko)}; line-height: 1.2;">${kategoriRisiko}</div>
+                    </div>
+                </div>
+                <div class="d-none d-md-block text-end">
+                    <span class="badge rounded-pill px-3 py-2" style="background: ${getRiskColor(kategoriRisiko)}20; color: ${getRiskColor(kategoriRisiko)}; font-size: 0.7rem; border: 1px solid ${getRiskColor(kategoriRisiko)}40;">
+                        ESC/ESH 2018
+                    </span>
+                </div>
+            </div>
+        </div>
     `;
 
-    // 2. TINGKAT RISIKO HIPERTENSI
-    let iconRisiko = '🟢';
-    if (kategoriRisiko.includes('sangat tinggi')) iconRisiko = '🔴';
-    else if (kategoriRisiko.includes('sedang-tinggi') || kategoriRisiko.includes('tinggi')) iconRisiko = '🟠';
-    else if (kategoriRisiko.includes('sedang')) iconRisiko = '🟡';
-
-    hasilRisikoEl.className = 'result-block risiko';
-    hasilRisikoEl.innerHTML = `
-        <h6><i class="fa-solid fa-exclamation-triangle me-2"></i>Tingkat Risiko</h6>
-        <p>${iconRisiko} <strong>${kategoriRisiko}</strong></p>
-        <small style="color: #666;">Berdasarkan ESC/ESH Guidelines 2018</small>
-    `;
-
-    // 3. INTERPRETASI EDUKATIF
-    const interpretasi = getInterpretasiSederhana(kategoriTD, sbp, dbp);
-    hasilInterpretasiEl.className = 'result-block interpretasi';
+    // 3. Render Interpretasi & Saran
+    const interpretasi = getInterpretasiSederhana(kategoriTD, sbp, dbp, rfSelected, medCondText);
+    hasilInterpretasiEl.classList.remove('d-none');
+    hasilInterpretasiEl.className = `result bg-light show animate__animated animate__fadeInUp mt-3 p-4 border-0 shadow-sm`;
+    hasilInterpretasiEl.style.borderRadius = '16px';
+    hasilInterpretasiEl.style.animationDelay = '0.2s';
     hasilInterpretasiEl.innerHTML = `
-        <h6><i class="fa-solid fa-lightbulb me-2"></i>Interpretasi Singkat</h6>
-        <p>${interpretasi}</p>
+        <div class="d-flex gap-3">
+            <div class="flex-shrink-0 d-none d-sm-block">
+                <div class="rounded-circle p-3 bg-white shadow-sm" style="color: ${config.statusColor}">
+                    <i class="fa-solid fa-lightbulb fs-4"></i>
+                </div>
+            </div>
+            <div>
+                <h6 class="fw-bold mb-1">Analisis & Saran Kesehatan</h6>
+                <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.6;">${interpretasi}</p>
+                <div class="mt-3 pt-3 border-top d-flex align-items-center gap-2 text-muted small" style="font-size: 0.75rem;">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <span>Sumber: ESC/ESH Guidelines 2018</span>
+                </div>
+            </div>
+        </div>
     `;
 
-    // 4. DISCLAIMER ILMIAH
-    hasilDisclaimerEl.className = 'alert alert-sm alert-secondary';
+    // Sembunyikan elemen lama
+    hasilRisikoEl.classList.add('d-none');
+
+    // 4. Render Disclaimer
+    hasilDisclaimerEl.classList.remove('d-none');
+    hasilDisclaimerEl.className = 'alert alert-sm alert-secondary animate__animated animate__fadeIn mt-4 border-0 shadow-sm';
+    hasilDisclaimerEl.style.borderRadius = '12px';
+    hasilDisclaimerEl.style.animationDelay = '0.4s';
     hasilDisclaimerEl.innerHTML = `
-        <i class="fa-solid fa-shield-exclamation me-2" style="color: #6c757d;"></i>
-        <strong>Disclaimer Edukatif:</strong> Hasil ini bersifat edukatif dan <strong>tidak menggantikan diagnosis profesional</strong> dari dokter atau tenaga kesehatan. 
-        Untuk evaluasi kesehatan yang komprehensif, silakan konsultasikan dengan fasilitas kesehatan terpercaya.
+        <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-user-shield text-primary"></i>
+            <span style="font-size: 0.8rem"><strong>Catatan:</strong> Hasil ini merupakan sarana edukasi. Silakan konsultasi ke fasilitas kesehatan untuk diagnosis medis resmi.</span>
+        </div>
     `;
 
     // Tampilkan wrapper
     hasilWrapper.classList.remove('d-none');
+    setTimeout(() => {
+        hasilWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
 }
 
-function getInterpretasiSederhana(kategoriTD, sbp, dbp) {
-    const intepretasi = {
-        'optimal': 'Tekanan darah Anda berada pada kondisi terbaik. Pertahankan gaya hidup sehat dengan olahraga teratur dan pola makan bergizi.',
-        'normal': 'Tekanan darah normal. Lanjutkan pemeriksaan rutin minimal 1 tahun sekali untuk monitoring kesehatan cardiovascular Anda.',
-        'high-normal': 'Tekanan darah Anda menunjukkan tren tinggi. Mulai terapkan perubahan gaya hidup seperti mengurangi konsumsi garam dan meningkatkan aktivitas fisik untuk mencegah hipertensi.',
-        'grade1': 'Anda memiliki hipertensi derajat 1. Sangat disarankan untuk berkonsultasi dengan dokter untuk evaluasi risiko dan program manajemen yang tepat.',
-        'grade2': 'Tekanan darah Anda masuk kategori hipertensi derajat 2 (mencapai 160/100 mmHg). Segera hubungi dokter karena kemungkinan memerlukan terapi farmakologis.',
-        'grade3': 'Tekanan darah Anda sangat tinggi (≥180/110). Ini adalah kondisi darurat yang memerlukan penanganan segera. Hubungi layanan kesehatan terdekat dengan segera.',
-        'ish': 'Anda memiliki hipertensi sistolik terisolasi. Kondisi ini lebih umum pada lansia akibat kekakuan arteri. Konsultasi dengan dokter untuk manajemen yang sesuai.',
-        'hipotensi': 'Tekanan darah Anda rendah. Jika mengalami gejala seperti pusing atau lemas, segera duduk atau berbaring. Pastikan asupan cairan dan nutrisi yang cukup.'
+function getInterpretasiSederhana(kategoriTD, sbp, dbp, rfSelected, medCondText) {
+    let baseText = '';
+    let recommendations = [];
+
+    const interpretations = {
+        'optimal': '<strong>Kabar Baik!</strong> Tekanan darah Anda berada pada kondisi terbaik (Optimal).',
+        'normal': 'Tekanan darah Anda berada dalam rentang <strong>Normal</strong>.',
+        'high-normal': 'Tekanan darah Anda masuk kategori <strong>Normal Tinggi</strong>. Ini adalah tanda untuk mulai waspada.',
+        'grade1': 'Anda terdeteksi memiliki <strong>Hipertensi Derajat 1</strong> (Ringan).',
+        'grade2': 'Tekanan darah Anda masuk kategori <strong>Hipertensi Derajat 2</strong> (Sedang).',
+        'grade3': '<strong>PERINGATAN!</strong> Tekanan darah Anda sangat tinggi (≥180/110). Ini adalah kondisi krisis hipertensi.',
+        'ish': 'Anda memiliki <strong>Hipertensi Sistolik Terisolasi</strong>. Kondisi ini sering terkait dengan kekakuan pembuluh darah.',
+        'hipotensi': 'Tekanan darah Anda <strong>Rendah (Hipotensi)</strong>.'
     };
 
-    return intepretasi[kategoriTD] || intepretasi['normal'];
+    baseText = interpretations[kategoriTD] || interpretations['normal'];
+
+    // Rekomendasi berdasarkan Kategori TD
+    if (kategoriTD === 'optimal' || kategoriTD === 'normal') {
+        recommendations.push('Pertahankan gaya hidup sehat dan konsumsi makanan bergizi.');
+        recommendations.push('Lakukan pemeriksaan rutin minimal 1 tahun sekali.');
+    } else if (kategoriTD === 'high-normal') {
+        recommendations.push('Kurangi asupan garam dan lemak jenuh.');
+        recommendations.push('Tingkatkan aktivitas fisik secara rutin.');
+    } else if (kategoriTD === 'grade1' || kategoriTD === 'ish') {
+        recommendations.push('Sangat disarankan berkonsultasi dengan dokter.');
+        recommendations.push('Mulai modifikasi gaya hidup secara disiplin.');
+    } else if (kategoriTD === 'grade2') {
+        recommendations.push('Segera hubungi dokter atau layanan kesehatan.');
+        recommendations.push('Batasi aktivitas fisik berat sementara waktu.');
+    } else if (kategoriTD === 'grade3') {
+        recommendations.push('<strong>Segera pergi ke Unit Gawat Darurat (UGD) sekarang juga!</strong>');
+    }
+
+    // Rekomendasi tambahan berdasarkan Faktor Risiko (Dinamis)
+    if (rfSelected && rfSelected.length > 0) {
+        rfSelected.forEach(rf => {
+            const rfLower = rf.toLowerCase();
+            if (rfLower.includes('merokok')) recommendations.push('Berhenti merokok untuk menurunkan risiko serangan jantung dan stroke secara signifikan.');
+            if (rfLower.includes('obesitas')) recommendations.push('Targetkan penurunan berat badan melalui diet seimbang dan olahraga.');
+            if (rfLower.includes('kolesterol')) recommendations.push('Batasi makanan tinggi lemak jenuh dan konsumsi lebih banyak serat.');
+            if (rfLower.includes('keluarga')) recommendations.push('Karena ada riwayat keluarga, monitoring tekanan darah secara mandiri lebih penting bagi Anda.');
+        });
+    }
+
+    // Rekomendasi berdasarkan Kondisi Medis
+    if (medCondText && !medCondText.includes('Tidak Ada')) {
+        recommendations.push(`Manajemen <strong>${medCondText}</strong> sangat krusial bersamaan dengan kontrol tekanan darah.`);
+    }
+
+    // Gabungkan hasil
+    let resultHtml = `${baseText}<br><br><strong>Rekomendasi Medis:</strong><ul class="ps-3 mb-0">`;
+    recommendations.forEach(rec => {
+        resultHtml += `<li class="mb-1">${rec}</li>`;
+    });
+    resultHtml += `</ul>`;
+
+    return resultHtml;
 } 
