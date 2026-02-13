@@ -453,7 +453,7 @@ body {
 .card-imt .input-group-text { color: #1abc9c; background: #f2fdfb; border-color: #d1f2eb; }
 .card-tensi .input-group-text { color: #ec7063; background: #fff8f8; border-color: #fadbd8; }
 
-<<<<<<< HEAD
+
 /* Risk Factor Cards Responsive */
 .risk-cards-grid {
     display: grid;
@@ -1709,7 +1709,8 @@ body {
     .featurette .table tbody td {
         padding: 0.5rem 0.25rem;
     }
-=======
+}
+
 /* Komplikasi Section Card */
 .komplikasi-card {
     display: flex;
@@ -1766,5 +1767,4 @@ body {
     object-fit: cover;
     border-radius: 12px;
     flex-shrink: 0;
->>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
 }

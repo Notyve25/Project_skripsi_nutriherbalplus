@@ -9,28 +9,6 @@
     function openVideo(id) {
         modalContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
         modal.show();
-<<<<<<< HEAD
-        videoModalEl.addEventListener('hidden.bs.modal', () => modalContainer.innerHTML = '', {
-            once: true
-        });
-
-        // Request fullscreen setelah modal ditampilkan
-        setTimeout(() => {
-            if (videoModalEl.requestFullscreen) {
-                videoModalEl.requestFullscreen().catch(() => {
-                    // Fallback: jika fullscreen API tidak didukung atau ditolak
-                    console.log('Fullscreen API tidak tersedia atau ditolak oleh browser');
-                });
-            } else if (videoModalEl.webkitRequestFullscreen) {
-                videoModalEl.webkitRequestFullscreen();
-            } else if (videoModalEl.mozRequestFullScreen) {
-                videoModalEl.mozRequestFullScreen();
-            } else if (videoModalEl.msRequestFullscreen) {
-                videoModalEl.msRequestFullscreen();
-            }
-        }, 100);
-=======
->>>>>>> 8c5f1f4c18c6fb745130b8ff9d9bfae491c6248b
         
         // Handler saat modal ditutup
         videoModalEl.addEventListener('hidden.bs.modal', () => {
