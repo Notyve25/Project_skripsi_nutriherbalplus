@@ -43,6 +43,21 @@ body {
 .hero-content h1 {
     font-size: clamp(1.8rem, 8vw, 3.5rem);
     margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(8px);
+    clip-path: inset(0 100% 0 0);
+    animation: heroTitleIn 1000ms ease-out 200ms forwards;
+}
+
+/* Brand highlight: Nutri Herbal PLus+ -> kuning di hero */
+.hero-section .text-highlight {
+    color: #ffd700 !important;
+    background: linear-gradient(90deg, #ffd700 0%, #fff59b 50%, #ffd700 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    animation: goldShimmer 2400ms ease 1100ms both;
 }
 
 .hero-content p {
@@ -50,8 +65,44 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    transform: translateY(12px);
+    position: relative;
+    animation: heroSubIn 800ms ease-out 1200ms forwards;
 }
 
+.hero-content p::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    height: 3px;
+    width: 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #ffd700, #fff59b);
+    animation: heroUnderline 900ms ease-out 1700ms forwards;
+}
+
+@keyframes heroTitleIn {
+    0% { opacity: 0; transform: translateY(8px); clip-path: inset(0 100% 0 0); }
+    60% { opacity: 0.9; clip-path: inset(0 20% 0 0); }
+    100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+}
+
+@keyframes goldShimmer {
+    0% { background-position: 0% 0%; filter: drop-shadow(0 0 0 rgba(255,215,0,0)); }
+    50% { background-position: 120% 0%; filter: drop-shadow(0 0 10px rgba(255,215,0,0.45)); }
+    100% { background-position: 200% 0%; filter: drop-shadow(0 0 0 rgba(255,215,0,0)); }
+}
+
+@keyframes heroSubIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroUnderline {
+    to { width: 60%; }
+}
 .carousel-item img {
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(39, 174, 96, 0.15);
@@ -129,6 +180,35 @@ body {
 .akg-card .card-body {
     padding: 20px;
     /* samakan dengan cek-card */
+}
+/* Natrium: card utuh dan jarak proporsional */
+.natrium-card {
+    width: 100%;
+    max-width: none;
+    margin: 18px 0;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(13, 110, 253, 0.08);
+    border: 1px solid rgba(13, 110, 253, 0.12);
+    overflow: hidden;
+}
+.natrium-card .card-body {
+    padding: 22px 24px;
+}
+.natrium-section {
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(13, 110, 253, 0.12);
+}
+.natrium-section .row {
+    row-gap: 10px;
+}
+.natrium-section .progress {
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+.natrium-section .selected-food-list {
+    margin-top: 8px;
 }
 
 /* AKG: header & tip khusus usia 30-50 */
@@ -275,11 +355,15 @@ body {
     padding: 16px;
     border-radius: 16px;
     background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     margin-top: 16px;
     overflow: hidden;
 }
+
+.result-container.status-safe { border-left: 5px solid #27ae60 !important; box-shadow: 0 6px 18px rgba(39, 174, 96, 0.08); }
+.result-container.status-warning { border-left: 5px solid #e67e22 !important; box-shadow: 0 6px 18px rgba(230, 126, 34, 0.08); }
+.result-container.status-danger { border-left: 5px solid #e74c3c !important; box-shadow: 0 6px 18px rgba(231, 76, 60, 0.09); }
 
 .result-header-gradient {
     margin: -16px -16px 16px -16px;
@@ -289,6 +373,26 @@ body {
     align-items: center;
     justify-content: space-between;
     font-weight: 700;
+    position: relative;
+}
+
+.result-header-gradient::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -30px;
+    width: 180px;
+    height: 120px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.25), rgba(255,255,255,0) 60%);
+    transform: rotate(-8deg);
+    pointer-events: none;
+    animation: headerShine 3.5s ease-in-out infinite;
+}
+
+@keyframes headerShine {
+    0% { opacity: 0.2; transform: rotate(-8deg) translateX(0); }
+    50% { opacity: 0.45; transform: rotate(-8deg) translateX(-8px); }
+    100% { opacity: 0.2; transform: rotate(-8deg) translateX(0); }
 }
 
 .result-main-value {
@@ -302,14 +406,14 @@ body {
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: white;
 }
 
 .result-info-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 12px;
 }
 
@@ -317,6 +421,11 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    background: rgba(255,255,255,1);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .result-info-icon {
@@ -332,19 +441,1211 @@ body {
 
 /* Color Variants for new Result Box (Matching individual calculators) */
 /* Natrium */
-.res-natrium .result-header-gradient { background: linear-gradient(135deg, #5c9ded, #2c3e50); }
-.res-natrium .result-info-icon { background: rgba(92, 157, 237, 0.1); color: #5c9ded; }
-.res-natrium .main-text { color: #5c9ded; }
+.res-natrium .result-header-gradient {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 14px;
+    margin: -20px -20px 16px -20px;
+    padding: 14px 16px;
+}
 
-/* Lemak */
-.res-lemak .result-header-gradient { background: linear-gradient(135deg, #f5b041, #e67e22); }
-.res-lemak .result-info-icon { background: rgba(245, 176, 65, 0.1); color: #f5b041; }
-.res-lemak .main-text { color: #f5b041; }
+.res-natrium .result-info-icon {
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
+}
+
+.res-natrium .main-text {
+    color: #2563eb;
+    font-weight: 700;
+}
+
+/* Progress bar konsisten biru */
+.res-natrium .progress {
+    height: 10px;
+    border-radius: 999px;
+    background-color: #e9effd;
+}
+.res-natrium .progress .progress-bar {
+    background: linear-gradient(90deg, #4f80ff, #3b6bdc) !important;
+    border-radius: 999px;
+}
+
+/* Badge netral biru-putih */
+.badge-soft-blue {
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 3px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+/* Badge usia konsisten biru-putih */
+.res-natrium .result-badge-pill {
+    background: #ffffff;
+    color: #2563eb;
+    border-color: rgba(37, 99, 235, 0.35);
+}
+
+/* Micro card info biru tipis */
+.res-natrium .result-info-item {
+    background: #ffffff;
+    border-color: rgba(37, 99, 235, 0.12);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.06);
+    border-radius: 14px;
+}
+
+.res-natrium.result-container {
+    background: #ffffff;
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.08);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.res-natrium .result-main-value {
+    margin: 8px 0 20px;
+}
+
+.edu-natrium-box {
+    margin-top: 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f7faff, #f3f5ff);
+    border: 1px solid rgba(37,99,235,0.14);
+    border-radius: 16px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.edu-natrium-box .result-header-gradient {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 16px;
+}
+.edu-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.2px;
+}
+.edu-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+.edu-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #4b5563;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.edu-item i {
+    color: #2563eb;
+    margin-top: 2px;
+}
+.edu-item:hover {
+    transform: translateX(2px);
+    color: #374151;
+}
+.edu-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+.edu-natrium-box:hover {
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+    transform: translateY(-1px);
+}
+
+.edu-callout {
+    background: #fff7e6;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 12px;
+    padding: 10px 12px;
+    transition: box-shadow 0.2s ease;
+}
+.edu-callout .callout-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b45309;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.edu-callout .callout-text {
+    color: #5f6368;
+    font-size: 0.9rem;
+}
+.edu-callout:hover {
+    box-shadow: 0 6px 14px rgba(245, 158, 11, 0.18);
+}
+.edu-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.edu-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eef4ff;
+    color: #1e40af;
+    border: 1px solid rgba(30,64,175,0.2);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.edu-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(30, 64, 175, 0.15);
+    background: #e6eeff;
+}
+.edu-chip:focus {
+    outline: 2px solid #1e40af;
+    outline-offset: 2px;
+}
+.edu-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+.edu-card {
+    background: #f9fbff;
+    border: 1px solid rgba(37,99,235,0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.edu-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.edu-card-desc {
+    color: #4b5563;
+    font-size: 0.85rem;
+}
+.edu-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+    border-color: rgba(37,99,235,0.2);
+}
+
+.edu-infograph {
+    margin-top: 12px;
+    padding: 12px;
+    border: 1px solid rgba(37,99,235,0.12);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8fbff, #f5faff);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.inf-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    align-items: center;
+}
+.inf-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.inf-bar {
+    height: 10px;
+    border-radius: 999px;
+    background: #e5edff;
+    position: relative;
+    overflow: hidden;
+}
+.inf-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);
+    width: 0%;
+    transition: width 0.6s ease;
+}
+.inf-bar-fill.w-26 { width: 26%; }
+.inf-bar-fill.w-52 { width: 52%; }
+.inf-note {
+    color: #4b5563;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.edu-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+@media (min-width: 992px) {
+    .edu-info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.edu-info-box {
+    border-radius: 14px;
+    border: 1px solid rgba(37,99,235,0.12);
+    box-shadow: 0 6px 16px rgba(37,99,235,0.06);
+    padding: 12px 14px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.edu-info-box .info-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.edu-info-box .info-content .info-text {
+    color: #4b5563;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+.info-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.08);
+    color: #2563eb;
+    box-shadow: 0 2px 6px rgba(37,99,235,0.08);
+}
+.edu-info-box.info-warn .info-icon {
+    background: rgba(245,158,11,0.12);
+    color: #b45309;
+}
+.edu-info-box.info-reason .info-icon {
+    background: rgba(37,99,235,0.12);
+    color: #2563eb;
+}
+.edu-info-box.info-tips .info-icon {
+    background: rgba(39,174,96,0.12);
+    color: #27ae60;
+}
+.edu-info-box .info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+}
+.edu-info-box .info-list li {
+    color: #4b5563;
+    font-size: 0.9rem;
+}
+.edu-info-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37,99,235,0.10);
+}
+.edu-info-box.info-warn {
+    background: linear-gradient(135deg, #fff8e6, #fff3d6);
+    border-color: rgba(245, 158, 11, 0.28);
+}
+.edu-info-box.info-warn .info-heading { color: #b45309; }
+.edu-info-box.info-reason {
+    background: linear-gradient(135deg, #eaf8ff, #e4f4ff);
+    border-color: rgba(37, 99, 235, 0.22);
+}
+.edu-info-box.info-reason .info-heading { color: #2563eb; }
+.edu-info-box.info-tips {
+    background: linear-gradient(135deg, #eef9f1, #e6f7ec);
+    border-color: rgba(39, 174, 96, 0.24);
+}
+.edu-info-box.info-tips .info-heading { color: #27ae60; }
+.tips-pills {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+@media (min-width: 768px) {
+    .tips-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1200px) {
+    .tips-pills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.tips-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(37,99,235,0.12);
+    border-radius: 12px;
+    padding: 8px 10px;
+    color: #374151;
+    font-size: 0.9rem;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.tips-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(37,99,235,0.08);
+}
+
+/* KATEGORI MAKANAN: tata letak card agar rapi dan profesional */
+/* Grid responsif untuk container kategori */
+.food-selector-container {
+    /* Mobile default: 1 kolom */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px; /* Jarak antar card */
+}
+/* Desktop: 2 kolom */
+@media (min-width: 992px) {
+    .food-selector-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Desktop besar: 3 kolom */
+@media (min-width: 1280px) {
+    .food-selector-container { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Card kategori (membungkus setiap kategori) */
+.food-category-card {
+    background: #ffffff;              /* Latar putih untuk keterbacaan */
+    border: 1px solid rgba(37,99,235,0.12); /* Border tipis biru (tema) */
+    border-radius: 16px;              /* Sudut membulat ringan */
+    box-shadow: 0 6px 16px rgba(37,99,235,0.06); /* Bayangan halus */
+    overflow: hidden;                 /* Header + konten menyatu */
+}
+
+/* Header kategori (tetap klik untuk expand/collapse) */
+.food-category-card .food-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: background-color .2s ease, box-shadow .2s ease;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+.food-category-card .food-category-header:hover {
+    background: rgba(37,99,235,0.04);       /* Highlight ringan saat hover */
+}
+.food-category-card .food-category-header .fa-chevron-down {
+    transition: transform .2s ease;         /* Animasi rotasi ikon panah */
+    flex: 0 0 auto;
+}
+.food-category-card .food-category-header.collapsed .fa-chevron-down { transform: rotate(0deg); }
+.food-category-card .food-category-header:not(.collapsed) .fa-chevron-down { transform: rotate(180deg); }
+
+/* Area isi kategori (tempat daftar makanan di-render oleh JS) */
+.food-category-card .category-content {
+    padding: 12px 14px;
+    background: #ffffff;
+    border-top: 1px solid rgba(37,99,235,0.12); /* Pemisah halus dari header */
+}
+
+/* Label kategori (chip) intuitif & responsif - hanya styling label */
+.food-category-card .food-category-header .text-uppercase.fw-bold.text-muted {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--cat-chip-bg, rgba(37,99,235,0.06));
+    border: 1px solid var(--cat-chip-border, rgba(37,99,235,0.16));
+    box-shadow: 0 4px 10px rgba(37,99,235,0.06);
+    font-size: clamp(0.60rem, 2.2vw, 0.85rem) !important;
+    letter-spacing: 0.8px !important;
+    color: var(--cat-chip-color, #1f2937) !important;
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+.food-category-card .food-category-header:hover .text-uppercase.fw-bold.text-muted {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 6px 14px rgba(37,99,235,0.08);
+}
+.food-category-card .food-category-header .text-uppercase.fw-bold.text-muted i {
+    font-size: 0.95rem;
+}
+@media (max-width: 576px) {
+    .food-category-card .food-category-header .text-uppercase.fw-bold.text-muted {
+        padding: 5px 8px;
+        gap: 6px;
+        letter-spacing: 0.6px !important;
+    }
+    .food-category-card .food-category-header .text-uppercase.fw-bold.text-muted i {
+        font-size: 0.9rem;
+    }
+}
+@media (min-width: 992px) {
+    .food-category-card .food-category-header .text-uppercase.fw-bold.text-muted {
+        padding: 8px 12px;
+        letter-spacing: 1px !important;
+    }
+}
+
+/* Aksen per kategori (warna tidak mengubah struktur/JS, hanya visual label) */
+#cat_header_pokok .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(234,179,8,0.12);
+    --cat-chip-border: rgba(234,179,8,0.28);
+    --cat-chip-color: #92400e;
+}
+#cat_header_masakan .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(249,115,22,0.12);
+    --cat-chip-border: rgba(249,115,22,0.28);
+    --cat-chip-color: #9a3412;
+}
+#cat_header_lauk .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(239,68,68,0.12);
+    --cat-chip-border: rgba(239,68,68,0.28);
+    --cat-chip-color: #7f1d1d;
+}
+#cat_header_sayur .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(34,197,94,0.12);
+    --cat-chip-border: rgba(34,197,94,0.28);
+    --cat-chip-color: #14532d;
+}
+#cat_header_camilan .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(161,98,7,0.12);
+    --cat-chip-border: rgba(161,98,7,0.28);
+    --cat-chip-color: #713f12;
+}
+
+/* Badge level natrium: Rendah/Sedang/Tinggi — intuitif & responsif */
+.natrium-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: clamp(0.62rem, 2.1vw, 0.82rem);
+    background: var(--nbg, rgba(37,99,235,0.06));
+    border: 1px solid var(--nborder, rgba(37,99,235,0.16));
+    color: var(--ncolor, #1f2937);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+.natrium-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ndot, #2563eb);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset, 0 2px 6px rgba(0,0,0,0.08);
+}
+.food-item-row:hover .natrium-badge {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+}
+/* Theme per level */
+.natrium-badge.natrium-low {
+    --nbg: linear-gradient(180deg, rgba(34,197,94,0.12), rgba(34,197,94,0.08));
+    --nborder: rgba(34,197,94,0.26);
+    --ncolor: #065f46;
+    --ndot: #22c55e;
+}
+.natrium-badge.natrium-medium {
+    --nbg: linear-gradient(180deg, rgba(234,179,8,0.14), rgba(234,179,8,0.10));
+    --nborder: rgba(234,179,8,0.30);
+    --ncolor: #92400e;
+    --ndot: #f59e0b;
+}
+.natrium-badge.natrium-high {
+    --nbg: linear-gradient(180deg, rgba(239,68,68,0.14), rgba(239,68,68,0.10));
+    --nborder: rgba(239,68,68,0.30);
+    --ncolor: #7f1d1d;
+    --ndot: #ef4444;
+}
+/* Sembunyikan label teks dalam badge, tampilkan indikator dot saja */
+.natrium-badge {
+    font-size: 0 !important; /* sembunyikan 'Rendah/Sedang/Tinggi' */
+    padding: 2px 6px !important;
+    gap: 0 !important;
+}
+.natrium-badge::before {
+    width: 9px;
+    height: 9px;
+}
+@media (max-width: 576px) {
+    .natrium-badge { padding: 2px 6px; gap: 5px; }
+    .natrium-badge::before { width: 7px; height: 7px; }
+}
+
+.category-legend {
+    color: #6b7280;
+    font-size: 0.78rem;
+}
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset, 0 1px 4px rgba(0,0,0,0.06);
+}
+.legend-low { background: #22c55e; }
+.legend-medium { background: #f59e0b; }
+.legend-high { background: #ef4444; }
+
+.natrium-legend-card {
+    background: linear-gradient(135deg, #f7faff, #f3f5ff);
+    border: 1px solid rgba(37,99,235,0.14);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #374151;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+    position: relative;
+    overflow: hidden;
+}
+.natrium-legend-card::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: -24px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(ellipse at center, rgba(37,99,235,0.10), rgba(37,99,235,0) 60%);
+    transform: rotate(-10deg);
+}
+.natrium-legend-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.natrium-legend-list .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.legend-item-low {
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.22);
+    color: #065f46;
+}
+.legend-item-medium {
+    background: rgba(234,179,8,0.12);
+    border: 1px solid rgba(234,179,8,0.24);
+    color: #92400e;
+}
+.legend-item-high {
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.24);
+    color: #7f1d1d;
+}
+@media (max-width: 576px) {
+    .natrium-legend-card { font-size: 0.78rem; }
+    .natrium-legend-list { grid-template-columns: 1fr; }
+}
+@media (min-width: 768px) {
+    .natrium-legend-list { grid-template-columns: repeat(3, 1fr); }
+}
+/* Mobile fix untuk stepper - 0 + agar tidak menutup teks (khusus natrium) */
+@media (max-width: 576px) {
+    #kalkulator-natrium .food-item-row .input-group {
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        width: clamp(56px, 16vw, 74px) !important;
+        gap: 2px;
+        flex-shrink: 1 !important;
+        margin-left: auto;
+    }
+    #kalkulator-natrium .food-item-row .input-group > * {
+        width: auto !important;
+        margin-bottom: 0 !important;
+        border-radius: 12px !important;
+    }
+    #kalkulator-natrium .food-item-row .input-group .btn {
+        min-width: 20px;
+        width: 20px;
+        padding: 2px 0;
+        line-height: 1;
+        font-size: 0.72rem;
+    }
+    #kalkulator-natrium .food-item-row .input-group .form-control {
+        min-width: 22px;
+        width: 22px;
+        padding: 2px;
+        font-size: 0.72rem !important;
+        line-height: 1.1;
+        font-weight: 600 !important;
+        text-align: center;
+    }
+}
+
+/* Mobile typography scaling for dashboard numbers (≤767px) */
+@media (max-width: 767px) {
+    #kalkulator-natrium #displayTotalSelectedNatrium {
+        font-size: clamp(1rem, 5vw, 1.35rem) !important;
+        line-height: 1.1;
+    }
+    #kalkulator-natrium #displayGoalNatrium {
+        font-size: clamp(0.85rem, 4.2vw, 1.05rem) !important;
+        line-height: 1.1;
+    }
+    #kalkulator-natrium #displayTotalSelectedPercentNatrium {
+        font-size: clamp(0.85rem, 4.2vw, 1rem) !important;
+        line-height: 1.1;
+    }
+    .res-natrium .result-main-value {
+        padding: 10px 0;
+        margin-bottom: 12px;
+    }
+    .res-natrium .main-text {
+        font-size: clamp(0.95rem, 4.6vw, 1.15rem);
+        line-height: 1.15;
+    }
+}
+@media (max-width: 767px) {
+    .res-lemak .result-main-value {
+        padding: 10px 0;
+        margin-bottom: 12px;
+    }
+    .res-lemak .main-text {
+        font-size: clamp(0.95rem, 4.6vw, 1.15rem);
+        line-height: 1.15;
+    }
+}
+/* Micro-breakpoints: layar sangat kecil (≤480px dan ≤360px) */
+@media (max-width: 480px) {
+    #kalkulator-natrium .food-item-row .input-group { width: clamp(50px, 13vw, 64px) !important; }
+    #kalkulator-natrium .food-item-row .input-group .btn,
+    #kalkulator-natrium .food-item-row .input-group .form-control { font-size: clamp(0.58rem, 2.4vw, 0.66rem) !important; }
+    #kalkulator-natrium .food-item-row .input-group .btn { min-width: 18px; width: 18px; }
+    #kalkulator-natrium .food-item-row .input-group .form-control { min-width: 20px; width: 20px; }
+}
+@media (max-width: 360px) {
+    #kalkulator-natrium .food-item-row .input-group { width: clamp(46px, 12vw, 58px) !important; }
+    #kalkulator-natrium .food-item-row .input-group .btn { min-width: 16px; width: 16px; font-size: clamp(0.54rem, 2.2vw, 0.6rem) !important; }
+    #kalkulator-natrium .food-item-row .input-group .form-control { min-width: 18px; width: 18px; font-size: clamp(0.54rem, 2.2vw, 0.6rem) !important; }
+}
+/* Interaksi ikon kategori saat hover: sedikit lebih cerah dan naik 1px */
+.food-category-card .food-category-header i {
+    transition: color .2s ease, transform .2s ease, filter .2s ease;
+}
+.food-category-card .food-category-header:hover i {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+/* Warna ikon kategori agar tidak abu-abu (intuitif per kategori) */
+.food-category-card .food-category-header i.fa-wheat-awn { color: #eab308; }       /* Makanan Pokok: amber gandum */
+.food-category-card .food-category-header i.fa-bowl-rice { color: #f97316; }       /* Masakan & Khas Jogja: oranye hangat */
+.food-category-card .food-category-header i.fa-drumstick-bite { color: #ef4444; }  /* Lauk Pauk: merah daging */
+.food-category-card .food-category-header i.fa-leaf { color: #22c55e; }            /* Sayuran & Sup: hijau segar */
+.food-category-card .food-category-header i.fa-cookie { color: #a16207; }          /* Camilan & Tambahan: coklat biskuit */
+
+/* === HEADER HITUNG NATRIUM === */
+/* Card wrapper header: latar biru muda, padding, radius, bayangan */
+.natrium-header {
+    background: linear-gradient(180deg, #f4f8ff, #ffffff);
+    padding: 20px 24px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(13, 110, 253, 0.15);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.06);
+}
+.natrium-header .result-header-gradient {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-radius: 14px;
+    margin: -20px -24px 12px -24px;
+    padding: 14px 16px;
+}
+.natrium-header .result-header-gradient .result-badge-pill.reset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.natrium-header .result-header-gradient .result-badge-pill.reset-button:hover {
+    background: rgba(255,255,255,0.28);
+}
+.natrium-header .result-header-gradient .result-badge-pill.reset-button:active {
+    background: rgba(255,255,255,0.18);
+}
+
+/* Baris ikon + judul: sejajar horizontal, jarak konsisten */
+.natrium-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.natrium-title .btn-outline-primary {
+    background: rgba(37,99,235,0.06);
+    border-color: rgba(37,99,235,0.22);
+    color: #0d6efd;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.08), inset 0 0 0 2px rgba(255,255,255,0.7);
+    transition: filter .2s ease, box-shadow .2s ease;
+}
+.natrium-title .btn-outline-primary:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 6px 16px rgba(37,99,235,0.12), inset 0 0 0 2px rgba(255,255,255,0.9);
+}
+.natrium-title .btn-outline-primary:active {
+    filter: brightness(0.98);
+}
+
+/* Ikon bulat biru: ukuran konsisten di desktop/mobile */
+.natrium-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e6efff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d6efd;
+    font-size: 20px;
+    border: 2px solid #0d6efd;
+}
+
+/* Judul: tipografi nyaman untuk edukasi */
+.natrium-title h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    color: #0d6efd;
+    letter-spacing: 0.2px;
+}
+
+/* Deskripsi: lebar baca nyaman, warna abu, line-height */
+.natrium-desc {
+    margin: 0;
+    max-width: 720px;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Responsif: mengecilkan judul dan deskripsi di layar kecil */
+@media (max-width: 576px) {
+    .natrium-title h2 { font-size: 18px; }
+    .natrium-desc { font-size: 14px; }
+    .natrium-icon { width: 36px; height: 36px; font-size: 18px; }
+}
+
+/* Search bar di dalam header: wrapper dan input */
+.natrium-header .natrium-search { margin-top: 12px; margin-bottom: 14px; }
+.search-food-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(37,99,235,0.15);
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+}
+.search-food-wrapper i {
+    color: #3182ce;
+    font-size: 14px;
+}
+.search-food-input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 6px 6px;
+}
+.search-food-input::placeholder { color: #6b7280; }
+.search-food-input:focus { border: none; box-shadow: none; }
+
+/* Spasi untuk grid kategori di dalam header */
+.natrium-header .natrium-category-grid { margin-top: 8px; }
+
+/* Penataan ikon & teks di header agar simetris */
+.food-category-card .food-category-header .fw-bold {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 auto;
+}
+.food-category-card .food-category-header .fw-bold i {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+/* Fixed 2-column layout on desktop */
+@media (min-width: 992px) {
+    .res-natrium .result-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .res-lemak .result-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .res-lemak .result-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.res-lemak .result-header-gradient {
+    background: linear-gradient(135deg, #f5b041, #e67e22);
+    border-radius: 14px;
+    margin: -20px -20px 16px -20px;
+    padding: 14px 16px;
+}
+
+.res-lemak .result-header-gradient .result-badge-pill.reset-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.res-lemak .result-header-gradient .result-badge-pill.reset-button:hover {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.res-lemak .result-header-gradient .result-badge-pill.reset-button:active {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(0.98);
+}
+
+.res-lemak .result-info-icon {
+    background: rgba(245, 176, 65, 0.1);
+    color: #f5b041;
+}
+
+.res-lemak .main-text {
+    color: #f5b041;
+    font-weight: 700;
+}
+
+.res-lemak .progress {
+    height: 10px;
+    border-radius: 999px;
+    background-color: #fff4e5;
+}
+.res-lemak .progress .progress-bar {
+    background: linear-gradient(90deg, #f2994a, #d97706) !important;
+    border-radius: 999px;
+}
+
+.res-lemak .result-badge-pill {
+    background: #ffffff;
+    color: #d97706;
+    border-color: rgba(245, 176, 65, 0.35);
+}
+
+.res-lemak .result-info-item {
+    background: #ffffff;
+    border-color: rgba(245, 176, 65, 0.12);
+    box-shadow: 0 6px 16px rgba(245, 176, 65, 0.06);
+    border-radius: 14px;
+}
+
+.res-lemak.result-container {
+    background: #ffffff;
+    border: 1px solid rgba(245, 176, 65, 0.12);
+    box-shadow: 0 12px 26px rgba(245, 176, 65, 0.08);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.res-lemak .result-main-value {
+    margin: 8px 0 20px;
+}
+
+/* Edukasi Sumber Lemak */
+.edu-fat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+.edu-fat-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(245, 176, 65, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 8px 20px rgba(245, 176, 65, 0.06);
+}
+.edu-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 176, 65, 0.1);
+    color: #d97706;
+}
+.edu-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.edu-value {
+    font-size: 0.72rem;
+    color: #6b7280;
+}
+.edu-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+}
+.edu-chip i { font-size: 0.8rem; }
+.chip-bad {
+    background: #fdecea;
+    color: #b42318;
+    border-color: rgba(180, 35, 24, 0.35);
+}
+.chip-good {
+    background: #e6f7ee;
+    color: #1e7f4f;
+    border-color: rgba(30,127,79,0.35);
+}
+.edu-guidance {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+@media (min-width: 768px) {
+    .edu-guidance { grid-template-columns: 1fr 1fr; }
+}
+.guidance-card {
+    background: #ffffff;
+    border: 1px solid rgba(245, 176, 65, 0.12);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 20px rgba(245, 176, 65, 0.06);
+}
+.guidance-card.avoid { border-left: 6px solid #dc2626; }
+.guidance-card.choose { border-left: 6px solid #16a34a; }
+.guidance-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #374151;
+}
+.guidance-header i { font-size: 0.9rem; }
+.guidance-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.guidance-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+.guidance-list li i { font-size: 0.95rem; }
+.guidance-card.avoid .guidance-header i,
+.guidance-card.avoid .guidance-list li i {
+    color: #dc2626;
+}
+.guidance-card.choose .guidance-header i,
+.guidance-card.choose .guidance-list li i {
+    color: #16a34a;
+}
+.fat-badge {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    line-height: 1;
+    font-size: clamp(0.62rem, 2.1vw, 0.82rem);
+    background: var(--fbg, rgba(245,176,65,0.06));
+    border: 1px solid var(--fborder, rgba(245,176,65,0.16));
+    color: var(--fcolor, #1f2937);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    transition: filter .2s ease, box-shadow .2s ease;
+}
+.fat-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fdot, #f5b041);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset, 0 2px 6px rgba(0,0,0,0.08);
+}
+.food-item-row:hover .fat-badge {
+    filter: brightness(1.03);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+}
+.fat-badge.fat-low {
+    --fbg: linear-gradient(180deg, rgba(34,197,94,0.12), rgba(34,197,94,0.08));
+    --fborder: rgba(34,197,94,0.26);
+    --fcolor: #065f46;
+    --fdot: #22c55e;
+}
+.fat-badge.fat-medium {
+    --fbg: linear-gradient(180deg, rgba(234,179,8,0.14), rgba(234,179,8,0.10));
+    --fborder: rgba(234,179,8,0.30);
+    --fcolor: #92400e;
+    --fdot: #f59e0b;
+}
+.fat-badge.fat-high {
+    --fbg: linear-gradient(180deg, rgba(239,68,68,0.14), rgba(239,68,68,0.10));
+    --fborder: rgba(239,68,68,0.30);
+    --fcolor: #7f1d1d;
+    --fdot: #ef4444;
+}
+.fat-badge { font-size: 0 !important; padding: 2px 6px !important; gap: 0 !important; }
+.fat-badge::before { width: 9px; height: 9px; }
+@media (max-width: 576px) {
+    .fat-badge { padding: 2px 6px; }
+    .fat-badge::before { width: 7px; height: 7px; }
+}
+
+/* Lemak legend box (adaptasi dari natrium) */
+.lemak-legend-card {
+    background: linear-gradient(135deg, #fffaf3, #fff5e9);
+    border: 1px solid rgba(245,176,65,0.18);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #374151;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 12px rgba(245,176,65,0.10);
+    position: relative;
+    overflow: hidden;
+}
+.lemak-legend-card::before {
+    content: "";
+    position: absolute;
+    left: -24px;
+    top: -24px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(ellipse at center, rgba(245,176,65,0.12), rgba(245,176,65,0) 60%);
+    transform: rotate(-10deg);
+}
+.lemak-legend-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+@media (min-width: 768px) {
+    .lemak-legend-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Aksen label chip untuk kategori lemak */
+#cat_header_gorengan .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(239,68,68,0.12);
+    --cat-chip-border: rgba(239,68,68,0.28);
+    --cat-chip-color: #7f1d1d;
+}
+#cat_header_lauk .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(234,179,8,0.12);
+    --cat-chip-border: rgba(234,179,8,0.28);
+    --cat-chip-color: #92400e;
+}
+#cat_header_masakan .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(249,115,22,0.12);
+    --cat-chip-border: rgba(249,115,22,0.28);
+    --cat-chip-color: #9a3412;
+}
+#cat_header_bahan_tambahan .text-uppercase.fw-bold.text-muted {
+    --cat-chip-bg: rgba(161,98,7,0.12);
+    --cat-chip-border: rgba(161,98,7,0.28);
+    --cat-chip-color: #713f12;
+}
+.edu-tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+.edu-tip {
+    background: #ffffff;
+    border: 1px solid rgba(245, 176, 65, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.edu-details {
+    border: 1px solid rgba(245, 176, 65, 0.12);
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(245, 176, 65, 0.06);
+}
+.edu-details + .edu-details { margin-top: 10px; }
+.edu-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+}
+.edu-details[open] .edu-summary {
+    border-bottom: 1px solid rgba(245, 176, 65, 0.08);
+}
+.edu-summary::-webkit-details-marker { display: none; }
+.edu-content { padding: 12px; }
 
 /* IMT */
-.res-imt .result-header-gradient { background: linear-gradient(135deg, #1abc9c, #16a085); }
-.res-imt .result-info-icon { background: rgba(26, 188, 156, 0.1); color: #1abc9c; }
-.res-imt .main-text { color: #1abc9c; }
+.res-imt .result-header-gradient {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+}
+
+.res-imt .result-info-icon {
+    background: rgba(26, 188, 156, 0.1);
+    color: #1abc9c;
+}
+
+.res-imt .main-text {
+    color: #1abc9c;
+}
 
 /* Result Box for Tensi (Already updated, but keeping classes if needed) */
 .shake {
@@ -352,7 +1653,7 @@ body {
 }
 
 /* Hasil AKG natrium */
-.result-box {
+.res-natrium.result-container {
     margin-top: 12px;
     padding: 16px;
     border-radius: 12px;
@@ -411,18 +1712,18 @@ body {
         margin-top: 12px;
         margin-bottom: 12px;
     }
-    
+
     .btn-cek {
         width: 100%;
         border-radius: 12px;
         margin-top: 10px;
     }
-    
+
     .input-group {
         flex-direction: column;
     }
-    
-    .input-group > * {
+
+    .input-group>* {
         width: 100% !important;
         border-radius: 8px !important;
         margin-bottom: 5px;
@@ -452,10 +1753,12 @@ body {
 .quick-access-bar::-webkit-scrollbar {
     height: 4px;
 }
+
 .quick-access-bar::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
 }
+
 .quick-access-bar .btn {
     border-width: 1.5px;
     font-weight: 600;
@@ -463,9 +1766,10 @@ body {
     padding: 6px 16px;
     transition: all 0.2s;
 }
+
 .quick-access-bar .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Card Color Variants */
@@ -477,7 +1781,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* Natrium (Blue) */
@@ -485,39 +1789,107 @@ body {
     border-left-color: #5c9ded !important;
     background: linear-gradient(165deg, #ffffff 40%, #f1f8ff 100%);
 }
-.card-natrium .card-icon { color: #5c9ded; background: rgba(92, 157, 237, 0.1); }
-.card-natrium .btn-cek { background: linear-gradient(135deg, #5c9ded 0%, #4a8ad4 100%); border: none; box-shadow: 0 4px 12px rgba(92, 157, 237, 0.25); }
-.card-natrium .btn-cek:hover { background: linear-gradient(135deg, #4a8ad4 0%, #3b75b5 100%); transform: translateY(-2px); }
+
+.card-natrium .card-icon {
+    color: #5c9ded;
+    background: rgba(92, 157, 237, 0.1);
+}
+
+.card-natrium .btn-cek {
+    background: linear-gradient(135deg, #5c9ded 0%, #4a8ad4 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(92, 157, 237, 0.25);
+}
+
+.card-natrium .btn-cek:hover {
+    background: linear-gradient(135deg, #4a8ad4 0%, #3b75b5 100%);
+    transform: translateY(-2px);
+}
 
 /* Lemak (Orange/Warning) */
 .card-lemak {
     border-left-color: #f5b041 !important;
     background: linear-gradient(165deg, #ffffff 40%, #fffbf2 100%);
 }
-.card-lemak .card-icon { color: #f5b041; background: rgba(245, 176, 65, 0.1); }
-.card-lemak .btn-cek { background: linear-gradient(135deg, #f5b041 0%, #e67e22 100%); color: #fff; border: none; box-shadow: 0 4px 12px rgba(245, 176, 65, 0.25); }
-.card-lemak .btn-cek:hover { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); color: #fff; transform: translateY(-2px); }
+
+.card-lemak .card-icon {
+    color: #f5b041;
+    background: rgba(245, 176, 65, 0.1);
+}
+
+.card-lemak .btn-cek {
+    background: linear-gradient(135deg, #f5b041 0%, #e67e22 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(245, 176, 65, 0.25);
+}
+
+.card-lemak .btn-cek:hover {
+    background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
 /* IMT (Info/Cyan/Teal) */
 .card-imt {
     border-left-color: #1abc9c !important;
     background: linear-gradient(165deg, #ffffff 40%, #f2fdfb 100%);
 }
-.card-imt .card-icon { color: #1abc9c; background: rgba(26, 188, 156, 0.1); }
-.card-imt .btn-cek { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); color: #fff; border: none; box-shadow: 0 4px 12px rgba(26, 188, 156, 0.25); }
-.card-imt .btn-cek:hover { background: linear-gradient(135deg, #16a085 0%, #149174 100%); color: #fff; transform: translateY(-2px); }
+
+.card-imt .card-icon {
+    color: #1abc9c;
+    background: rgba(26, 188, 156, 0.1);
+}
+
+.card-imt .btn-cek {
+    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(26, 188, 156, 0.25);
+}
+
+.card-imt .btn-cek:hover {
+    background: linear-gradient(135deg, #16a085 0%, #149174 100%);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
 /* Tensi (Red) */
 .card-tensi {
     border-left: 6px solid #ec7063 !important;
     background: linear-gradient(165deg, #ffffff 40%, #fff5f5 100%);
 }
-.card-tensi .card-icon { color: #ec7063; background: rgba(236, 112, 99, 0.1); }
-.card-tensi h3, .card-tensi h5 { color: #ec7063; font-weight: 700; }
-.card-tensi .form-label { color: #ec7063; }
-.card-tensi .form-control:focus { border-color: #ec7063; box-shadow: 0 0 0 0.2rem rgba(236, 112, 99, 0.15); }
-.card-tensi .btn-cek { background: linear-gradient(135deg, #ec7063 0%, #c0392b 100%); border: none; box-shadow: 0 4px 12px rgba(236, 112, 99, 0.25); }
-.card-tensi .btn-cek:hover { background: linear-gradient(135deg, #c0392b 0%, #a93226 100%); transform: translateY(-2px); }
+
+.card-tensi .card-icon {
+    color: #ec7063;
+    background: rgba(236, 112, 99, 0.1);
+}
+
+.card-tensi h3,
+.card-tensi h5 {
+    color: #ec7063;
+    font-weight: 700;
+}
+
+.card-tensi .form-label {
+    color: #ec7063;
+}
+
+.card-tensi .form-control:focus {
+    border-color: #ec7063;
+    box-shadow: 0 0 0 0.2rem rgba(236, 112, 99, 0.15);
+}
+
+.card-tensi .btn-cek {
+    background: linear-gradient(135deg, #ec7063 0%, #c0392b 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(236, 112, 99, 0.25);
+}
+
+.card-tensi .btn-cek:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: translateY(-2px);
+}
 
 /* Input Group Styling */
 .input-group-text {
@@ -525,11 +1897,320 @@ body {
     border-color: #e0e0e0;
     color: #6c757d;
 }
-.card-natrium .input-group-text { color: #5c9ded; background: #f4f9ff; border-color: #dbeafe; }
-.card-lemak .input-group-text { color: #f5b041; background: #fffdf5; border-color: #fceabb; }
-.card-imt .input-group-text { color: #1abc9c; background: #f2fdfb; border-color: #d1f2eb; }
-.card-tensi .input-group-text { color: #ec7063; background: #fff8f8; border-color: #fadbd8; }
 
+.card-natrium .input-group-text {
+    color: #5c9ded;
+    background: #f4f9ff;
+    border-color: #dbeafe;
+}
+
+.card-lemak .input-group-text {
+    color: #f5b041;
+    background: #fffdf5;
+    border-color: #fceabb;
+}
+
+.card-imt .input-group-text {
+    color: #1abc9c;
+    background: #f2fdfb;
+    border-color: #d1f2eb;
+}
+
+.card-tensi .input-group-text {
+    color: #ec7063;
+    background: #fff8f8;
+    border-color: #fadbd8;
+}
+
+/* ====== KALKULATOR: TAMPILAN INTUITIF (CSS ONLY - TANPA UBAH HTML) ====== */
+
+/* Semua section kalkulator: alur visual bertahap */
+#kalkulator-natrium .akg-card .card-body,
+#kalkulator-lemak .akg-card .card-body,
+#kalkulator-imt .akg-card .card-body,
+#cek-tensi .cek-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Blok "Isi data": grup label + input dengan jarak konsisten */
+#kalkulator-natrium .akg-card .row.g-2,
+#kalkulator-lemak .akg-card .row.g-2,
+#kalkulator-imt .akg-card .row.g-2,
+#cek-tensi .row.g-3 {
+    margin-bottom: 0.25rem;
+}
+
+/* Label lebih intuitif: tebal, jarak ke input jelas, ukuran terbaca */
+#kalkulator-natrium .akg-card label,
+#kalkulator-lemak .akg-card label,
+#kalkulator-imt .akg-card label,
+#cek-tensi label.form-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: #374151;
+    letter-spacing: 0.01em;
+}
+
+/* Form-text / bantuan di bawah input: lebih terbaca */
+#kalkulator-natrium .akg-card .form-text,
+#kalkulator-lemak .akg-card .form-text,
+#kalkulator-imt .akg-card .form-text,
+#cek-tensi .form-text {
+    font-size: 0.8125rem;
+    margin-top: 0.35rem;
+    line-height: 1.45;
+    color: #6b7280;
+}
+
+/* Input group sebagai satu "kotak" yang jelas: rounded, focus ring */
+#kalkulator-natrium .akg-card .input-group,
+#kalkulator-lemak .akg-card .input-group,
+#kalkulator-imt .akg-card .input-group,
+#cek-tensi .input-group {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#kalkulator-natrium .akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(92, 157, 237, 0.25);
+}
+
+#kalkulator-lemak .akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(245, 176, 65, 0.3);
+}
+
+#kalkulator-imt .akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.25);
+}
+
+#cek-tensi .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(236, 112, 99, 0.25);
+}
+
+/* Placeholder lebih ramah */
+#kalkulator-natrium .akg-card .form-control::placeholder,
+#kalkulator-lemak .akg-card .form-control::placeholder,
+#kalkulator-imt .akg-card .form-control::placeholder,
+#cek-tensi .form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* Jarak antara baris input dan tombol: pemisah visual (sama di semua kalkulator termasuk IMT) */
+#kalkulator-natrium .akg-card .d-flex.gap-2.mt-3,
+#kalkulator-natrium .card.akg-card .d-flex.gap-2.mt-3,
+#kalkulator-lemak .akg-card .d-flex.gap-2.mt-3,
+#kalkulator-lemak .card.akg-card .d-flex.gap-2.mt-3,
+#kalkulator-imt .akg-card .d-flex.gap-2.mt-3,
+#kalkulator-imt .card.akg-card .d-flex.gap-2.mt-3,
+#cek-tensi .cek-card .d-flex.gap-2.mt-3 {
+    margin-top: 1.25rem !important;
+    padding-top: 1rem !important;
+    border-top: 1px dashed #e5e7eb !important;
+    gap: 0.75rem !important;
+}
+
+/* Tombol utama (Cek/Hitung): sangat menonjol - sama di semua kalkulator */
+#kalkulator-natrium .akg-card .btn-cek.flex-fill,
+#kalkulator-natrium .card.akg-card .btn-cek.flex-fill,
+#kalkulator-lemak .akg-card .btn-cek.flex-fill,
+#kalkulator-lemak .card.akg-card .btn-cek.flex-fill,
+#kalkulator-imt .akg-card .btn-cek.flex-fill,
+#kalkulator-imt .card.akg-card .btn-cek.flex-fill,
+#cek-tensi .cek-card .btn-cek.flex-fill {
+    font-weight: 700 !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: 1rem !important;
+    border-radius: 12px !important;
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+
+#kalkulator-natrium .akg-card .btn-cek.flex-fill:hover,
+#kalkulator-natrium .card.akg-card .btn-cek.flex-fill:hover,
+#kalkulator-lemak .akg-card .btn-cek.flex-fill:hover,
+#kalkulator-lemak .card.akg-card .btn-cek.flex-fill:hover,
+#kalkulator-imt .akg-card .btn-cek.flex-fill:hover,
+#kalkulator-imt .card.akg-card .btn-cek.flex-fill:hover,
+#cek-tensi .cek-card .btn-cek.flex-fill:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Tombol Reset: sekunder - sama di semua kalkulator (Natrium, Lemak, IMT, Tensi) */
+#kalkulator-natrium .akg-card .btn-outline-secondary,
+#kalkulator-natrium .card.akg-card .btn-outline-secondary,
+#kalkulator-lemak .akg-card .btn-outline-secondary,
+#kalkulator-lemak .card.akg-card .btn-outline-secondary,
+#kalkulator-imt .akg-card .btn-outline-secondary,
+#kalkulator-imt .card.akg-card .btn-outline-secondary,
+#cek-tensi .cek-card .btn-outline-secondary {
+    padding: 0.75rem 1.1rem !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    min-height: 48px !important;
+    border-width: 2px !important;
+}
+
+/* Area hasil: jelas terpisah, mudah discan */
+#kalkulator-natrium .akg-card .result,
+#kalkulator-lemak .akg-card .result,
+#kalkulator-imt .akg-card .result,
+#kalkulator-natrium #akgResultWrap,
+#cek-tensi #hasilWrapper {
+    margin-top: 1.25rem !important;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Result container (box hasil AKG/IMT/Lemak) */
+#kalkulator-natrium .akg-card .result-container,
+#kalkulator-lemak .akg-card .result-container,
+#kalkulator-imt .akg-card .result-container {
+    margin-top: 1rem;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Cek Tensi: result blocks lebih intuitif */
+#cek-tensi .result-block {
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-left-width: 5px;
+}
+
+#cek-tensi .result-block h6 {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+#cek-tensi #hasilMessage {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+}
+
+#cek-tensi #hasilWrapper {
+    padding-top: 1.25rem;
+}
+
+#cek-tensi #hasilDisclaimer {
+    border-radius: 10px;
+    font-size: 0.875rem;
+}
+
+/* Header kalkulator (icon + judul): hirarki jelas */
+#kalkulator-natrium .akg-card .d-flex.align-items-center.mb-2,
+#kalkulator-lemak .akg-card .d-flex.align-items-center.mb-2,
+#kalkulator-imt .akg-card .d-flex.align-items-center.mb-2,
+#cek-tensi .d-flex.align-items-center.mb-3 {
+    margin-bottom: 1.25rem !important;
+}
+
+#kalkulator-natrium .akg-card .card-icon,
+#kalkulator-lemak .akg-card .card-icon,
+#kalkulator-imt .akg-card .card-icon,
+#cek-tensi .card-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+#kalkulator-natrium .akg-card h4,
+#kalkulator-lemak .akg-card h4,
+#kalkulator-imt .akg-card h4,
+#cek-tensi h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+#kalkulator-natrium .akg-card .small-muted,
+#kalkulator-lemak .akg-card .small-muted,
+#kalkulator-imt .akg-card .small-muted,
+#cek-tensi .small-muted {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* IMT: padding & jarak disamakan dengan Kalkulator Lemak (tanpa ubah HTML) */
+/* Blok tombol Info Evaluasi: hilangkan margin bawah agar jarak header–input seperti Lemak */
+#kalkulator-imt .card.akg-card .card-body>.mb-3 {
+    margin-bottom: 0 !important;
+}
+
+/* Jarak antara tombol Info dan input form: konsisten dengan kalkulator lain */
+#kalkulator-imt .akg-card .row.g-2 {
+    margin-top: 0.5rem !important;
+}
+
+/* Toggle evaluasi: margin yang tepat agar tidak terlalu rapat dengan tombol */
+#kalkulator-imt .akg-card .mt-4.p-3.rounded-4.bg-light.border,
+#kalkulator-imt .card.akg-card .mt-4.p-3.rounded-4.bg-light.border {
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 12px !important;
+}
+
+#kalkulator-imt .akg-card .form-check-label.eval-toggle-label,
+#kalkulator-imt .card.akg-card .form-check-label.eval-toggle-label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9375rem;
+}
+
+/* Section evaluasi BB (opsional): padding & margin sama ringkas dengan Lemak */
+#kalkulator-imt .card.akg-card #evaluasiBBSection {
+    margin-top: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* Tips AKG (usia 30-50): tetap menonjol */
+#kalkulator-natrium .akg-tip {
+    margin-top: 1rem !important;
+    border-radius: 12px !important;
+    padding: 0.875rem 1rem !important;
+}
+
+/* Responsif: tombol tetap nyaman di mobile */
+@media (max-width: 576px) {
+
+    #kalkulator-natrium .akg-card .d-flex.gap-2.mt-3,
+    #kalkulator-lemak .akg-card .d-flex.gap-2.mt-3,
+    #kalkulator-imt .akg-card .d-flex.gap-2.mt-3,
+    #cek-tensi .d-flex.gap-2.mt-3 {
+        flex-direction: column;
+        padding-top: 1rem;
+    }
+
+    #kalkulator-natrium .akg-card .btn-cek.flex-fill,
+    #kalkulator-lemak .akg-card .btn-cek.flex-fill,
+    #kalkulator-imt .akg-card .btn-cek.flex-fill,
+    #cek-tensi .btn-cek.flex-fill {
+        width: 100%;
+    }
+
+    #kalkulator-natrium .akg-card .btn-outline-secondary,
+    #kalkulator-lemak .akg-card .btn-outline-secondary,
+    #kalkulator-imt .akg-card .btn-outline-secondary,
+    #cek-tensi .btn-outline-secondary {
+        width: 100%;
+    }
+}
 
 /* Risk Factor Cards Responsive */
 .risk-cards-grid {
@@ -550,6 +2231,7 @@ body {
         grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         gap: 8px;
     }
+
     .risk-card-mini {
         padding: 1rem 0.6rem;
         min-height: 160px;
@@ -568,8 +2250,8 @@ body {
     padding: 1.25rem 0.85rem;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1.5px solid rgba(0,0,0,0.03);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1.5px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -612,7 +2294,7 @@ body {
 /* Specific Colors for Risk Cards Hover States */
 .risk-card-mini:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
 }
 
 .risk-card-mini:hover i {
@@ -620,87 +2302,146 @@ body {
 }
 
 /* Apply specific border colors and shadows on hover based on the icon color */
-.risk-card-mini:has(.color-usia):hover { 
-    border-color: #e67e22; 
+.risk-card-mini:has(.color-usia):hover {
+    border-color: #e67e22;
     box-shadow: 0 12px 25px rgba(230, 126, 34, 0.15);
     background: #fffaf5;
 }
-.risk-card-mini:has(.color-usia):hover::after { background: #e67e22; }
 
-.risk-card-mini:has(.color-kelamin):hover { 
-    border-color: #3498db; 
+.risk-card-mini:has(.color-usia):hover::after {
+    background: #e67e22;
+}
+
+.risk-card-mini:has(.color-kelamin):hover {
+    border-color: #3498db;
     box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
     background: #f4faff;
 }
-.risk-card-mini:has(.color-kelamin):hover::after { background: #3498db; }
 
-.risk-card-mini:has(.color-genetik):hover { 
-    border-color: #9b59b6; 
+.risk-card-mini:has(.color-kelamin):hover::after {
+    background: #3498db;
+}
+
+.risk-card-mini:has(.color-genetik):hover {
+    border-color: #9b59b6;
     box-shadow: 0 12px 25px rgba(155, 89, 182, 0.15);
     background: #faf5ff;
 }
-.risk-card-mini:has(.color-genetik):hover::after { background: #9b59b6; }
 
-.risk-card-mini:has(.color-ras):hover { 
-    border-color: #795548; 
+.risk-card-mini:has(.color-genetik):hover::after {
+    background: #9b59b6;
+}
+
+.risk-card-mini:has(.color-ras):hover {
+    border-color: #795548;
     box-shadow: 0 12px 25px rgba(121, 85, 72, 0.15);
     background: #f9f7f6;
 }
-.risk-card-mini:has(.color-ras):hover::after { background: #795548; }
 
-.risk-card-mini:has(.color-obesitas):hover { 
-    border-color: #e74c3c; 
+.risk-card-mini:has(.color-ras):hover::after {
+    background: #795548;
+}
+
+.risk-card-mini:has(.color-obesitas):hover {
+    border-color: #e74c3c;
     box-shadow: 0 12px 25px rgba(231, 76, 60, 0.15);
     background: #fff5f5;
 }
-.risk-card-mini:has(.color-obesitas):hover::after { background: #e74c3c; }
 
-.risk-card-mini:has(.color-merokok):hover { 
-    border-color: #607d8b; 
+.risk-card-mini:has(.color-obesitas):hover::after {
+    background: #e74c3c;
+}
+
+.risk-card-mini:has(.color-merokok):hover {
+    border-color: #607d8b;
     box-shadow: 0 12px 25px rgba(96, 125, 139, 0.15);
     background: #f8f9fa;
 }
-.risk-card-mini:has(.color-merokok):hover::after { background: #607d8b; }
 
-.risk-card-mini:has(.color-stres):hover { 
-    border-color: #f1c40f; 
+.risk-card-mini:has(.color-merokok):hover::after {
+    background: #607d8b;
+}
+
+.risk-card-mini:has(.color-stres):hover {
+    border-color: #f1c40f;
     box-shadow: 0 12px 25px rgba(241, 196, 15, 0.15);
     background: #fffdf0;
 }
-.risk-card-mini:has(.color-stres):hover::after { background: #f1c40f; }
 
-.risk-card-mini:has(.color-makan):hover { 
-    border-color: #27ae60; 
+.risk-card-mini:has(.color-stres):hover::after {
+    background: #f1c40f;
+}
+
+.risk-card-mini:has(.color-makan):hover {
+    border-color: #27ae60;
     box-shadow: 0 12px 25px rgba(39, 174, 96, 0.15);
     background: #f0fff4;
 }
-.risk-card-mini:has(.color-makan):hover::after { background: #27ae60; }
 
-.risk-card-mini:has(.color-fisik):hover { 
-    border-color: #1abc9c; 
+.risk-card-mini:has(.color-makan):hover::after {
+    background: #27ae60;
+}
+
+.risk-card-mini:has(.color-fisik):hover {
+    border-color: #1abc9c;
     box-shadow: 0 12px 25px rgba(26, 188, 156, 0.15);
     background: #f0fdfa;
 }
-.risk-card-mini:has(.color-fisik):hover::after { background: #1abc9c; }
 
-.risk-card-mini:has(.color-alkohol):hover { 
-    border-color: #d35400; 
+.risk-card-mini:has(.color-fisik):hover::after {
+    background: #1abc9c;
+}
+
+.risk-card-mini:has(.color-alkohol):hover {
+    border-color: #d35400;
     box-shadow: 0 12px 25px rgba(211, 84, 0, 0.15);
     background: #fff8f5;
 }
-.risk-card-mini:has(.color-alkohol):hover::after { background: #d35400; }
+
+.risk-card-mini:has(.color-alkohol):hover::after {
+    background: #d35400;
+}
 
 /* Specific Colors for Risk Cards */
-.color-usia { color: #e67e22 !important; }
-.color-kelamin { color: #3498db !important; }
-.color-genetik { color: #9b59b6 !important; }
-.color-ras { color: #795548 !important; }
-.color-obesitas { color: #e74c3c !important; }
-.color-merokok { color: #607d8b !important; }
-.color-stres { color: #f1c40f !important; }
-.color-makan { color: #27ae60 !important; }
-.color-fisik { color: #1abc9c !important; }
-.color-alkohol { color: #d35400 !important; }
+.color-usia {
+    color: #e67e22 !important;
+}
+
+.color-kelamin {
+    color: #3498db !important;
+}
+
+.color-genetik {
+    color: #9b59b6 !important;
+}
+
+.color-ras {
+    color: #795548 !important;
+}
+
+.color-obesitas {
+    color: #e74c3c !important;
+}
+
+.color-merokok {
+    color: #607d8b !important;
+}
+
+.color-stres {
+    color: #f1c40f !important;
+}
+
+.color-makan {
+    color: #27ae60 !important;
+}
+
+.color-fisik {
+    color: #1abc9c !important;
+}
+
+.color-alkohol {
+    color: #d35400 !important;
+}
 
 /* Header & Intro Boxes */
 .risk-intro-box {
@@ -723,33 +2464,84 @@ body {
     font-size: 0.9rem;
 }
 
-/* Impact Cards Styling */
+
+
+/* ===== PENANDA PENGATURAN UKURAN GAMBAR =====
+Ubah nilai berikut untuk mengatur ukuran gambar di masing-masing device.
+- MOBILE: gunakan --impact-mobile-img-width
+- TABLET: gunakan --impact-tablet-img-min / max / height
+- DESKTOP/LAPTOP: gunakan --impact-desktop-img-min / max / height
+*/
+:root {
+    /* MOBILE: lebar gambar di mobile (px) */
+    --impact-mobile-img-width: 140px;
+    /* MOBILE default tinggi gambar (dipakai pada base jika perlu) */
+    --impact-base-img-height: 140px;
+    /* TABLET: rentang lebar dan tinggi gambar */
+    --impact-tablet-img-min: 160px;
+    --impact-tablet-img-max: 220px;
+    --impact-tablet-img-height: 180px;
+    /* DESKTOP/LAPTOP: rentang lebar dan tinggi gambar */
+    --impact-desktop-img-min: 110px;
+    --impact-desktop-img-max: 150px;
+    --impact-desktop-img-height: 150px;
+    /* BORDER: konsistensi di semua device */
+    --impact-border-width: 5px;
+    --impact-border-color: #a88ad2;
+    --impact-border-radius: 10px;
+}
+
 .impact-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 14px;
     margin-top: 12px;
 }
 
 @media (max-width: 768px) {
-    .impact-card {
-        flex-direction: column;
+    .impact-cards-grid .impact-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
     }
-    
-    .impact-img-wrapper {
-        width: 100%;
-        height: 180px;
+
+    .impact-cards-grid .impact-img-wrapper {
+        width: var(--impact-mobile-img-width);
+        min-width: var(--impact-mobile-img-width);
+        height: auto;
+        aspect-ratio: 1/1;
+        position: relative;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 6px;
+        order: 1; /* Gambar di kiri */
+    }
+
+    .impact-cards-grid .impact-content {
+        order: 2; /* Teks di kanan */
+        flex: 1 1 auto;
+        padding: 12px 12px;
+    }
+
+    .impact-cards-grid .impact-img-wrapper::after {
+        content: none;
+        height: 0;
+        background: none;
     }
 }
 
 .impact-card {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
     background: #fff;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 180px;
     height: 100%;
 }
 
@@ -759,18 +2551,147 @@ body {
     border-color: #9b59b6;
 }
 
+.info-section-formal.border-purple .impact-card {
+    border: 1.5px solid #d6bcfa;
+}
+
 .impact-img-wrapper {
-    width: 90px;
-    min-width: 90px;
-    height: auto;
+    width: 100%;
+    min-width: 0;
+    height: var(--impact-base-img-height, 160px);
     overflow: hidden;
-    background: #f8f9fa;
+    background: #ffffff;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 8px;
+    border: var(--impact-border-width) solid var(--impact-border-color);
+    border-radius: var(--impact-border-radius);
 }
 
 .impact-img-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: var(--impact-object-pos-x, 50%) var(--impact-object-pos-y, 50%);
+}
+
+/* Tablet: 2 kolom stabil, gambar kiri – teks kanan */
+@media (min-width: 768px) {
+    .impact-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .impact-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        min-height: 180px;
+    }
+
+    .impact-img-wrapper {
+        width: clamp(var(--impact-tablet-img-min, 160px), 18vw, var(--impact-tablet-img-max, 220px));
+        min-width: clamp(var(--impact-tablet-img-min, 160px), 18vw, var(--impact-tablet-img-max, 220px));
+        height: var(--impact-tablet-img-height, 180px);
+        margin: 8px;
+        border: var(--impact-border-width) solid var(--impact-border-color);
+    }
+
+    .impact-img-wrapper img {
+        object-fit: contain;
+    }
+
+    .impact-content {
+        padding: 12px 14px;
+        flex: 1 1 auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .impact-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .impact-card {
+        align-items: center;
+        gap: 16px;
+        min-height: 200px;
+    }
+
+    .impact-img-wrapper {
+        background: #ffffff;
+        width: clamp(var(--impact-desktop-img-min, 160px), 14vw, var(--impact-desktop-img-max, 200px));
+        min-width: clamp(var(--impact-desktop-img-min, 160px), 14vw, var(--impact-desktop-img-max, 200px));
+        height: var(--impact-desktop-img-height, 180px);
+        border: var(--impact-border-width) solid var(--impact-border-color);
+        border-radius: var(--impact-border-radius);
+        box-sizing: border-box;
+        padding: 0;
+        margin: 10px;
+    }
+
+    .impact-img-wrapper::before {
+        content: none;
+    }
+
+    .impact-img-wrapper img {
+        object-fit: contain;
+    }
+
+    .impact-card:hover .impact-img-wrapper img {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+.impact-cards-grid .impact-card:nth-child(1) {
+    --impact-object-pos-y: 45%;
+}
+
+.impact-cards-grid .impact-card:nth-child(2) {
+    --impact-object-pos-y: 40%;
+}
+
+.impact-cards-grid .impact-card:nth-child(3) {
+    --impact-object-pos-y: 50%;
+}
+
+.impact-cards-grid .impact-card:nth-child(4) {
+    --impact-object-pos-y: 48%;
+}
+
+.impact-cards-grid .impact-card:nth-child(5) {
+    --impact-object-pos-y: 50%;
+}
+
+.impact-cards-grid .impact-card:nth-child(6) {
+    --impact-object-pos-y: 50%;
+}
+
+.impact-cards-grid .impact-card:nth-child(1) {
+    --impact-object-pos-x: 50%;
+}
+
+.impact-cards-grid .impact-card:nth-child(2) {
+    --impact-object-pos-x: 40%;
+}
+
+.impact-cards-grid .impact-card:nth-child(3) {
+    --impact-object-pos-x: 60%;
+}
+
+.impact-cards-grid .impact-card:nth-child(4) {
+    --impact-object-pos-x: 45%;
+}
+
+.impact-cards-grid .impact-card:nth-child(5) {
+    --impact-object-pos-x: 50%;
+}
+
+.impact-cards-grid .impact-card:nth-child(6) {
+    --impact-object-pos-x: 50%;
 }
 
 .impact-content {
@@ -785,6 +2706,11 @@ body {
     font-weight: 700;
     margin-bottom: 6px;
     color: #1b5e20;
+}
+
+/* huruf di section dampak kesehatan */
+.info-section-formal.border-purple .impact-content h6 {
+    color: #9b59b6;
 }
 
 .impact-content p {
@@ -816,7 +2742,8 @@ body {
 }
 
 .section-list.custom-icons li::before {
-    display: none; /* Hide default checkmark */
+    display: none;
+    /* Hide default checkmark */
 }
 
 .section-list.custom-icons i {
@@ -843,16 +2770,16 @@ body {
     border-radius: 20px;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .herbal-card-new:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .herbal-img-wrapper {
-    height: 140px;
+    height: clamp(190px, 34vw, 280px);
     overflow: hidden;
     position: relative;
 }
@@ -861,13 +2788,20 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% var(--herbal-object-pos-y, 40%);
+}
+
+@media (max-width: 576px) {
+    .herbal-img-wrapper {
+        height: clamp(180px, 55vw, 240px);
+    }
 }
 
 .herbal-badge {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
@@ -893,7 +2827,7 @@ body {
     .lifestyle-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .lifestyle-card {
         padding: 10px 12px;
     }
@@ -904,7 +2838,7 @@ body {
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    background: #f8f9fa; 
+    background: #f8f9fa;
     border-radius: 14px;
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -914,35 +2848,131 @@ body {
 }
 
 /* Color Variants for Lifestyle Cards - Perfect Synchronization */
-.ls-red, .ls-red span { color: #c53030; }
-.ls-red { background: #fff5f5; border-color: #feb2b2; }
-.ls-red i { color: #c53030; background: #fff5f5; border: 1.5px solid #feb2b2; }
-.ls-red:hover { background: #fff0f0; border-color: #fc8181; }
+.ls-red,
+.ls-red span {
+    color: #c53030;
+}
 
-.ls-green, .ls-green span { color: #2f855a; }
-.ls-green { background: #f0fff4; border-color: #9ae6b4; }
-.ls-green i { color: #2f855a; background: #f0fff4; border: 1.5px solid #9ae6b4; }
-.ls-green:hover { background: #e6ffed; border-color: #68d391; }
+.ls-red {
+    background: #fff5f5;
+    border-color: #feb2b2;
+}
 
-.ls-orange, .ls-orange span { color: #c05621; }
-.ls-orange { background: #fffaf0; border-color: #fbd38d; }
-.ls-orange i { color: #c05621; background: #fffaf0; border: 1.5px solid #fbd38d; }
-.ls-orange:hover { background: #fff5eb; border-color: #f6ad55; }
+.ls-red i {
+    color: #c53030;
+    background: #fff5f5;
+    border: 1.5px solid #feb2b2;
+}
 
-.ls-blue, .ls-blue span { color: #2b6cb0; }
-.ls-blue { background: #ebf8ff; border-color: #90cdf4; }
-.ls-blue i { color: #2b6cb0; background: #ebf8ff; border: 1.5px solid #90cdf4; }
-.ls-blue:hover { background: #e1f5fe; border-color: #63b3ed; }
+.ls-red:hover {
+    background: #fff0f0;
+    border-color: #fc8181;
+}
 
-.ls-teal, .ls-teal span { color: #287e7e; }
-.ls-teal { background: #e6fffa; border-color: #81e6d9; }
-.ls-teal i { color: #287e7e; background: #e6fffa; border: 1.5px solid #81e6d9; }
-.ls-teal:hover { background: #d1fff8; border-color: #4fd1c5; }
+.ls-green,
+.ls-green span {
+    color: #2f855a;
+}
 
-.ls-purple, .ls-purple span { color: #6b46c1; }
-.ls-purple { background: #faf5ff; border-color: #d6bcfa; }
-.ls-purple i { color: #6b46c1; background: #faf5ff; border: 1.5px solid #d6bcfa; }
-.ls-purple:hover { background: #f3e8ff; border-color: #b794f4; }
+.ls-green {
+    background: #f0fff4;
+    border-color: #9ae6b4;
+}
+
+.ls-green i {
+    color: #2f855a;
+    background: #f0fff4;
+    border: 1.5px solid #9ae6b4;
+}
+
+.ls-green:hover {
+    background: #e6ffed;
+    border-color: #68d391;
+}
+
+.ls-orange,
+.ls-orange span {
+    color: #c05621;
+}
+
+.ls-orange {
+    background: #fffaf0;
+    border-color: #fbd38d;
+}
+
+.ls-orange i {
+    color: #c05621;
+    background: #fffaf0;
+    border: 1.5px solid #fbd38d;
+}
+
+.ls-orange:hover {
+    background: #fff5eb;
+    border-color: #f6ad55;
+}
+
+.ls-blue,
+.ls-blue span {
+    color: #2b6cb0;
+}
+
+.ls-blue {
+    background: #ebf8ff;
+    border-color: #90cdf4;
+}
+
+.ls-blue i {
+    color: #2b6cb0;
+    background: #ebf8ff;
+    border: 1.5px solid #90cdf4;
+}
+
+.ls-blue:hover {
+    background: #e1f5fe;
+    border-color: #63b3ed;
+}
+
+.ls-teal,
+.ls-teal span {
+    color: #287e7e;
+}
+
+.ls-teal {
+    background: #e6fffa;
+    border-color: #81e6d9;
+}
+
+.ls-teal i {
+    color: #287e7e;
+    background: #e6fffa;
+    border: 1.5px solid #81e6d9;
+}
+
+.ls-teal:hover {
+    background: #d1fff8;
+    border-color: #4fd1c5;
+}
+
+.ls-purple,
+.ls-purple span {
+    color: #6b46c1;
+}
+
+.ls-purple {
+    background: #faf5ff;
+    border-color: #d6bcfa;
+}
+
+.ls-purple i {
+    color: #6b46c1;
+    background: #faf5ff;
+    border: 1.5px solid #d6bcfa;
+}
+
+.ls-purple:hover {
+    background: #f3e8ff;
+    border-color: #b794f4;
+}
 
 
 .lifestyle-card:hover {
@@ -985,7 +3015,7 @@ body {
     gap: 15px;
     margin-top: 20px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
 .advice-box-modern:hover {
@@ -1019,17 +3049,47 @@ body {
 }
 
 /* Color Variants for Advice Box */
-.advice-blue { border-left-color: #3182ce; }
-.advice-blue .advice-icon { background: #ebf8ff; color: #3182ce; }
-.advice-blue:hover { border-color: #bee3f8; box-shadow: 0 5px 20px rgba(49, 130, 206, 0.1); }
+.advice-blue {
+    border-left-color: #3182ce;
+}
 
-.advice-green { border-left-color: #38a169; }
-.advice-green .advice-icon { background: #f0fff4; color: #38a169; }
-.advice-green:hover { border-color: #c6f6d5; box-shadow: 0 5px 20px rgba(56, 161, 105, 0.1); }
+.advice-blue .advice-icon {
+    background: #ebf8ff;
+    color: #3182ce;
+}
 
-.advice-purple { border-left-color: #805ad5; }
-.advice-purple .advice-icon { background: #faf5ff; color: #805ad5; }
-.advice-purple:hover { border-color: #e9d8fd; box-shadow: 0 5px 20px rgba(128, 90, 213, 0.1); }
+.advice-blue:hover {
+    border-color: #bee3f8;
+    box-shadow: 0 5px 20px rgba(49, 130, 206, 0.1);
+}
+
+.advice-green {
+    border-left-color: #38a169;
+}
+
+.advice-green .advice-icon {
+    background: #f0fff4;
+    color: #38a169;
+}
+
+.advice-green:hover {
+    border-color: #c6f6d5;
+    box-shadow: 0 5px 20px rgba(56, 161, 105, 0.1);
+}
+
+.advice-purple {
+    border-left-color: #805ad5;
+}
+
+.advice-purple .advice-icon {
+    background: #faf5ff;
+    color: #805ad5;
+}
+
+.advice-purple:hover {
+    border-color: #e9d8fd;
+    box-shadow: 0 5px 20px rgba(128, 90, 213, 0.1);
+}
 
 /* Herbal Card Variations */
 .herbal-card-new {
@@ -1037,59 +3097,198 @@ body {
     transition: all 0.3s ease;
 }
 
-.herbal-orange { border-color: #fbd38d !important; }
-.herbal-orange h6 { color: #d69e2e !important; }
-.herbal-orange .alert-success { background-color: #fffaf0; border-color: #fbd38d; color: #b7791f; }
-.herbal-orange:hover { box-shadow: 0 8px 25px rgba(214, 158, 46, 0.15) !important; transform: translateY(-5px); border-color: #d69e2e !important; }
+.herbal-orange {
+    border-color: #fbd38d !important;
+}
 
-.herbal-red { border-color: #feb2b2 !important; }
-.herbal-red h6 { color: #e53e3e !important; }
-.herbal-red .alert-success { background-color: #fff5f5; border-color: #feb2b2; color: #c53030; }
-.herbal-red:hover { box-shadow: 0 8px 25px rgba(229, 62, 62, 0.15) !important; transform: translateY(-5px); border-color: #e53e3e !important; }
+.herbal-orange {
+    --herbal-object-pos-y: 45%;
+}
 
-.herbal-green { border-color: #9ae6b4 !important; }
-.herbal-green h6 { color: #38a169 !important; }
-.herbal-green .alert-success { background-color: #f0fff4; border-color: #9ae6b4; color: #2f855a; }
-.herbal-green:hover { box-shadow: 0 8px 25px rgba(56, 161, 105, 0.15) !important; transform: translateY(-5px); border-color: #38a169 !important; }
+.herbal-orange h6 {
+    color: #d69e2e !important;
+}
 
-.herbal-teal { border-color: #81e6d9 !important; }
-.herbal-teal h6 { color: #319795 !important; }
-.herbal-teal .alert-success { background-color: #e6fffa; border-color: #81e6d9; color: #287e7e; }
-.herbal-teal:hover { box-shadow: 0 8px 25px rgba(49, 151, 149, 0.15) !important; transform: translateY(-5px); border-color: #319795 !important; }
+.herbal-orange .alert-success {
+    background-color: #fffaf0;
+    border-color: #fbd38d;
+    color: #b7791f;
+}
+
+.herbal-orange:hover {
+    box-shadow: 0 8px 25px rgba(214, 158, 46, 0.15) !important;
+    transform: translateY(-5px);
+    border-color: #d69e2e !important;
+}
+
+.herbal-red {
+    border-color: #feb2b2 !important;
+}
+
+.herbal-red {
+    --herbal-object-pos-y: 35%;
+}
+
+.herbal-red h6 {
+    color: #e53e3e !important;
+}
+
+.herbal-red .alert-success {
+    background-color: #fff5f5;
+    border-color: #feb2b2;
+    color: #c53030;
+}
+
+.herbal-red:hover {
+    box-shadow: 0 8px 25px rgba(229, 62, 62, 0.15) !important;
+    transform: translateY(-5px);
+    border-color: #e53e3e !important;
+}
+
+.herbal-green {
+    border-color: #9ae6b4 !important;
+}
+
+.herbal-green {
+    --herbal-object-pos-y: 40%;
+}
+
+.herbal-green h6 {
+    color: #38a169 !important;
+}
+
+.herbal-green .alert-success {
+    background-color: #f0fff4;
+    border-color: #9ae6b4;
+    color: #2f855a;
+}
+
+.herbal-green:hover {
+    box-shadow: 0 8px 25px rgba(56, 161, 105, 0.15) !important;
+    transform: translateY(-5px);
+    border-color: #38a169 !important;
+}
+
+.herbal-teal {
+    border-color: #81e6d9 !important;
+}
+
+.herbal-teal {
+    --herbal-object-pos-y: 40%;
+}
+
+.herbal-teal h6 {
+    color: #319795 !important;
+}
+
+.herbal-teal .alert-success {
+    background-color: #e6fffa;
+    border-color: #81e6d9;
+    color: #287e7e;
+}
+
+.herbal-teal:hover {
+    box-shadow: 0 8px 25px rgba(49, 151, 149, 0.15) !important;
+    transform: translateY(-5px);
+    border-color: #319795 !important;
+}
 
 /* Modern Calculator Styling (CSS Only - No HTML/JS Changes) */
 .akg-card {
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     background: #ffffff;
 }
 
 .akg-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 /* 1. Color Differentiation & Theme Classes */
-.card-natrium { border-left: 6px solid #3182ce !important; }
-.card-natrium .card-icon { background: #ebf8ff; color: #3182ce; }
-.card-natrium h4 { color: #3182ce; font-weight: 700; }
-.card-natrium label { color: #3182ce; font-weight: 600; }
-.card-natrium .btn-cek { background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%); }
-.card-natrium .form-control:focus { border-color: #3182ce; box-shadow: 0 0 0 0.2rem rgba(49, 130, 206, 0.15); }
+.card-natrium {
+    border-left: 6px solid #3182ce !important;
+}
 
-.card-lemak { border-left: 6px solid #d69e2e !important; }
-.card-lemak .card-icon { background: #fffaf0; color: #d69e2e; }
-.card-lemak h4 { color: #d69e2e; font-weight: 700; }
-.card-lemak label { color: #d69e2e; font-weight: 600; }
-.card-lemak .btn-cek { background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%); }
-.card-lemak .form-control:focus { border-color: #d69e2e; box-shadow: 0 0 0 0.2rem rgba(214, 158, 46, 0.15); }
+.card-natrium .card-icon {
+    background: #ebf8ff;
+    color: #3182ce;
+}
 
-.card-imt { border-left: 6px solid #319795 !important; }
-.card-imt .card-icon { background: #e6fffa; color: #319795; }
-.card-imt h4 { color: #319795; font-weight: 700; }
-.card-imt label { color: #319795; font-weight: 600; }
-.card-imt .btn-cek { background: linear-gradient(135deg, #319795 0%, #287e7e 100%); }
-.card-imt .form-control:focus { border-color: #319795; box-shadow: 0 0 0 0.2rem rgba(49, 151, 149, 0.15); }
+.card-natrium h4 {
+    color: #3182ce;
+    font-weight: 700;
+}
+
+.card-natrium label {
+    color: #3182ce;
+    font-weight: 600;
+}
+
+.card-natrium .btn-cek {
+    background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+}
+
+.card-natrium .form-control:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 0.2rem rgba(49, 130, 206, 0.15);
+}
+
+.card-lemak {
+    border-left: 6px solid #d69e2e !important;
+}
+
+.card-lemak .card-icon {
+    background: #fffaf0;
+    color: #d69e2e;
+}
+
+.card-lemak h4 {
+    color: #d69e2e;
+    font-weight: 700;
+}
+
+.card-lemak label {
+    color: #d69e2e;
+    font-weight: 600;
+}
+
+.card-lemak .btn-cek {
+    background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);
+}
+
+.card-lemak .form-control:focus {
+    border-color: #d69e2e;
+    box-shadow: 0 0 0 0.2rem rgba(214, 158, 46, 0.15);
+}
+
+.card-imt {
+    border-left: 6px solid #319795 !important;
+}
+
+.card-imt .card-icon {
+    background: #e6fffa;
+    color: #319795;
+}
+
+.card-imt h4 {
+    color: #319795;
+    font-weight: 700;
+}
+
+.card-imt label {
+    color: #319795;
+    font-weight: 600;
+}
+
+.card-imt .btn-cek {
+    background: linear-gradient(135deg, #319795 0%, #287e7e 100%);
+}
+
+.card-imt .form-control:focus {
+    border-color: #319795;
+    box-shadow: 0 0 0 0.2rem rgba(49, 151, 149, 0.15);
+}
 
 /* 2. Modern Inputs */
 .akg-card .input-group-text {
@@ -1098,7 +3297,8 @@ body {
     color: #a0aec0;
 }
 
-.akg-card .form-control, .akg-card .form-select {
+.akg-card .form-control,
+.akg-card .form-select {
     border-left: none;
     font-weight: 500;
 }
@@ -1107,8 +3307,8 @@ body {
 .akg-card .result {
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .akg-card .result strong {
@@ -1124,7 +3324,7 @@ body {
     border-left: 5px solid #3182ce !important;
     border-radius: 16px !important;
     padding: 15px 20px !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
     color: #4a5568 !important;
     display: flex !important;
     align-items: center !important;
@@ -1155,19 +3355,21 @@ body {
 
 /* Enhanced Section Hover */
 .info-section-formal {
-    padding: 40px 0; /* Standardized Section Padding */
+    padding: 40px 0;
+    /* Standardized Section Padding */
     margin: 0;
     transition: all 0.5s ease;
-    border-bottom: 1px solid rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .info-section-formal:nth-child(even) {
-    background: rgba(248, 249, 249, 0.5); /* Subtle alternating background */
+    background: rgba(248, 249, 249, 0.5);
+    /* Subtle alternating background */
 }
 
 .info-section-formal:hover {
     background: #ffffff;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.02);
 }
 
 /* ====== REFERENCES ACCORDION STYLING ====== */
@@ -1176,7 +3378,7 @@ body {
     margin-bottom: 1rem;
     border-radius: 12px !important;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .references-accordion .accordion-button {
@@ -1243,35 +3445,109 @@ body {
 }
 
 /* Icon Color Variants */
-.icon-red i { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2); }
-.icon-orange i { background: linear-gradient(135deg, #f39c12 0%, #d35400 100%); box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2); }
-.icon-purple i { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); box-shadow: 0 4px 12px rgba(155, 89, 182, 0.2); }
-.icon-teal i { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); box-shadow: 0 4px 12px rgba(26, 188, 156, 0.2); }
-.icon-blue i { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2); }
-.icon-green i { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2); }
+.icon-red i {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.icon-orange i {
+    background: linear-gradient(135deg, #f39c12 0%, #d35400 100%);
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+}
+
+.icon-purple i {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.2);
+}
+
+.icon-teal i {
+    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    box-shadow: 0 4px 12px rgba(26, 188, 156, 0.2);
+}
+
+.icon-blue i {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+.icon-green i {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+}
 
 /* Border Color Variants for Sections */
-.border-red { border-top-color: #e74c3c !important; }
-.border-orange { border-top-color: #f39c12 !important; }
-.border-purple { border-top-color: #9b59b6 !important; }
-.border-teal { border-top-color: #1abc9c !important; }
-.border-blue { border-top-color: #3498db !important; }
-.border-green { border-top-color: #27ae60 !important; }
+.border-red {
+    border-top-color: #e74c3c !important;
+}
+
+.border-orange {
+    border-top-color: #f39c12 !important;
+}
+
+.border-purple {
+    border-top-color: #9b59b6 !important;
+}
+
+.border-teal {
+    border-top-color: #1abc9c !important;
+}
+
+.border-blue {
+    border-top-color: #3498db !important;
+}
+
+.border-green {
+    border-top-color: #27ae60 !important;
+}
 
 /* Section Title and Divider Sync */
-.border-red .section-divider { background: linear-gradient(90deg, #e74c3c, #c0392b); }
-.border-orange .section-divider { background: linear-gradient(90deg, #f39c12, #d35400); }
-.border-purple .section-divider { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
-.border-teal .section-divider { background: linear-gradient(90deg, #1abc9c, #16a085); }
-.border-blue .section-divider { background: linear-gradient(90deg, #3498db, #2980b9); }
-.border-green .section-divider { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+.border-red .section-divider {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
 
-.border-red .section-title { color: #c0392b; }
-.border-orange .section-title { color: #d35400; }
-.border-purple .section-title { color: #8e44ad; }
-.border-teal .section-title { color: #16a085; }
-.border-blue .section-title { color: #2980b9; }
-.border-green .section-title { color: #1b5e20; }
+.border-orange .section-divider {
+    background: linear-gradient(90deg, #f39c12, #d35400);
+}
+
+.border-purple .section-divider {
+    background: linear-gradient(90deg, #9b59b6, #8e44ad);
+}
+
+.border-teal .section-divider {
+    background: linear-gradient(90deg, #1abc9c, #16a085);
+}
+
+.border-blue .section-divider {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.border-green .section-divider {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.border-red .section-title {
+    color: #c0392b;
+}
+
+.border-orange .section-title {
+    color: #d35400;
+}
+
+.border-purple .section-title {
+    color: #8e44ad;
+}
+
+.border-teal .section-title {
+    color: #16a085;
+}
+
+.border-blue .section-title {
+    color: #2980b9;
+}
+
+.border-green .section-title {
+    color: #1b5e20;
+}
 
 .section-divider {
     height: 4px;
@@ -1289,16 +3565,19 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
     animation: shine-divider 3s infinite;
 }
 
 @keyframes shine-divider {
-    to { left: 100%; }
+    to {
+        left: 100%;
+    }
 }
 
 .section-text {
-    font-size: 1.05rem; /* Optimasi untuk mata usia 40-60 */
+    font-size: 1.05rem;
+    /* Optimasi untuk mata usia 40-60 */
     line-height: 1.7;
     color: #444;
     margin-bottom: 1.2rem;
@@ -1358,12 +3637,33 @@ body {
     transition: all 0.3s ease;
 }
 
-.intro-box-purple { background: #f9f5ff; border-left: 5px solid #9b59b6; color: #6b46c1; }
-.intro-box-teal { background: #f0fff4; border-left: 5px solid #1abc9c; color: #234e52; }
-.intro-box-blue { background: #f0f7ff; border-left: 5px solid #3498db; color: #2c5282; }
-.intro-box-green { background: #f0fff4; border-left: 5px solid #27ae60; color: #1b5e20; }
+.intro-box-purple {
+    background: #f9f5ff;
+    border-left: 5px solid #9b59b6;
+    color: #6b46c1;
+}
 
-.intro-box-generic i { font-size: 1.2rem; }
+.intro-box-teal {
+    background: #f0fff4;
+    border-left: 5px solid #1abc9c;
+    color: #234e52;
+}
+
+.intro-box-blue {
+    background: #f0f7ff;
+    border-left: 5px solid #3498db;
+    color: #2c5282;
+}
+
+.intro-box-green {
+    background: #f0fff4;
+    border-left: 5px solid #27ae60;
+    color: #1b5e20;
+}
+
+.intro-box-generic i {
+    font-size: 1.2rem;
+}
 
 .section-list {
     padding-left: 0;
@@ -1392,7 +3692,8 @@ body {
 
 /* Materi Grid Override (if still used) */
 .materi-grid {
-    display: block; /* Change to block for vertical sections */
+    display: block;
+    /* Change to block for vertical sections */
 }
 
 /* ====== HERBAL CARDS STYLING ====== */
@@ -1442,7 +3743,8 @@ body {
     margin: 0.8rem 0;
     line-height: 1.7;
     color: #333;
-    font-size: 0.95rem; /* Sedikit lebih besar dari default untuk keterbacaan penelitian */
+    font-size: 0.95rem;
+    /* Sedikit lebih besar dari default untuk keterbacaan penelitian */
 }
 
 .herbal-card-body strong {
@@ -1473,7 +3775,7 @@ body {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .herbal-card {
         margin-bottom: 0.5rem;
     }
@@ -1531,7 +3833,7 @@ body {
     border-radius: 10px;
     border-left: 5px solid #27ae60;
     padding: 1.2rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 .result-block h6 {
@@ -1782,16 +4084,20 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: #f8f9fa; /* bg-light */
+    background-color: #f8f9fa;
+    /* bg-light */
     padding: 1rem;
     border-radius: .5rem;
-    border-left: 4px solid #dc3545; /* border-danger */
+    border-left: 4px solid #dc3545;
+    /* border-danger */
     height: 100%;
     transition: background-color .2s;
 }
+
 .komplikasi-card:hover {
     background-color: #f1f3f5;
 }
+
 .komplikasi-img {
     width: 80px;
     height: 80px;
@@ -1807,6 +4113,7 @@ body {
     gap: 1rem;
     margin-top: 1rem;
 }
+
 .risk-item {
     background: #fff;
     border: 1px solid #e9ecef;
@@ -1815,11 +4122,13 @@ body {
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
 }
+
 .risk-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-color: var(--brand);
 }
+
 .risk-icon {
     font-size: 2rem;
     margin-bottom: 0.8rem;
@@ -1833,4 +4142,980 @@ body {
     object-fit: cover;
     border-radius: 12px;
     flex-shrink: 0;
+}
+
+body {
+    background: var(--bg-body);
+}
+
+.hero-section {
+    width: 100%;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: url("../images/herbal.jpg") center/cover no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll;
+        min-height: 250px;
+    }
+}
+
+.hero-overlay {
+    background: rgba(39, 174, 96, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-item img {
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(39, 174, 96, 0.15);
+    transition: transform 0.3s;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.04);
+}
+
+.info-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+}
+
+.info-section h2 {
+    color: #1b5e20;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.accent-divider {
+    height: 3px;
+    background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+    margin-bottom: 1rem;
+    border-radius: 2px;
+}
+
+.card-instansi {
+    background: linear-gradient(135deg, #e9f7ef 0%, #d4efdf 100%);
+    border: none;
+    box-shadow: 0 4px 24px rgba(39, 174, 96, 0.08);
+}
+
+.instansi-img {
+    margin: 0 20px;
+    transition: transform 0.3s;
+}
+
+.instansi-img:hover {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+/* cek-card: lebar mengikuti container / accordion */
+.cek-card {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.08);
+    border-left: 6px solid var(--brand);
+    transition: transform .25s ease, box-shadow .25s ease;
+    animation: popIn .35s ease;
+}
+
+/* AKG card: lebar mengikuti container / accordion */
+.akg-card {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(39, 174, 96, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(39, 174, 96, 0.06);
+    border-left: 6px solid var(--brand);
+}
+
+.akg-card .card-body {
+    padding: 20px;
+    /* samakan dengan cek-card */
+}
+
+/* Mode fokus: tampilkan eksklusif bagian Natrium */
+body.natrium-only .navbar,
+body.natrium-only .hero-section,
+body.natrium-only nav[aria-label="breadcrumb"],
+body.natrium-only .quick-access-bar,
+body.natrium-only #materi,
+body.natrium-only #kalkulator-lemak,
+body.natrium-only #kalkulator-imt,
+body.natrium-only #cek-tensi,
+body.natrium-only footer,
+body.natrium-only #dailyHealthTip,
+body.natrium-only .whatsapp-float,
+body.natrium-only .advice-box-modern,
+body.natrium-only .intro-box-generic {
+    display: none !important;
+    visibility: hidden !important;
+}
+body.natrium-only main {
+    padding-top: 0 !important;
+}
+body.natrium-only #kalkulator-natrium {
+    position: relative;
+    z-index: 1000;
+}
+body.natrium-only .natrium-card {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+body.natrium-only {
+    background: #ffffff !important;
+}
+
+/* AKG: header & tip khusus usia 30-50 */
+.akg-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.akg-header .icon {
+    font-size: 1.5rem;
+    color: var(--brand);
+    background: rgba(39, 174, 96, 0.08);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.akg-tip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: linear-gradient(90deg, #fff7e6, #fffbe9);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: #8a6d00;
+}
+
+.akg-tip.d-none {
+    display: none !important;
+}
+
+.info-box-hipertensi {
+    background: #fff5f5;
+    border-left: 4px solid #e53e3e;
+}
+
+.info-box-hipertensi-text {
+    color: #742a2a;
+    font-weight: 500;
+}
+
+.info-section-image {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .info-section-formal.border-red .row.align-items-center {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .info-section-formal.border-red .col-md-8 {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+
+    .info-section-formal.border-red .col-md-4 {
+        flex: 0 0 clamp(160px, 42vw, 240px);
+        max-width: clamp(160px, 42vw, 240px);
+        position: relative;
+    }
+
+    .info-section-formal.border-red .info-section-image {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: 50% 50%;
+        display: block;
+        border-radius: 12px;
+    }
+
+    .info-section-formal.border-red .col-md-4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 30%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0));
+        pointer-events: none;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .info-section-formal.border-red .row.align-items-center {
+        flex-wrap: wrap;
+    }
+
+    .info-section-formal.border-red .col-md-4 {
+        order: -1;
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .info-section-formal.border-red .info-section-image {
+        width: 100%;
+        height: clamp(200px, 52vw, 280px);
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        object-position: 50% 50%;
+        border-radius: 12px;
+        display: block;
+    }
+
+    .info-section-formal.border-red .col-md-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .info-section-formal.border-red .col-md-4::after {
+        height: 32%;
+    }
+}
+
+.consumption-card {
+    border-radius: 20px;
+}
+
+.consumption-card--sugar {
+    background: #fff5f5;
+}
+
+.consumption-card--sugar i {
+    color: #e53e3e;
+}
+
+.consumption-card--sugar h6 {
+    color: #c53030;
+}
+
+.consumption-card--sugar p {
+    color: #9b2c2c;
+}
+
+.consumption-card--salt {
+    background: #ebf8ff;
+}
+
+.consumption-card--salt i {
+    color: #3182ce;
+}
+
+.consumption-card--salt h6 {
+    color: #2b6cb0;
+}
+
+.consumption-card--salt p {
+    color: #2c5282;
+}
+
+.consumption-card--fat {
+    background: #fffaf0;
+}
+
+.consumption-card--fat i {
+    color: #d69e2e;
+}
+
+.consumption-card--fat h6 {
+    color: #b7791f;
+}
+
+.consumption-card--fat p {
+    color: #975a16;
+}
+
+.main-footer {
+    background: #1b5e20;
+    color: white;
+}
+
+/* Brand highlight: Nutri Herbal PLus+ -> kuning di footer */
+.main-footer h4.text-white {
+    color: #ffd700 !important;
+}
+
+/* ========== KALKULATOR: TEMA SEIRAMA & TAMPILAN INTUITIF (CSS ONLY) ========== */
+/* Palet: Biru (Natrium), Amber (Lemak), Teal (IMT), Merah (Tensi) */
+
+/* ---- Natrium: Biru ---- */
+#kalkulator-natrium .card.akg-card {
+    border-left: 5px solid #2563eb !important;
+    background: linear-gradient(160deg, #ffffff 0%, #eff6ff 50%, #dbeafe 100%) !important;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+#kalkulator-natrium .card.akg-card .card-icon {
+    background: rgba(37, 99, 235, 0.15) !important;
+    color: #2563eb !important;
+    border-radius: 12px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.35rem !important;
+}
+
+#kalkulator-natrium .card.akg-card h4 {
+    color: #1d4ed8 !important;
+    font-weight: 700 !important;
+}
+
+#kalkulator-natrium .card.akg-card label {
+    color: #1e40af !important;
+    font-weight: 600 !important;
+}
+
+#kalkulator-natrium .card.akg-card .input-group-text {
+    background: #eff6ff !important;
+    color: #2563eb !important;
+    border-color: #bfdbfe !important;
+}
+
+#kalkulator-natrium .card.akg-card .form-control,
+#kalkulator-natrium .card.akg-card .form-select {
+    border-color: #bfdbfe !important;
+}
+
+#kalkulator-natrium .card.akg-card .form-control:focus,
+#kalkulator-natrium .card.akg-card .form-select:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-cek {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-cek:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* ---- Lemak: Amber / Oranye ---- */
+#kalkulator-lemak .card.akg-card {
+    border-left: 5px solid #d97706 !important;
+    background: linear-gradient(160deg, #ffffff 0%, #fffbeb 50%, #fef3c7 100%) !important;
+    box-shadow: 0 4px 20px rgba(217, 119, 6, 0.12) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+#kalkulator-lemak .card.akg-card .card-icon {
+    background: rgba(217, 119, 6, 0.15) !important;
+    color: #b45309 !important;
+    border-radius: 12px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.35rem !important;
+}
+
+#kalkulator-lemak .card.akg-card h4 {
+    color: #b45309 !important;
+    font-weight: 700 !important;
+}
+
+#kalkulator-lemak .card.akg-card label {
+    color: #92400e !important;
+    font-weight: 600 !important;
+}
+
+#kalkulator-lemak .card.akg-card .input-group-text {
+    background: #fffbeb !important;
+    color: #d97706 !important;
+    border-color: #fde68a !important;
+}
+
+#kalkulator-lemak .card.akg-card .form-control,
+#kalkulator-lemak .card.akg-card .form-select {
+    border-color: #fde68a !important;
+}
+
+#kalkulator-lemak .card.akg-card .form-control:focus,
+#kalkulator-lemak .card.akg-card .form-select:focus {
+    border-color: #d97706 !important;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2) !important;
+}
+
+#kalkulator-lemak .card.akg-card .btn-cek {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35) !important;
+}
+
+#kalkulator-lemak .card.akg-card .btn-cek:hover {
+    background: linear-gradient(135deg, #b45309 0%, #92400e 100%) !important;
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* ---- IMT: Teal / Hijau ---- */
+#kalkulator-imt .card.akg-card {
+    border-left: 5px solid #0d9488 !important;
+    background: linear-gradient(160deg, #ffffff 0%, #f0fdfa 50%, #ccfbf1 100%) !important;
+    box-shadow: 0 4px 20px rgba(13, 148, 136, 0.12) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+#kalkulator-imt .card.akg-card .card-icon {
+    background: rgba(13, 148, 136, 0.15) !important;
+    color: #0f766e !important;
+    border-radius: 12px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.35rem !important;
+}
+
+#kalkulator-imt .card.akg-card h4 {
+    color: #0f766e !important;
+    font-weight: 700 !important;
+}
+
+#kalkulator-imt .card.akg-card label {
+    color: #115e59 !important;
+    font-weight: 600 !important;
+}
+
+#kalkulator-imt .card.akg-card .input-group-text {
+    background: #f0fdfa !important;
+    color: #0d9488 !important;
+    border-color: #99f6e4 !important;
+}
+
+#kalkulator-imt .card.akg-card .form-control,
+#kalkulator-imt .card.akg-card .form-select {
+    border-color: #99f6e4 !important;
+}
+
+#kalkulator-imt .card.akg-card .form-control:focus,
+#kalkulator-imt .card.akg-card .form-select:focus {
+    border-color: #0d9488 !important;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2) !important;
+}
+
+#kalkulator-imt .card.akg-card .btn-cek {
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35) !important;
+}
+
+#kalkulator-imt .card.akg-card .btn-cek:hover {
+    background: linear-gradient(135deg, #0f766e 0%, #115e59 100%) !important;
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* ---- Tensi: Merah ---- */
+#cek-tensi .cek-card.card-tensi {
+    border-left: 5px solid #dc2626 !important;
+    background: linear-gradient(160deg, #ffffff 0%, #fef2f2 50%, #fee2e2 100%) !important;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.12) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+#cek-tensi .cek-card .card-icon {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #b91c1c !important;
+    border-radius: 12px !important;
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.35rem !important;
+}
+
+#cek-tensi .cek-card h3 {
+    color: #dc2626 !important;
+    font-weight: 700 !important;
+}
+
+#cek-tensi .cek-card .input-group-text {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+    border-color: #fecaca !important;
+}
+
+#cek-tensi .cek-card .form-control:focus,
+#cek-tensi .cek-card .form-select:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2) !important;
+}
+
+#cek-tensi .cek-card .btn-cek {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35) !important;
+}
+
+#cek-tensi .cek-card .btn-cek:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%) !important;
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* ---- Umum: input group, padding card, pemisah tombol ---- */
+#kalkulator-natrium .card.akg-card .input-group,
+#kalkulator-lemak .card.akg-card .input-group,
+#kalkulator-imt .card.akg-card .input-group,
+#cek-tensi .cek-card .input-group {
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+#kalkulator-natrium .card.akg-card .card-body,
+#kalkulator-lemak .card.akg-card .card-body,
+#kalkulator-imt .card.akg-card .card-body {
+    padding: 1.5rem 1.5rem !important;
+}
+
+#cek-tensi .cek-card {
+    padding: 1.5rem 1.5rem !important;
+}
+
+#kalkulator-natrium .card.akg-card .small-muted,
+#kalkulator-lemak .card.akg-card .small-muted,
+#kalkulator-imt .card.akg-card .small-muted,
+#cek-tensi .cek-card .small-muted {
+    color: #64748b !important;
+    font-size: 0.9rem !important;
+    line-height: 1.45;
+}
+
+/* Aturan ini sudah didefinisikan di baris 595-603, tidak perlu duplikasi */
+
+/* ========== KALKULATOR: UI/UX INTUITIF, KREATIF & INOVATIF (HANYA BAGIAN KALKULATOR) ========== */
+
+/* ---- Transisi halus di seluruh blok kalkulator ---- */
+#kalkulator-natrium .card.akg-card,
+#kalkulator-lemak .card.akg-card,
+#kalkulator-imt .card.akg-card,
+#cek-tensi .cek-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card:hover,
+#kalkulator-lemak .card.akg-card:hover,
+#kalkulator-imt .card.akg-card:hover,
+#cek-tensi .cek-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+#kalkulator-natrium .progress .progress-bar,
+#kalkulator-lemak .progress .progress-bar,
+#kalkulator-imt .progress .progress-bar,
+#cek-tensi .progress .progress-bar {
+    transition: width 0.6s ease-in-out, background-color 0.25s ease !important;
+    transform-origin: center;
+}
+.progress-bar.pulse-danger { animation: barPulse 1.2s ease-in-out 2; }
+.progress-bar.pulse-warning { animation: barPulse 1.2s ease-in-out 1; }
+@keyframes barPulse {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(1.15); }
+    100% { transform: scaleY(1); }
+}
+
+#kalkulator-natrium .card.akg-card .d-flex.align-items-center.mb-2 .card-icon,
+#kalkulator-lemak .card.akg-card .d-flex.align-items-center.mb-2 .card-icon,
+#kalkulator-imt .card.akg-card .d-flex.align-items-center.mb-2 .card-icon,
+#cek-tensi .cek-card .d-flex.align-items-center.mb-3 .card-icon {
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card:hover .d-flex.align-items-center.mb-2 .card-icon,
+#kalkulator-lemak .card.akg-card:hover .d-flex.align-items-center.mb-2 .card-icon,
+#kalkulator-imt .card.akg-card:hover .d-flex.align-items-center.mb-2 .card-icon,
+#cek-tensi .cek-card:hover .d-flex.align-items-center.mb-3 .card-icon {
+    transform: scale(1.05) !important;
+}
+
+#kalkulator-natrium .card.akg-card h4,
+#kalkulator-lemak .card.akg-card h4,
+#kalkulator-imt .card.akg-card h4,
+#cek-tensi .cek-card h3 {
+    letter-spacing: -0.02em !important;
+    line-height: 1.3 !important;
+}
+
+/* ---- Label: jarak & keterbacaan ---- */
+#kalkulator-natrium .card.akg-card .row label,
+#kalkulator-lemak .card.akg-card .row label,
+#kalkulator-imt .card.akg-card .row label,
+#cek-tensi .cek-card .row label {
+    margin-bottom: 0.5rem !important;
+    transition: color 0.2s ease;
+}
+
+/* ---- Input group: hover + focus feedback (intuitif) ---- */
+#kalkulator-natrium .card.akg-card .input-group,
+#kalkulator-lemak .card.akg-card .input-group,
+#kalkulator-imt .card.akg-card .input-group,
+#cek-tensi .cek-card .input-group {
+    transition: box-shadow 0.25s ease, transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card .input-group:hover,
+#kalkulator-lemak .card.akg-card .input-group:hover,
+#kalkulator-imt .card.akg-card .input-group:hover,
+#cek-tensi .cek-card .input-group:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+#kalkulator-natrium .card.akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.22) !important;
+}
+
+#kalkulator-lemak .card.akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.22) !important;
+}
+
+#kalkulator-imt .card.akg-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.22) !important;
+}
+
+#cek-tensi .cek-card .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.22) !important;
+}
+
+/* Keyboard focus (aksesibilitas) */
+#kalkulator-natrium .card.akg-card .form-control:focus-visible,
+#kalkulator-natrium .card.akg-card .form-select:focus-visible,
+#kalkulator-lemak .card.akg-card .form-control:focus-visible,
+#kalkulator-lemak .card.akg-card .form-select:focus-visible,
+#kalkulator-imt .card.akg-card .form-control:focus-visible,
+#kalkulator-imt .card.akg-card .form-select:focus-visible,
+#cek-tensi .cek-card .form-control:focus-visible,
+#cek-tensi .cek-card .form-select:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px !important;
+}
+
+/* ---- Form-text (bantuan): tampil sebagai tip ---- */
+#kalkulator-natrium .card.akg-card .form-text,
+#kalkulator-lemak .card.akg-card .form-text,
+#kalkulator-imt .card.akg-card .form-text,
+#cek-tensi .cek-card .form-text {
+    padding-left: 0.5rem !important;
+    border-left: 3px solid rgba(0, 0, 0, 0.1) !important;
+    margin-left: 0 !important;
+    border-radius: 0 6px 6px 0 !important;
+}
+
+#kalkulator-natrium .card.akg-card .form-text {
+    border-left-color: rgba(37, 99, 235, 0.35) !important;
+}
+
+#kalkulator-lemak .card.akg-card .form-text {
+    border-left-color: rgba(217, 119, 6, 0.35) !important;
+}
+
+#kalkulator-imt .card.akg-card .form-text {
+    border-left-color: rgba(13, 148, 136, 0.35) !important;
+}
+
+#cek-tensi .cek-card .form-text {
+    border-left-color: rgba(220, 38, 38, 0.35) !important;
+}
+
+/* ---- Tombol: feedback tekan & hover ---- */
+#kalkulator-natrium .card.akg-card .btn-cek,
+#kalkulator-lemak .card.akg-card .btn-cek,
+#kalkulator-imt .card.akg-card .btn-cek,
+#cek-tensi .cek-card .btn-cek {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-cek:active,
+#kalkulator-lemak .card.akg-card .btn-cek:active,
+#kalkulator-imt .card.akg-card .btn-cek:active,
+#cek-tensi .cek-card .btn-cek:active {
+    transform: scale(0.98) !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-outline-secondary,
+#kalkulator-lemak .card.akg-card .btn-outline-secondary,
+#kalkulator-imt .card.akg-card .btn-outline-secondary,
+#cek-tensi .cek-card .btn-outline-secondary {
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-outline-secondary:hover,
+#kalkulator-lemak .card.akg-card .btn-outline-secondary:hover,
+#kalkulator-imt .card.akg-card .btn-outline-secondary:hover,
+#cek-tensi .cek-card .btn-outline-secondary:hover {
+    transform: translateY(-1px) !important;
+}
+
+#kalkulator-natrium .card.akg-card .btn-outline-secondary:active,
+#kalkulator-lemak .card.akg-card .btn-outline-secondary:active,
+#kalkulator-imt .card.akg-card .btn-outline-secondary:active,
+#cek-tensi .cek-card .btn-outline-secondary:active {
+    transform: scale(0.98) !important;
+}
+
+/* ---- Area hasil: panel yang jelas & nyaman dibaca ---- */
+#kalkulator-natrium .card.akg-card .result,
+#kalkulator-lemak .card.akg-card .result,
+#kalkulator-imt .card.akg-card .result {
+    border-radius: 14px !important;
+    transition: box-shadow 0.25s ease, transform 0.25s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card .result-container,
+#kalkulator-lemak .card.akg-card .result-container,
+#kalkulator-imt .card.akg-card .result-container {
+    transition: box-shadow 0.3s ease !important;
+}
+
+#kalkulator-natrium .card.akg-card .result-container:hover,
+#kalkulator-lemak .card.akg-card .result-container:hover,
+#kalkulator-imt .card.akg-card .result-container:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Result block Cek Tensi ---- */
+#cek-tensi .result-block {
+    transition: box-shadow 0.25s ease, border-left-color 0.25s ease !important;
+}
+
+#cek-tensi .result-block:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+#cek-tensi #hasilMessage {
+    transition: box-shadow 0.2s ease !important;
+}
+
+/* ---- Tips AKG (natrium): kotak tip yang menonjol ---- */
+#kalkulator-natrium .akg-tip {
+    border-left-width: 4px !important;
+    transition: box-shadow 0.25s ease, transform 0.2s ease !important;
+}
+
+#kalkulator-natrium .akg-tip:hover {
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* ---- IMT: toggle evaluasi (opsional) ---- */
+#kalkulator-imt .card.akg-card .rounded-4.bg-light.border.d-flex {
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+    margin-top: 1rem !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+#kalkulator-imt .card.akg-card .rounded-4.bg-light.border.d-flex:hover {
+    box-shadow: 0 2px 10px rgba(13, 148, 136, 0.08) !important;
+}
+
+#kalkulator-imt .card.akg-card .form-check-input {
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+/* ---- Tombol info (IMT & Tensi): konsisten dengan tema ---- */
+#kalkulator-imt .card.akg-card .btn-outline-info {
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    color: #0d9488 !important;
+    border-color: #5eead4 !important;
+    background: rgba(13, 148, 136, 0.05) !important;
+}
+
+#kalkulator-imt .card.akg-card .btn-outline-info:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2) !important;
+    background: rgba(13, 148, 136, 0.1) !important;
+    border-color: #0d9488 !important;
+    color: #115e59 !important;
+}
+
+#cek-tensi .cek-card .btn-outline-danger {
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#cek-tensi .cek-card .btn-outline-danger:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ---- Responsif: kalkulator di mobile ---- */
+@media (max-width: 576px) {
+
+    #kalkulator-natrium .card.akg-card,
+    #kalkulator-lemak .card.akg-card,
+    #kalkulator-imt .card.akg-card,
+    #cek-tensi .cek-card {
+        transform: none !important;
+    }
+
+    #kalkulator-natrium .card.akg-card:hover,
+    #kalkulator-lemak .card.akg-card:hover,
+    #kalkulator-imt .card.akg-card:hover,
+    #cek-tensi .cek-card:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    #kalkulator-natrium .card.akg-card .card-body,
+    #kalkulator-lemak .card.akg-card .card-body,
+    #kalkulator-imt .card.akg-card .card-body,
+    #cek-tensi .cek-card {
+        padding: 1.25rem 1rem !important;
+    }
+
+    #kalkulator-natrium .card.akg-card .input-group,
+    #kalkulator-lemak .card.akg-card .input-group,
+    #kalkulator-imt .card.akg-card .input-group,
+    #cek-tensi .cek-card .input-group {
+        border-radius: 10px !important;
+    }
+}
+
+/* ---- Custom Modal IMT Teal Colors ---- */
+.bg-imt-teal {
+    background: linear-gradient(135deg, #0d9488, #0f766e) !important;
+}
+
+.bg-imt-teal h5,
+.bg-imt-teal .modal-title {
+    color: #ffffff !important;
+}
+
+.bg-imt-teal-subtle {
+    background-color: rgba(13, 148, 136, 0.1) !important;
+}
+
+.text-imt-teal {
+    color: #0d9488 !important;
+    font-weight: 600;
+}
+
+.btn-imt-teal {
+    background: linear-gradient(135deg, #0d9488, #0f766e) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-imt-teal:hover {
+    background: linear-gradient(135deg, #0f766e, #115e59) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3) !important;
+}
+
+/* ---- Enhanced Sistolik & Diastolik Input Design ---- */
+.bg-gradient-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333) !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+}
+
+.bg-danger-subtle {
+    background-color: rgba(220, 53, 69, 0.08) !important;
+}
+
+.border-danger-subtle {
+    border-color: rgba(220, 53, 69, 0.25) !important;
+}
+
+#cek-tensi .input-group.shadow-sm {
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1) !important;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#cek-tensi .input-group.shadow-sm:focus-within {
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25) !important;
+    transform: translateY(-1px);
+}
+
+#cek-tensi .badge.bg-gradient-danger {
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.35);
+    }
+}
+
+.bg-success-subtle {
+    background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+.text-success {
+    color: #198754 !important;
 }

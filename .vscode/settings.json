@@ -5,5 +5,6 @@
     "editor.guides.indentation": false,
     "workbench.tree.renderIndentGuides": "none",
     "indentRainbow.indicatorStyle": "light",
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "kiroAgent.configureMCP": "Disabled"
 }

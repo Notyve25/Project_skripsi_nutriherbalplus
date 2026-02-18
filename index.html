@@ -39,21 +39,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li>
-                        <a class="nav-link" href="awal.html"> <i class="fa-solid fa-home"></i>
-                            <strong>Beranda</strong></a>
+                    <!-- 
+                        FUNGSI: Item navigasi untuk ke halaman Beranda.
+                    -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="awal.html"> <i class="fa-solid fa-home"></i> Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html"><i class="fa-solid fa-circle-info"></i>
-                            <strong>Informasi</strong></a>
+                        <a class="nav-link active" href="index.html"><i class="fa-solid fa-circle-info"></i> Informasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
-                                Edukasi</strong></a>
+                        <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> Video Edukasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i>
-                            <strong>Grafik</strong></a>
+                        <a class="nav-link" href="grafik.html"><i class="fa-solid fa-chart-column"></i> Grafik</a>
                     </li>
                 </ul>
             </div>
@@ -64,7 +63,10 @@
     <section class="hero-section mb-4 animate__animated animate__fadeIn">
         <div class="hero-overlay"></div>
         <div class="hero-content text-center animate__animated animate__fadeInDown">
-            <h1 class="display-5 fw-bold text-white">Selamat Datang di <span style="color:#ffe066;">Nutri Herbal
+            <!-- 
+                FUNGSI: Judul utama halaman yang menyambut pengguna.
+            -->
+            <h1 class="display-5 fw-bold text-white">Selamat Datang di <span class="text-highlight">Nutri Herbal
                     PLus+</span></h1>
             <p class="lead text-white">Informasi, edukasi, dan inspirasi untuk hidup sehat dan mencegah hipertensi.</p>
         </div>
@@ -79,8 +81,7 @@
             </ol>
         </nav>
 
-        <!-- Widget Tips Sehat (Opsi 5) -->
-        <div id="dailyHealthTip"></div>
+        
 
         <!-- Quick Access Bar (Menu Pintas) -->
         <div class="quick-access-bar d-flex gap-2 mb-4 pb-2 overflow-auto animate__animated animate__fadeInLeft">
@@ -102,8 +103,14 @@
                 <div class="section-divider"></div>
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <div class="p-4 rounded-4" style="background: #fff5f5; border-left: 4px solid #e53e3e;">
-                            <p class="section-text mb-0" style="color: #742a2a; font-weight: 500;">
+                        <!-- 
+                            FUNGSI: Kotak ini berfungsi untuk menyorot definisi utama hipertensi.
+                        -->
+                        <div class="p-4 rounded-4 info-box-hipertensi">
+                            <!-- 
+                                FUNGSI: Paragraf yang berisi teks penjelasan.
+                            -->
+                            <p class="section-text mb-0 info-box-hipertensi-text">
                                 <strong>Hipertensi</strong> adalah kondisi medis yang ditandai dengan tekanan darah
                                 sistolik lebih dari <strong>140 mmHg</strong> dan diastolik lebih dari <strong>90
                                     mmHg</strong>. WHO mendefinisikan hipertensi sebagai kondisi medis serius yang dapat
@@ -112,15 +119,17 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
+                        <!-- 
+                            FUNGSI: Gambar ilustrasi untuk pengertian hipertensi.
+                        -->
                         <img src="images/penyakit-hipertensi.jpg" alt="Pengertian Hipertensi"
-                            class="img-fluid rounded-4 shadow-sm mb-3 mb-md-0"
-                            style="max-height: 200px; width: 100%; object-fit: cover;">
+                            class="img-fluid rounded-4 shadow-sm mb-3 mb-md-0 info-section-image">
                     </div>
                 </div>
             </section>
 
             <!-- 2. Faktor Risiko Hipertensi -->
-            <section class="info-section-formal border-orange reveal">
+            <section id="faktor-risiko" class="info-section-formal border-orange reveal">
                 <h2 class="section-title icon-orange"><i class="fa-solid fa-triangle-exclamation"></i> Faktor Risiko
                 </h2>
                 <div class="section-divider"></div>
@@ -152,8 +161,7 @@
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-dna color-genetik"></i>
                                     <strong class="color-genetik">Genetik</strong>
-                                    <div class="risk-desc">Riwayat keluarga dengan hipertensi meningkatkan risiko
-                                        keturunan secara signifikan.</div>
+                                    <div class="risk-desc">Riwayat keluarga dengan hipertensi meningkatkan risiko hipertensi secara signifikan.</div>
                                 </div>
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-earth-asia color-ras"></i>
@@ -178,13 +186,13 @@
                                     <i class="fa-solid fa-weight-scale color-obesitas"></i>
                                     <strong class="color-obesitas">Obesitas</strong>
                                     <div class="risk-desc">Kelebihan berat badan memperberat kerja jantung dan menekan
-                                        pembuluh darah.</div>
+                                        pembuluh darah dan dapat meningkatkan resiko .</div>
                                 </div>
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-smoking color-merokok"></i>
                                     <strong class="color-merokok">Merokok</strong>
-                                    <div class="risk-desc">Zat kimia rokok merusak dinding arteri dan menyempitkan
-                                        saluran darah.</div>
+                                    <div class="risk-desc"> zat kimia pada rokok yaitu nikotin dan tar dapat merusak dinding arteri dan menyempitkan
+                                        saluran darah dan meningkatkan resiko hipertensi.</div>
                                 </div>
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-brain color-stres"></i>
@@ -200,14 +208,14 @@
                                 </div>
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-person-running color-fisik"></i>
-                                    <strong class="color-fisik">Kurang Fisik</strong>
-                                    <div class="risk-desc">Kurang olahraga melemahkan jantung dan memicu penumpukan
-                                        lemak tubuh.</div>
+                                    <strong class="color-fisik">Kurang aktivitas Fisik</strong>
+                                    <div class="risk-desc">Kurang olahraga dapat melemahkan jantung dan memicu penumpukan
+                                        lemak tubuh dan meningkatkan resiko hipertensi.</div>
                                 </div>
                                 <div class="risk-card-mini">
                                     <i class="fa-solid fa-wine-glass-empty color-alkohol"></i>
-                                    <strong class="color-alkohol">Alkohol</strong>
-                                    <div class="risk-desc">Konsumsi alkohol berlebih dapat merusak jantung dan
+                                    <strong class="color-alkohol"> Konsumsi Alkohol</strong>
+                                    <div class="risk-desc">Konsumsi alkohol berlebihan dapat merusak jantung dan
                                         meningkatkan tekanan darah.</div>
                                 </div>
                             </div>
@@ -222,44 +230,44 @@
                 <div class="section-divider"></div>
                 <div class="intro-box-generic intro-box-purple mb-3">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span>Hipertensi yang tidak terkontrol dapat menyebabkan berbagai komplikasi serius:</span>
+                    <span>Hipertensi yang tidak terkontrol dapat menyebabkan berbagai komplikasi serius, diantaranya :</span>
                 </div>
 
                 <div class="impact-cards-grid">
                     <!-- 1. Kerusakan Organ -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/mata retinopathy.jpg" alt="Kerusakan Organ">
+                            <img src="images/kerusakan organ .jpg" alt="Kerusakan Organ" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>Kerusakan Organ</h6>
-                            <p>Komplikasi serius pada organ vital seperti jantung, ginjal, otak, dan retina mata.</p>
+                            <p>hipertensi akan memicu Komplikasi serius pada organ vital seperti jantung, ginjal, otak, dan retina mata.</p>
                         </div>
                     </div>
                     <!-- 2. Penyakit Degeneratif -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/penyakit-hipertensi.jpg" alt="Penyakit Degeneratif">
+                            <img src="images/penyakit degeneratif.jpg" alt="Penyakit Degeneratif" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>Penyakit Degeneratif</h6>
-                            <p>Memicu terjadinya stroke, penyakit jantung koroner, dan gagal ginjal kronis.</p>
+                            <p>Hipertensi dapat Memicu terjadinya stroke, penyakit jantung koroner, dan gagal ginjal kronis.</p>
                         </div>
                     </div>
                     <!-- 3. Kerusakan Arteri -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/tensi.jpg" alt="Kerusakan Arteri">
+                            <img src="images/kerusakan arteri.jpg" alt="Kerusakan Arteri" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>Kerusakan Arteri</h6>
-                            <p>Dinding arteri yang rusak meningkatkan risiko serangan jantung dan stroke.</p>
+                            <p>Dinding arteri yang rusak meningkatkan risiko serangan jantung dan stroke yang disebabkan oleh hipertensi.</p>
                         </div>
                     </div>
                     <!-- 4. Silent Killer -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/rumahsakitjpg.jpg" alt="Silent Killer">
+                            <img src="images/silent killer.jpg" alt="Silent Killer" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>The Silent Killer</h6>
@@ -269,28 +277,28 @@
                     <!-- 5. Masalah Psikologis -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/herbal.jpg" alt="Psikologis">
+                            <img src="images/masalah psikologis.jpg" alt="Psikologis" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>Masalah Psikologis</h6>
-                            <p>Memicu gangguan kecemasan dan stres akibat kekhawatiran komplikasi jangka panjang.</p>
+                            <p>gangguan kecemasan dan stres akibat kekhawatiran dapat memicu hipertensi dan komplikasi jangka panjang.</p>
                         </div>
                     </div>
                     <!-- 6. Kualitas Hidup -->
                     <div class="impact-card">
                         <div class="impact-img-wrapper">
-                            <img src="images/sepiring sayur.jpg" alt="Kualitas Hidup">
+                            <img src="images/kualitas hidup.jpg" alt="Kualitas Hidup" loading="lazy">
                         </div>
                         <div class="impact-content">
                             <h6>Kualitas Hidup</h6>
-                            <p>Menurunkan produktivitas dan kualitas hidup akibat ketergantuan obat dan komplikasi.</p>
+                            <p>hipertensi dapat Menurunkan produktivitas dan kualitas hidup akibat ketergantuan obat dan komplikasi.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- 4. Penerapan Pola Makan dan Pola Hidup Sehat -->
-            <section class="info-section-formal border-teal reveal">
+            <section id="pola-hidup" class="info-section-formal border-teal reveal">
                 <h2 class="section-title icon-teal"><i class="fa-solid fa-seedling"></i> Pola Hidup Sehat</h2>
                 <div class="section-divider"></div>
                 <div class="intro-box-generic intro-box-teal mb-3">
@@ -316,7 +324,7 @@
                     </div>
                     <div class="lifestyle-card ls-teal">
                         <i class="fa-solid fa-person-running"></i>
-                        <span>Olahraga teratur, minimal 30 menit sehari.</span>
+                        <span>Olahraga teratur, minimal 30 menit sehari. contoh olahraga ringan yaitu berjalan, jogging ataupun bersepeda.</span>
                     </div>
                     <div class="lifestyle-card ls-purple">
                         <i class="fa-solid fa-brain"></i>
@@ -324,7 +332,7 @@
                     </div>
                     <div class="lifestyle-card ls-red">
                         <i class="fa-solid fa-smoking-ban"></i>
-                        <span>Berhenti merokok dan menghindari konsumsi alkohol.</span>
+                        <span> mengurangi atau Berhenti merokok dan  konsumsi alkohol.</span>
                     </div>
                 </div>
             </section>
@@ -342,65 +350,59 @@
 
                 <div class="row justify-content-center g-3 mb-4">
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm text-center p-3"
-                            style="border-radius: 20px; background: #fff5f5;">
+                        <!-- 
+                            FUNGSI: Kartu informasi untuk batas konsumsi Gula. 
+                        -->
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 consumption-card consumption-card--sugar">
                             <div class="card-body">
-                                <i class="fa-solid fa-cubes-stacked fs-2 mb-2" style="color: #e53e3e;"></i>
-                                <h6 class="fw-bold" style="color: #c53030;">Gula</h6>
-                                <p class="small mb-0" style="color: #9b2c2c;">Maksimal <strong>3-4 sendok makan</strong>
+                                <i class="fa-solid fa-cubes-stacked fs-2 mb-2"></i>
+                                <h6 class="fw-bold">Gula</h6>
+                                <p class="small mb-0">Maksimal <strong>3-4 sendok makan</strong>
                                     (56,4 gram) per hari.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm text-center p-3"
-                            style="border-radius: 20px; background: #ebf8ff;">
+                        <!-- 
+                            FUNGSI: Kartu informasi untuk batas konsumsi Garam.
+                        -->
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 consumption-card consumption-card--salt">
                             <div class="card-body">
-                                <i class="fa-solid fa-spoon fs-2 mb-2" style="color: #3182ce;"></i>
-                                <h6 class="fw-bold" style="color: #2b6cb0;">Garam</h6>
-                                <p class="small mb-0" style="color: #2c5282;">Maksimal <strong>1-2 sendok teh</strong>
+                                <i class="fa-solid fa-spoon fs-2 mb-2"></i>
+                                <h6 class="fw-bold">Garam</h6>
+                                <p class="small mb-0">Maksimal <strong>1-2 sendok teh</strong>
                                     (&lt;5 gram) per hari.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm text-center p-3"
-                            style="border-radius: 20px; background: #fffaf0;">
+                        <!-- 
+                            FUNGSI: Kartu informasi untuk batas konsumsi Lemak.
+                        -->
+                        <div class="card h-100 border-0 shadow-sm text-center p-3 consumption-card consumption-card--fat">
                             <div class="card-body">
-                                <i class="fa-solid fa-droplet fs-2 mb-2" style="color: #d69e2e;"></i>
-                                <h6 class="fw-bold" style="color: #b7791f;">Lemak/Minyak</h6>
-                                <p class="small mb-0" style="color: #975a16;">Maksimal <strong>5 sendok makan</strong>
+                                <i class="fa-solid fa-droplet fs-2 mb-2"></i>
+                                <h6 class="fw-bold">Lemak/Minyak</h6>
+                                <p class="small mb-0">Maksimal <strong>5 sendok makan</strong>
                                     (&lt;67 gram) per hari.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="advice-box-modern advice-blue">
-                    <div class="advice-icon">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <p class="advice-text">
-                        <strong>Tips Sehat:</strong> Menghindari makanan tinggi garam seperti makanan cepat saji,
-                        makanan berpengawet, dan camilan asin dapat membantu menjaga tekanan darah tetap stabil.
-                    </p>
-                </div>
+                
             </section>
 
             <!-- 6. Herbal Pendukung -->
             <section class="info-section-formal border-green animate__animated animate__fadeInUp">
                 <h2 class="section-title icon-green"><i class="fa-solid fa-leaf"></i> Minuman Herbal Lokal</h2>
                 <div class="section-divider"></div>
-                <div class="intro-box-generic intro-box-green mb-4">
-                    <i class="fa-solid fa-mortar-pestle"></i>
-                    <span>Bahan pangan lokal kaya flavonoid dan kalium dapat membantu menurunkan tekanan darah secara
-                        alami.</span>
-                </div>
+                
 
                 <div class="herbal-grid-compact">
                     <!-- 1. Jus Belimbing Manis & Wortel -->
                     <div class="herbal-card-new shadow-sm herbal-orange">
                         <div class="herbal-img-wrapper">
-                            <img src="images/herbal.jpg" alt="Herbal">
+                            <img src="images/jus wortel.jpeg" alt="Herbal">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-2"><i class="fa-solid fa-mortar-pestle me-2"></i>Jus Belimbing &
@@ -418,7 +420,7 @@
                     <!-- 2. Jus Semangka -->
                     <div class="herbal-card-new shadow-sm herbal-red">
                         <div class="herbal-img-wrapper">
-                            <img src="images/air-jahe.jpeg" alt="Semangka">
+                            <img src="images/jus semangka.jfif" alt="Semangka">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-2"><i class="fa-solid fa-wine-glass-empty me-2"></i>Jus Semangka</h6>
@@ -435,7 +437,7 @@
                     <!-- 3. Air Rebusan Seledri -->
                     <div class="herbal-card-new shadow-sm herbal-green">
                         <div class="herbal-img-wrapper">
-                            <img src="images/sepiring sayur.jpg" alt="Seledri">
+                            <img src="images/air rebusan daun selederi.jpeg" alt="Seledri">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-2"><i class="fa-solid fa-mug-hot me-2"></i>Rebusan Seledri</h6>
@@ -451,7 +453,7 @@
                     <!-- 4. Jus Mentimun -->
                     <div class="herbal-card-new shadow-sm herbal-teal">
                         <div class="herbal-img-wrapper">
-                            <img src="images/makanan.png" alt="Mentimun">
+                            <img src="images/Jus Mentimun.jfif" alt="Mentimun">
                         </div>
                         <div class="p-3">
                             <h6 class="fw-bold mb-2"><i class="fa-solid fa-glass-water me-2"></i>Jus Mentimun</h6>
@@ -586,7 +588,7 @@
 
         <!-- Kalkulator Natrium Harian (UI diperbarui, logic JS tetap sama) -->
         <section class="my-2 reveal" id="kalkulator-natrium" style="scroll-margin-top: 80px;">
-            <div class="card akg-card card-natrium">
+            <div class="card akg-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="me-2 card-icon"><i class="fa-solid fa-calculator"></i>
@@ -601,8 +603,8 @@
                     <div class="row g-2">
                         <div class="col-md-6">
                             <label for="usia">Usia (tahun)</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-user-clock"></i></span>
+                            <div class="input-group no-stack-mobile">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                                 <input type="number" id="usia" class="form-control" placeholder="Mis. 45" min="1"
                                     aria-describedby="usiaHelp">
                                 <span class="input-group-text">Tahun</span>
@@ -611,10 +613,10 @@
                         </div>
                         <div class="col-md-6">
                             <label for="jk">Jenis Kelamin</label>
-                            <div class="input-group">
+                            <div class="input-group no-stack-mobile">
                                 <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
                                 <select id="jk" class="form-select" aria-label="Jenis kelamin">
-                                    <option value="">Pilih</option>
+                                    <option value="" selected>Pilih jenis kelamin</option>
                                     <option value="laki">Laki-laki</option>
                                     <option value="perempuan">Perempuan</option>
                                 </select>
@@ -639,6 +641,220 @@
 
                     <div id="akgResultWrap" style="margin-top:16px; display:none;">
                         <div id="hasilAKG" class="result" role="status" aria-live="polite"></div>
+
+                        <!-- Bagian Kalkulator Konsumsi Natrium (Card Utuh) -->
+                        <div class="card natrium-card animate__animated animate__fadeIn">
+                            <div class="card-body">
+                            <section class="natrium-header">
+                                <div class="result-header-gradient">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-calculator fs-5"></i>
+                                        <span>Hitung Konsumsi Natrium Hari Ini</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <button type="button" class="result-badge-pill reset-button" onclick="resetFoodCalcNatrium()" title="Reset Pilihan">
+                                            <i class="fa-solid fa-rotate-left"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="natrium-search">
+                                    <div class="search-food-wrapper">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" class="form-control search-food-input" placeholder="Cari nama makanan (mis. Nasi, Ayam, Mie)..." onkeyup="searchFoodNatrium(this.value)">
+                                    </div>
+                                </div>
+                                
+                                <div class="natrium-category-grid">
+                                    <div class="food-selector-container mb-0">
+                                        <!-- Kategori 1: Makanan Pokok (Nasi, Roti, Kentang, Mie Polos) -->
+                                        <div class="mb-2 food-category-card">
+                                            <div class="food-category-header collapsed" id="cat_header_pokok" onclick="toggleCategoryNatrium('pokok')" role="button" aria-controls="cat_content_pokok" aria-expanded="false" aria-label="Kategori Makanan Pokok">
+                                                <div class="text-uppercase fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 1px;">
+                                                    <i class="fa-solid fa-wheat-awn me-1"></i>MAKANAN POKOK
+                                                </div>
+                                                <i class="fa-solid fa-chevron-down text-muted small"></i>
+                                            </div>
+                                            <div class="category-content d-none" id="cat_content_pokok">
+                                                <!-- Will be rendered via JS renderFoodSelectorNatrium() -->
+                                            </div>
+                                        </div>
+    
+                                        <!-- Kategori 2: Masakan & Khas Jogja (Nasi Goreng, Mie Goreng, Mie Instan, Gudeg, dll) -->
+                                        <div class="mb-2 food-category-card">
+                                            <div class="food-category-header collapsed" id="cat_header_masakan" onclick="toggleCategoryNatrium('masakan')" role="button" aria-controls="cat_content_masakan" aria-expanded="false" aria-label="Kategori Masakan & Khas Jogja">
+                                                <div class="text-uppercase fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 1px;">
+                                                    <i class="fa-solid fa-bowl-rice me-1"></i>MASAKAN & KHAS JOGJA
+                                                </div>
+                                                <i class="fa-solid fa-chevron-down text-muted small"></i>
+                                            </div>
+                                            <div class="category-content d-none" id="cat_content_masakan">
+                                                <!-- Will be rendered via JS renderFoodSelectorNatrium() -->
+                                            </div>
+                                        </div>
+    
+                                        <!-- Kategori 3: Lauk Pauk -->
+                                        <div class="mb-2 food-category-card">
+                                            <div class="food-category-header collapsed" id="cat_header_lauk" onclick="toggleCategoryNatrium('lauk')" role="button" aria-controls="cat_content_lauk" aria-expanded="false" aria-label="Kategori Lauk Pauk">
+                                                <div class="text-uppercase fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 1px;">
+                                                    <i class="fa-solid fa-drumstick-bite me-1"></i>LAUK PAUK
+                                                </div>
+                                                <i class="fa-solid fa-chevron-down text-muted small"></i>
+                                            </div>
+                                            <div class="category-content d-none" id="cat_content_lauk">
+                                                <!-- Will be rendered via JS renderFoodSelectorNatrium() -->
+                                            </div>
+                                        </div>
+    
+                                        <!-- Kategori 4: Sayuran & Sup -->
+                                        <div class="mb-2 food-category-card">
+                                            <div class="food-category-header collapsed" id="cat_header_sayur" onclick="toggleCategoryNatrium('sayur')" role="button" aria-controls="cat_content_sayur" aria-expanded="false" aria-label="Kategori Sayuran & Sup">
+                                                <div class="text-uppercase fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 1px;">
+                                                    <i class="fa-solid fa-leaf me-1"></i>SAYURAN & SUP
+                                                </div>
+                                                <i class="fa-solid fa-chevron-down text-muted small"></i>
+                                            </div>
+                                            <div class="category-content d-none" id="cat_content_sayur">
+                                                <!-- Will be rendered via JS renderFoodSelectorNatrium() -->
+                                            </div>
+                                        </div>
+    
+                                        <!-- Kategori 5: Camilan & Tambahan -->
+                                        <div class="mb-2 food-category-card">
+                                            <div class="food-category-header collapsed" id="cat_header_camilan" onclick="toggleCategoryNatrium('camilan')" role="button" aria-controls="cat_content_camilan" aria-expanded="false" aria-label="Kategori Camilan & Bumbu Dapur">
+                                                <div class="text-uppercase fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 1px;">
+                                                    <i class="fa-solid fa-cookie me-1"></i>CAMILAN & BUMBU DAPUR
+                                                </div>
+                                                <i class="fa-solid fa-chevron-down text-muted small"></i>
+                                            </div>
+                                            <div class="category-content d-none" id="cat_content_camilan">
+                                                <!-- Will be rendered via JS renderFoodSelectorNatrium() -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="natrium-legend-card mt-2">
+                                    <div class="natrium-legend-list">
+                                        <span class="legend-item legend-item-low">
+                                            <span class="legend-dot legend-low"></span> HIJAU = KANDUNGAN NATRIUM RENDAH
+                                        </span>
+                                        <span class="legend-item legend-item-medium">
+                                            <span class="legend-dot legend-medium"></span> KUNING = KANDUNGAN NATRIUM SEDANG
+                                        </span>
+                                        <span class="legend-item legend-item-high">
+                                            <span class="legend-dot legend-high"></span> MERAH = KANDUNGAN NATRIUM TINGGI
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Dashboard Monitoring & Ringkasan dalam satu card -->
+                            <div class="natrium-section">
+
+                            <!-- Dashboard Monitoring Natrium -->
+                            <div>
+                                <div class="row align-items-center g-3">
+                                    <div class="col-md-5 border-md-end">
+                                        <div class="text-muted small fw-bold text-uppercase mb-1" style="font-size: 0.65rem;">Total Natrium Terpilih</div>
+                                        <div class="d-flex align-items-baseline gap-1">
+                                            <span class="fs-2 fw-bold text-primary" id="displayTotalSelectedNatrium">0</span>
+                                            <span class="text-muted">/ <span id="displayGoalNatrium">0</span> mg</span>
+                                        </div>
+                                        <div class="text-muted small mt-1">
+                                            <span id="displayTotalSelectedPercentNatrium">0</span>% dari rekomendasi AKG Anda
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 ps-md-4">
+                                        <div class="progress mb-2" style="height: 12px; border-radius: 6px; background-color: #f1f3f5;">
+                                            <div id="natriumProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%; background-color: #27ae60;"></div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <!-- Ringkasan Pilihan -->
+                                <div class="mt-3 pt-3 border-top">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="small fw-bold text-muted text-uppercase" style="font-size: 0.65rem;">Ringkasan Menu Dipilih:</span>
+                                        <button class="btn btn-sm btn-link text-danger p-0 text-decoration-none small" style="font-size: 0.7rem;" onclick="resetFoodCalcNatrium()">Hapus Semua</button>
+                                    </div>
+                                    <div id="selectedFoodSummaryNatrium" class="selected-food-list">
+                                        <div class="text-center text-muted small italic py-2">Belum ada menu dipilih</div>
+                                    </div>
+                                </div>
+
+                                <!-- Smart Insight Box -->
+                                <div id="dynamicInsightBoxNatrium" class="mt-3 d-none animate__animated animate__fadeIn">
+                                    <!-- Akan diisi via JS -->
+                                </div>
+
+                                <!-- Bagian Edukasi Natrium (TKPI & Tips) -->
+                                <div class="mt-4 p-3 bg-light rounded-4 border border-light-subtle shadow-sm">
+                                    
+                                    <p class="text-muted mb-2" style="font-size: 0.75rem; line-height: 1.5;">
+                                        Berdasarkan <strong>Tabel Komposisi Pangan Indonesia (TKPI)</strong>, 1 bungkus <strong>Mie Instan</strong> dapat mengandung hingga <strong>1200mg Natrium</strong>. Itu sudah menghabiskan lebih dari <strong>50%</strong> jatah harian Anda!
+                                    </p>
+                                    
+                                    
+
+                                    
+                                </div>
+                            </div>
+                            </div> <!-- end natrium-section -->
+                            </div> <!-- end card-body -->
+                        </div> <!-- end natrium-card -->
+                        <div class="mt-3">
+                            <div class="edu-natrium-box" role="region" aria-labelledby="eduNatriumHeading">
+                                <div class="result-header-gradient">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-lightbulb fs-5"></i>
+                                        <span id="eduNatriumHeading">Edukasi Sumber Natrium</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="result-badge-pill">Panduan</span>
+                                    </div>
+                                </div>
+                                <div class="edu-info-grid mt-2" aria-label="Infografis edukasi natrium">
+                                    <div class="edu-info-box info-warn">
+                                        <div class="info-heading"><i class="fa-solid fa-triangle-exclamation"></i><span>Waspada Natrium Tersembunyi (Data TKPI)</span></div>
+                                        <div class="info-content">
+                                            <p class="info-text">Natrium tidak hanya dari garam, tetapi juga terdapat pada makanan olahan, bumbu kemasan, dan makanan instan.</p>
+                                            <div class="info-icons">
+                                                <span class="info-icon" aria-label="Makanan olahan"><i class="fa-solid fa-box-open"></i></span>
+                                                <span class="info-icon" aria-label="Bumbu kemasan"><i class="fa-solid fa-kitchen-set"></i></span>
+                                                <span class="info-icon" aria-label="Makanan instan"><i class="fa-solid fa-bowl-rice"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="edu-info-box info-reason">
+                                        <div class="info-heading"><i class="fa-solid fa-circle-info"></i><span>Kenapa Harus Dibatasi?</span></div>
+                                        <div class="info-content">
+                                            <p class="info-text">Konsumsi natrium berlebih dapat meningkatkan tekanan darah dan risiko penyakit jantung serta stroke.</p>
+                                            <div class="info-icons">
+                                                <span class="info-icon" aria-label="Tekanan darah"><i class="fa-solid fa-heart-pulse"></i></span>
+                                                <span class="info-icon" aria-label="Risiko kesehatan"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="edu-info-box info-tips">
+                                        <div class="info-heading"><i class="fa-solid fa-lightbulb"></i><span>Tips Cerdas Mengolah Bahan</span></div>
+                                        <div class="info-content">
+                                            <p class="info-text">Gunakan bumbu alami, kurangi bumbu instan, dan biasakan membaca label natrium pada kemasan.</p>
+                                            <div class="info-icons">
+                                                <span class="info-icon" aria-label="Bumbu alami"><i class="fa-solid fa-leaf"></i></span>
+                                                <span class="info-icon" aria-label="Kurangi bumbu instan"><i class="fa-solid fa-kitchen-set"></i></span>
+                                                <span class="info-icon" aria-label="Baca label natrium"><i class="fa-solid fa-clipboard-list"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="edu-source mt-2"><i class="fa-solid fa-book"></i><span>Sumber: Kemenkes RI (Permenkes No.28/2019), WHO (≤2 g Na/hari ≈ 5 g garam)</span></div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -647,7 +863,7 @@
 
         <!-- Kalkulator Kebutuhan Lemak Harian -->
         <section class="my-2 reveal" id="kalkulator-lemak" style="scroll-margin-top: 80px;">
-            <div class="card akg-card card-lemak">
+            <div class="card akg-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="me-2 card-icon"><i class="fa-solid fa-bacon"></i>
@@ -661,8 +877,8 @@
                     <div class="row g-2">
                         <div class="col-md-6">
                             <label for="usiaLemak">Usia (tahun)</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fa-solid fa-user-clock"></i></span>
+                            <div class="input-group no-stack-mobile">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                                 <input type="number" id="usiaLemak" class="form-control" placeholder="Masukkan usia"
                                     min="10">
                                 <span class="input-group-text">Tahun</span>
@@ -670,9 +886,10 @@
                         </div>
                         <div class="col-md-6">
                             <label for="jkLemak">Jenis Kelamin</label>
-                            <div class="input-group">
+                            <div class="input-group no-stack-mobile">
                                 <span class="input-group-text"><i class="fa-solid fa-venus-mars"></i></span>
                                 <select id="jkLemak" class="form-select">
+                                    <option value="" selected>Pilih Jenis Kelamin</option>
                                     <option value="L">Laki-laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
@@ -697,21 +914,28 @@
 
         <!-- Kalkulator IMT (Indeks Massa Tubuh) -->
         <section class="my-2 reveal" id="kalkulator-imt" style="scroll-margin-top: 80px;">
-            <div class="card akg-card card-imt">
+            <div class="card akg-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="me-2 card-icon"><i class="fa-solid fa-weight-scale"></i>
                         </div>
                         <div>
                             <h4 class="mb-0">Kalkulator IMT</h4>
-                            <div class="small-muted">Cek status gizi Anda berdasarkan berat dan tinggi badan.</div>
+                            <div class="small-muted">Cek status gizi Anda berdasarkan berat dan tinggi badan sesuai Pedoman Gizi Seimbang.</div>
                         </div>
+                    </div>
+
+                    <!-- Tombol Info Evaluasi BB -->
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3 fw-bold" data-bs-toggle="modal" data-bs-target="#modalInfoIMT">
+                            <i class="fa-solid fa-weight-scale me-1"></i> Info Evaluasi Berat Badan
+                        </button>
                     </div>
 
                     <div class="row g-2">
                         <div class="col-md-6">
-                            <label for="beratBadan">Berat Badan (kg)</label>
-                            <div class="input-group">
+                            <label for="beratBadan">Berat Badan Sekarang (kg)</label>
+                            <div class="input-group no-stack-mobile">
                                 <span class="input-group-text"><i class="fa-solid fa-weight-hanging"></i></span>
                                 <input type="number" id="beratBadan" class="form-control" placeholder="Contoh: 60"
                                     min="1">
@@ -720,12 +944,48 @@
                         </div>
                         <div class="col-md-6">
                             <label for="tinggiBadan">Tinggi Badan (cm)</label>
-                            <div class="input-group">
+                            <div class="input-group no-stack-mobile">
                                 <span class="input-group-text"><i class="fa-solid fa-ruler-vertical"></i></span>
                                 <input type="number" id="tinggiBadan" class="form-control" placeholder="Contoh: 170"
                                     min="1">
                                 <span class="input-group-text">cm</span>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Toggle Evaluasi Penurunan BB -->
+                    <div class="mt-4 p-3 rounded-4 bg-light border d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" type="checkbox" role="switch" id="evaluasiBB" onchange="toggleEvaluasiBB()">
+                            </div>
+                            <label class="form-check-label eval-toggle-label" for="evaluasiBB">Evaluasi Penurunan Berat Badan (Opsional)</label>
+                        </div>
+                    </div>
+
+                    <!-- Fitur Tambahan: Evaluasi Penurunan BB (Section) -->
+                    <div id="evaluasiBBSection" class="d-none animate__animated animate__fadeIn mt-3 p-3 rounded-3 bg-light border">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label for="bbSebelumnya" class="small">Berat Badan Sebelumnya (kg)</label>
+                                <div class="input-group input-group-sm no-stack-mobile">
+                                    <span class="input-group-text"><i class="fa-solid fa-history"></i></span>
+                                    <input type="number" id="bbSebelumnya" class="form-control" placeholder="BB lama">
+                                    <span class="input-group-text">kg</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="jangkaWaktu" class="small">Jangka Waktu</label>
+                                <select id="jangkaWaktu" class="form-select form-select-sm">
+                                    <option value="1_minggu">1 Minggu</option>
+                                    <option value="1_bulan">1 Bulan</option>
+                                    <option value="3_bulan">3 Bulan</option>
+                                    <option value="6_bulan">6 Bulan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="small text-muted mt-2 italic" style="font-size: 0.7rem;">
+                            *Berdasarkan Tabel 2.5 Interpretasi Penurunan BB (Krause's & PGS 2014)
                         </div>
                     </div>
 
@@ -748,40 +1008,60 @@
         <section class="my-2 reveal" id="cek-tensi" style="scroll-margin-top: 80px;">
             <div class="cek-card card-tensi">
                 <div class="d-flex align-items-center mb-3">
-                    <div class="me-2 card-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <div class="me-2 card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
                     <div>
                         <h3 class="mb-0">Cek Tekanan Darah</h3>
-                        <div class="small-muted">Masukkan hasil pengukuran tekanan darah Anda untuk melihat kategori dan
-                            interpretasi edukatif.</div>
+                        <div class="small-muted">Masukkan hasil pengukuran tekanan darah Anda untuk melihat kategori dan interpretasi edukatif sesuai standar Kemenkes RI.</div>
                     </div>
+                </div>
+
+                <!-- Tombol Cara Mengukur -->
+                <div class="mb-4">
+                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold" data-bs-toggle="modal" data-bs-target="#modalCaraUkur">
+                        <i class="fa-solid fa-heart-pulse me-1"></i> Cara Mengukur yang Benar
+                    </button>
                 </div>
 
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label for="sbp" class="form-label"><strong>Sistolik (mmHg)</strong></label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text"><i class="fa-solid fa-heart-pulse"></i></span>
-                            <input type="number" id="sbp" class="form-control" placeholder="Contoh: 120" min="30"
+                        <label for="sbp" class="form-label d-flex align-items-center gap-2">
+                            <span class="badge bg-gradient-danger rounded-pill px-3 py-2" style="font-size: 0.75rem;">
+                                <i class="fa-solid fa-arrow-up me-1"></i>ATAS
+                            </span>
+                            <strong class="text-danger">Sistolik</strong>
+                            <span class="text-muted small">(mmHg)</span>
+                        </label>
+                        <div class="input-group no-stack-mobile mb-2 shadow-sm">
+                            <span class="input-group-text bg-danger-subtle border-danger-subtle"><i class="fa-solid fa-heart-pulse text-danger"></i></span>
+                            <input type="number" id="sbp" class="form-control border-danger-subtle" placeholder="Contoh: 120" min="30"
                                 max="250" aria-describedby="sbpHelp">
-                            <span class="input-group-text">mmHg</span>
+                            <span class="input-group-text bg-danger-subtle border-danger-subtle text-danger fw-bold">mmHg</span>
                         </div>
-                        <div id="sbpHelp" class="form-text small">
-                            <i class="fa-solid fa-circle-info me-1" style="color: #ec7063;"></i> Angka atas → tekanan
-                            saat jantung memompa. <strong>Contoh normal: 120</strong>
+                        <div id="sbpHelp" class="form-text small p-2 rounded" style="background: rgba(220, 53, 69, 0.05); border-left: 3px solid #dc3545;">
+                            <i class="fa-solid fa-circle-info text-danger me-1"></i>
+                            <strong class="text-danger">Angka atas</strong> → tekanan saat jantung memompa.
+                            <span class="badge bg-success-subtle text-success ms-1" style="font-size: 0.7rem;">Normal: 120</span>
                         </div>
                         <div id="sbpValidation" class="alert alert-sm alert-validation d-none mt-2"></div>
                     </div>
                     <div class="col-md-6">
-                        <label for="dbp" class="form-label"><strong>Diastolik (mmHg)</strong></label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text"><i class="fa-solid fa-heart-pulse"></i></span>
-                            <input type="number" id="dbp" class="form-control" placeholder="Contoh: 80" min="30"
+                        <label for="dbp" class="form-label d-flex align-items-center gap-2">
+                            <span class="badge bg-gradient-danger rounded-pill px-3 py-2" style="font-size: 0.75rem;">
+                                <i class="fa-solid fa-arrow-down me-1"></i>BAWAH
+                            </span>
+                            <strong class="text-danger">Diastolik</strong>
+                            <span class="text-muted small">(mmHg)</span>
+                        </label>
+                        <div class="input-group no-stack-mobile mb-2 shadow-sm">
+                            <span class="input-group-text bg-danger-subtle border-danger-subtle"><i class="fa-solid fa-heart-pulse text-danger"></i></span>
+                            <input type="number" id="dbp" class="form-control border-danger-subtle" placeholder="Contoh: 80" min="30"
                                 max="200" aria-describedby="dbpHelp">
-                            <span class="input-group-text">mmHg</span>
+                            <span class="input-group-text bg-danger-subtle border-danger-subtle text-danger fw-bold">mmHg</span>
                         </div>
-                        <div id="dbpHelp" class="form-text small">
-                            <i class="fa-solid fa-circle-info me-1" style="color: #ec7063;"></i> Angka bawah → tekanan
-                            saat jantung rileks. <strong>Contoh normal: 80</strong>
+                        <div id="dbpHelp" class="form-text small p-2 rounded" style="background: rgba(220, 53, 69, 0.05); border-left: 3px solid #dc3545;">
+                            <i class="fa-solid fa-circle-info text-danger me-1"></i>
+                            <strong class="text-danger">Angka bawah</strong> → tekanan saat jantung rileks.
+                            <span class="badge bg-success-subtle text-success ms-1" style="font-size: 0.7rem;">Normal: 80</span>
                         </div>
                         <div id="dbpValidation" class="alert alert-sm alert-validation d-none mt-2"></div>
                     </div>
@@ -790,8 +1070,8 @@
                 <!-- Faktor Risiko Tambahan (Dashboard Style) -->
                 <div class="mt-4 p-4 rounded-4 bg-white border shadow-sm animate__animated animate__fadeIn" style="border-left: 5px solid #e53e3e !important;">
                     <div class="d-flex align-items-center mb-4">
-                        <div class="bg-danger text-white rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="fa-solid fa-list-check"></i>
+                        <div class="bg-white text-danger rounded-circle shadow-sm d-flex align-items-center justify-content-center me-3" style="width: 42px; height: 42px; border: 2px solid #dc3545;">
+                            <i class="fa-solid fa-heart-pulse fs-5"></i>
                         </div>
                         <div>
                             <h6 class="fw-bold mb-0 text-danger">Profil Risiko & Kondisi Kesehatan</h6>
@@ -810,7 +1090,7 @@
                                         <input class="form-check-input rf-check d-none" type="checkbox" value="merokok" id="rfSmoking">
                                         <label class="rf-option-label" for="rfSmoking">
                                             <i class="fa-solid fa-smoking" style="color: #555;"></i>
-                                            <span>Merokok</span>
+                                            <span>Merokok (Aktif/Riwayat)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -819,7 +1099,7 @@
                                         <input class="form-check-input rf-check d-none" type="checkbox" value="obesitas" id="rfObesity">
                                         <label class="rf-option-label" for="rfObesity">
                                             <i class="fa-solid fa-weight-scale" style="color: #e67e22;"></i>
-                                            <span>Obesitas</span>
+                                            <span>Obesitas (IMT ≥25)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -828,7 +1108,7 @@
                                         <input class="form-check-input rf-check d-none" type="checkbox" value="kolesterol" id="rfCholesterol">
                                         <label class="rf-option-label" for="rfCholesterol">
                                             <i class="fa-solid fa-droplet" style="color: #f1c40f;"></i>
-                                            <span>Kolesterol</span>
+                                            <span>Kolesterol Tinggi</span>
                                         </label>
                                     </div>
                                 </div>
@@ -860,7 +1140,7 @@
                             </div>
                             <div class="mt-3 p-2 rounded bg-light border small text-muted">
                                 <i class="fa-solid fa-circle-info me-1 text-danger"></i> 
-                                Estimasi berdasarkan standar <strong>ESC/ESH Guidelines 2018</strong>.
+                                Estimasi risiko berdasarkan standar <strong>PNPK Kemenkes RI 2021</strong>.
                             </div>
                         </div>
                     </div>
@@ -960,7 +1240,13 @@
     <script src="js/index.js"></script>
 
     <!-- Footer -->
-    <footer class="main-footer py-4 mt-4 reveal" style="background: #1b5e20; color: white;">
+    <!-- 
+        FUNGSI: Bagian footer yang berisi informasi kontak, navigasi tambahan, dan hak cipta.
+        ALASAN PERUBAIKAN: Atribut 'style' (inline CSS) untuk background dan warna telah dihapus. Styling ini seharusnya dikelola oleh class 'main-footer' yang sudah ada.
+        DAMPAK: Tampilan tidak akan berubah setelah Anda menambahkan CSS berikut ke file .css Anda:
+        .main-footer { background: #1b5e20; color: white; }
+    -->
+    <footer class="main-footer py-4 mt-4 reveal">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
@@ -993,8 +1279,6 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-3">Slogan</h5>
-                    <p class="small italic opacity-75">"Mari cegah hipertensi sedari dini, karena sehat mulai dari diri
-                        sendiri."</p>
                 </div>
             </div>
             <hr class="my-4 opacity-25">
@@ -1003,6 +1287,88 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal Info Evaluasi IMT -->
+    <div class="modal fade" id="modalInfoIMT" tabindex="-1" aria-labelledby="modalInfoIMTLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 bg-imt-teal text-white p-4" style="border-radius: 20px 20px 0 0;">
+                    <h5 class="modal-title d-flex align-items-center gap-2" id="modalInfoIMTLabel">
+                        <i class="fa-solid fa-circle-info fs-4"></i>
+                        Info Evaluasi Berat Badan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="small text-muted mb-3 italic">Berdasarkan Pedoman Gizi Seimbang 2014:</div>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li class="d-flex gap-3">
+                            <div class="bg-imt-teal-subtle text-imt-teal rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">1</div>
+                            <div><strong>Waktu Menimbang:</strong> Sebaiknya dilakukan secara rutin untuk memantau hasil intervensi gizi.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-imt-teal-subtle text-imt-teal rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">2</div>
+                            <div><strong>Kondisi Akurat:</strong> Gunakan alat timbang yang sama, timbang sebelum makan, setelah berkemih, dan dengan pakaian minimal.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-imt-teal-subtle text-imt-teal rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">3</div>
+                            <div><strong>Indikator Lain:</strong> Selain IMT, evaluasi gizi juga melibatkan persentase berat badan ideal dan persentase perubahan berat badan.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-imt-teal-subtle text-imt-teal rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">4</div>
+                            <div><strong>Catatan Klinis:</strong> Pada pasien rawat inap, IMT berkorelasi dengan tingkat keparahan penyakit dan risiko mortalitas.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-imt-teal text-white w-100 rounded-pill py-2" data-bs-dismiss="modal">Saya Mengerti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cara Mengukur yang Benar -->
+    <div class="modal fade" id="modalCaraUkur" tabindex="-1" aria-labelledby="modalCaraUkurLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 bg-danger text-white p-4" style="border-radius: 20px 20px 0 0;">
+                    <h5 class="modal-title d-flex align-items-center gap-2" id="modalCaraUkurLabel">
+                        <i class="fa-solid fa-stethoscope fs-4"></i>
+                        Cara Mengukur yang Benar
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="small text-muted mb-3 italic">Berdasarkan Pedoman Nasional (PNPK) Kemenkes RI 2021:</div>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li class="d-flex gap-3">
+                            <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">1</div>
+                            <div><strong>Persiapan:</strong> Istirahat tenang selama 5 menit sebelum pengukuran. Hindari kopi, rokok, dan olahraga 30 menit sebelumnya.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">2</div>
+                            <div><strong>Posisi Duduk:</strong> Duduk tegak dengan punggung bersandar pada kursi. Kaki harus menapak rata di lantai (jangan menyilang).</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">3</div>
+                            <div><strong>Posisi Lengan:</strong> Letakkan lengan di atas meja sehingga manset berada sejajar dengan posisi jantung.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">4</div>
+                            <div><strong>Saat Pengukuran:</strong> Jangan berbicara atau banyak bergerak saat alat sedang bekerja.</div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 32px; height: 32px;">5</div>
+                            <div><strong>Frekuensi:</strong> Lakukan minimal 2 kali pengukuran dengan jeda 1-2 menit, lalu ambil nilai rata-ratanya.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-danger w-100 rounded-pill py-2" data-bs-dismiss="modal">Saya Mengerti</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Back to Top Button -->
     <div id="backToTop" title="Kembali ke Atas">
