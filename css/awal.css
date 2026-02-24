@@ -124,6 +124,54 @@ body {
     line-height: 1.5;
 }
 
+.quick-start-card,
+.visit-progress-card {
+    background: #ffffff;
+    border: 1px solid rgba(39, 174, 96, 0.12);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 8px 22px rgba(39, 174, 96, 0.08);
+}
+
+.quick-start-note {
+    font-size: 0.78rem;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 999px;
+    padding: 4px 10px;
+}
+
+.quick-start-btn {
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.visit-chip-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.visit-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    color: #64748b;
+    background: #f8fafc;
+}
+
+.visit-chip.done {
+    background: rgba(34, 197, 94, 0.12);
+    color: #166534;
+    border-color: rgba(34, 197, 94, 0.32);
+}
+
 /* RESPONSIVE LAYAR HP */
 @media (max-width: 768px) {
     .hero-slider {

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/awal.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body id="main-body">
@@ -42,6 +43,10 @@
                             <strong>Informasi</strong></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="kalkulator.html"><i class="fa-solid fa-calculator"></i>
+                            <strong>Kalkulator Sehat</strong></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
                                 Edukasi</strong></a>
                     </li>
@@ -60,7 +65,7 @@
             <div class="slide active" style="background-image: url('images/air-jahe.jpeg');"></div>
             <div class="slide" style="background-image: url('images/tensi.jpg');"></div>
             <div class="slide" style="background-image: url('images/herbal.jpg');"></div>
-            <div class="slide" style="background-image: url('images/sepiring\ sayur.jpg');"></div>
+            <div class="slide" style="background-image: url('images/sepiring sayur.jpg');"></div>
             <div class="overlay">
                 <div class="hero-text-container">
                     <h1 class="fw-bold mb-2" style="font-size:2.3rem;">
@@ -70,12 +75,7 @@
                 <div class="hero-subtitle-container">
                     <p class="mb-3" style="font-size:1.2rem;"><strong><span id="typewriter-subtitle"></span></strong>
                     </p>
-                    <a href="vid.html" class="cta-button" id="btn-jelajahi-video"><i class="fa-solid fa-video"></i>
-                        Jelajahi Video</a>
-                    <a href="index.html" class="cta-button" id="btn-jelajahi-informasi"><i
-                            class="fa-solid fa-circle-info"></i> Jelajahi Informasi</a>
                 </div>
-                <div class="slider-dots"></div>
             </div>
         </section>
     </header>
@@ -85,19 +85,69 @@
         <!-- Widget Tips Sehat (Opsi 5) -->
         <div id="dailyHealthTip"></div>
 
+        <div class="quick-start-card mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h4 class="mb-0 fw-bold text-success"><i class="fa-solid fa-compass me-2"></i>Mulai dari Sini</h4>
+                <span class="quick-start-note">3 langkah cepat untuk pengguna baru</span>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-md-4">
+                    <a href="index.html" class="btn btn-outline-success w-100 quick-start-btn">
+                        <i class="fa-solid fa-book-open me-2"></i>1. Baca Ringkasan Informasi
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="kalkulator.html" class="btn btn-outline-primary w-100 quick-start-btn">
+                        <i class="fa-solid fa-calculator me-2"></i>2. Cek dengan Kalkulator
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="vid.html" class="btn btn-outline-warning w-100 quick-start-btn">
+                        <i class="fa-solid fa-video me-2"></i>3. Tonton Video Edukasi
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="visit-progress-card mb-4" id="visitProgressCard" aria-live="polite">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                <h5 class="mb-0 fw-bold text-success"><i class="fa-solid fa-route me-2"></i>Perjalanan Hari Ini</h5>
+                <span class="small text-muted"><span id="visitProgressCount">0</span>/5 halaman dikunjungi</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+                <div class="progress-bar bg-success" id="visitProgressBar" role="progressbar" style="width: 0%;"></div>
+            </div>
+            <div class="d-flex justify-content-end mt-2">
+                <button type="button" id="visitProgressResetBtn" class="btn btn-sm btn-outline-success d-none" title="Refresh Perjalanan Hari Ini">
+                    <i class="fa-solid fa-rotate-right me-1"></i>Refresh Perjalanan
+                </button>
+            </div>
+            <div class="visit-chip-wrap mt-3" id="visitChipWrap"></div>
+        </div>
+
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
                 <h3 class="fw-bold mb-4 text-success"><i class="fa-solid fa-star"></i> Fitur Utama Nutri Herbal</h3>
             </div>
         </div>
         <div class="row justify-content-center g-3">
-            <!-- Kalkulator Natrium -->
+        <!-- Sumber Informasi -->
             <div class="col-12 col-md-6 col-lg-3">
                 <a href="index.html" class="text-decoration-none">
                     <div class="fitur-card text-center h-100">
+                        <div class="fitur-icon"><i class="fa-solid fa-circle-info"></i></div>
+                        <h5 class="fw-bold mb-2">Sumber Informasi</h5>
+                        <p class="mb-0">Dapatkan informasi aktual terkait Hipertensi.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Kalkulator Sehat -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="kalkulator.html" class="text-decoration-none">
+                    <div class="fitur-card text-center h-100">
                         <div class="fitur-icon"><i class="fa-solid fa-calculator"></i></div>
                         <h5 class="fw-bold mb-2">Kalkulator Sehat</h5>
-                        <p class="mb-0">Hitung kebutuhan kecukupan lemak dan natrium harian Anda dengan mudah dan cepat.
+                        <p class="mb-0">Hitung kebutuhan kecukupan lemak,natrium harian,cek tekanan darah dan IMT Anda dengan mudah dan cepat.
                         </p>
                     </div>
                 </a>
@@ -119,16 +169,6 @@
                         <div class="fitur-icon"><i class="fa-solid fa-chart-column"></i></div>
                         <h5 class="fw-bold mb-2">Grafik & Informasi</h5>
                         <p class="mb-0">Grafik interaktif dan informasi penting seputar kesehatan.</p>
-                    </div>
-                </a>
-            </div>
-            <!-- Kalkulator Tekanan Darah -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <a href="index.html" class="text-decoration-none">
-                    <div class="fitur-card text-center h-100">
-                        <div class="fitur-icon"><i class="fa-solid fa-stethoscope"></i></div>
-                        <h5 class="fw-bold mb-2">Cek Tekanan Darah</h5>
-                        <p class="mb-0">Cek dan pantau kondisi tekanan darah Anda secara aktual.</p>
                     </div>
                 </a>
             </div>
@@ -397,11 +437,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="main-footer py-4 mt-4 reveal" style="background: #1b5e20; color: white;">
+    <footer class="main-footer py-4 mt-4 reveal">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Nutri Herbal PLus+</h4>
+                    <h4 class="text-white mb-3"><span class="footer-brand">Nutri Herbal PLus+</span></h4>
                     <p class="small opacity-75">Aplikasi edukasi kesehatan untuk pencegahan hipertensi melalui pola makan dan gaya hidup sehat berbasis herbal alami.</p>
                     <div class="social-links mt-3">
                         <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
@@ -432,7 +472,7 @@
             </div>
             <hr class="my-4 opacity-25">
             <div class="text-center">
-                <p class="mb-0 small opacity-75">&copy; 2026 Nutri Herbal PLus+. Seluruh Hak Cipta Dilindungi.</p>
+                <p class="mb-0 small opacity-75">&copy; 2026 <span class="footer-brand">Nutri Herbal PLus+</span>. Seluruh Hak Cipta Dilindungi.</p>
             </div>
         </div>
         </footer>

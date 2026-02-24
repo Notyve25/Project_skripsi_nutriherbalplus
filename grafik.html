@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/grafik.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -38,6 +39,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html"><i class="fa-solid fa-circle-info"></i>
                             <strong>Informasi</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kalkulator.html"><i class="fa-solid fa-calculator"></i>
+                            <strong>Kalkulator Sehat</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
@@ -136,25 +141,23 @@
             </div>
             <div class="card-body">
                 <div id="chart-keluhan-kesehatan"></div>
-                <div class="alert alert-light border-start border-4 border-success mt-3 mb-0">
-                    <strong>💡 Analisis Singkat:</strong> Grafik menunjukkan fluktuasi jumlah penderita. Peningkatan
-                    signifikan sering terjadi pasca libur panjang atau perayaan hari besar, yang kemungkinan berkaitan
-                    dengan pola makan masyarakat.
-                </div>
             </div>
         </div>
 
-        <div class="card reveal">
-            <div class="card-header">
-                <i class="fa-solid fa-table-list"></i> jumlah penderita hipertensi wilayah puskesmas sleman
-            </div>
-            <div class="card-body">
-                <div id="chart-jaminan-kesehatan"></div>
-                <div class="alert alert-light border-start border-4 border-success mt-3 mb-0">
-                    <strong>💡 Analisis Singkat:</strong> Persebaran kasus tidak merata. Wilayah dengan kepadatan
-                    penduduk tinggi dan akses makanan cepat saji yang mudah cenderung memiliki angka kasus lebih tinggi.
+        <div class="insight-box reveal" id="grafikInsightBox" aria-live="polite">
+            <h5 class="insight-title"><i class="fa-solid fa-lightbulb me-2"></i>Insight Singkat</h5>
+            <div class="insight-toolbar mb-2">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Mode insight">
+                    <button type="button" class="btn btn-light insight-mode-btn active" data-mode="ringkas">Ringkas</button>
+                    <button type="button" class="btn btn-outline-light insight-mode-btn" data-mode="detail">Detail</button>
                 </div>
+                <button type="button" class="btn btn-sm btn-outline-light" id="downloadInsightBtn">
+                    <i class="fa-solid fa-download me-1"></i>Unduh Insight
+                </button>
             </div>
+            <ul class="insight-list mb-0" id="insight-list">
+                <li>Insight akan ditampilkan otomatis berdasarkan data grafik.</li>
+            </ul>
         </div>
         <!-- Tabel Data Rinci (Accordion) -->
         <div class="accordion mb-4 reveal" id="accordionData">
@@ -215,7 +218,7 @@
         <div class="cta-section text-center mt-4 p-4 rounded-4 bg-white shadow-sm reveal">
             <h3 class="fw-bold text-success mb-3">Bagaimana dengan Tekanan Darah Anda?</h3>
             <p class="text-muted mb-4">Jangan tunggu sampai terlambat. Pencegahan dini adalah kunci hidup sehat.</p>
-            <a href="index.html" class="btn btn-success btn-lg rounded-pill px-5 shadow">
+            <a href="kalkulator.html" class="btn btn-success btn-lg rounded-pill px-5 shadow">
                 <i class="fa-solid fa-stethoscope me-2"></i> Cek Tekanan Darah Sekarang
             </a>
         </div>
@@ -258,11 +261,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="main-footer py-4 mt-4 reveal" style="background: #1b5e20; color: white;">
+    <footer class="main-footer py-4 mt-4 reveal">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Nutri Herbal PLus+</h4>
+                    <h4 class="text-white mb-3"><span class="footer-brand">Nutri Herbal PLus+</span></h4>
                     <p class="small opacity-75">Aplikasi edukasi kesehatan untuk pencegahan hipertensi melalui pola makan dan gaya hidup sehat berbasis herbal alami.</p>
                     <div class="social-links mt-3">
                         <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
@@ -293,7 +296,7 @@
             </div>
             <hr class="my-4 opacity-25">
             <div class="text-center">
-                <p class="mb-0 small opacity-75">&copy; 2026 Nutri Herbal PLus+. Seluruh Hak Cipta Dilindungi.</p>
+                <p class="mb-0 small opacity-75">&copy; 2026 <span class="footer-brand">Nutri Herbal PLus+</span>. Seluruh Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>

@@ -28,9 +28,9 @@
 
         // Auto Fullscreen & Landscape (Coba segera agar dianggap User Gesture)
         const requestFS = videoModalEl.requestFullscreen || 
-                          videoModalEl.webkitRequestFullscreen || 
-                          videoModalEl.mozRequestFullScreen || 
-                          videoModalEl.msRequestFullscreen;
+                        videoModalEl.webkitRequestFullscreen || 
+                        videoModalEl.mozRequestFullScreen || 
+                        videoModalEl.msRequestFullscreen;
 
         if (requestFS) {
             const enterFS = () => {
@@ -94,7 +94,16 @@
         const chip = e.target.closest('.tag');
         if (chip) {
             const text = chip.textContent.trim();
+            clearPlaylistActive();
             filterByTag(text);
+            return;
+        }
+        // quick playlist topic button
+        const playlistBtn = e.target.closest('.playlist-btn');
+        if (playlistBtn) {
+            const topic = playlistBtn.getAttribute('data-topic');
+            setPlaylistActive(playlistBtn);
+            filterByTopic(topic);
         }
     });
 
@@ -126,6 +135,7 @@
             el.addEventListener('click', () => {
                 chipsWrap.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
                 el.classList.add('active');
+                clearPlaylistActive();
                 if (t === 'Semua') showAll();
                 else if (t === 'Belum Ditonton') filterUnwatched();
                 else filterByTag(t);
@@ -158,6 +168,32 @@
             col.style.display = !watched.includes(id) ? '' : 'none';
         });
         document.getElementById('videoSearch').value = '';
+    }
+
+    function filterByTopic(topic) {
+        const q = (topic || '').toLowerCase();
+        const topicMap = {
+            garam: ['garam', 'lemak', 'gula']
+        };
+        const relatedTags = topicMap[q] || [q];
+
+        document.querySelectorAll('#videosGrid > .col').forEach(col => {
+            const tags = (col.getAttribute('data-tags') || '').toLowerCase();
+            const isMatch = relatedTags.some(tag => tags.includes(tag));
+            col.style.display = isMatch ? '' : 'none';
+        });
+
+        document.getElementById('videoSearch').value = '';
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    }
+
+    function setPlaylistActive(activeButton) {
+        document.querySelectorAll('.playlist-btn').forEach(btn => btn.classList.remove('active'));
+        if (activeButton) activeButton.classList.add('active');
+    }
+
+    function clearPlaylistActive() {
+        document.querySelectorAll('.playlist-btn').forEach(btn => btn.classList.remove('active'));
     }
 
     /* watchlist localStorage */

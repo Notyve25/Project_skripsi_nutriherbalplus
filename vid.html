@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/vid.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -37,6 +38,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html"><i class="fa-solid fa-circle-info"></i>
                             <strong>Informasi</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kalkulator.html"><i class="fa-solid fa-calculator"></i>
+                            <strong>Kalkulator Sehat</strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="vid.html"><i class="fa-solid fa-video"></i> <strong>Video
@@ -84,6 +89,16 @@
                 <div id="chipsWrap" class="d-flex gap-2 flex-nowrap"></div>
             </div>
         </div>
+
+        <section class="playlist-quick reveal mb-4" aria-label="Playlist cepat berdasarkan topik">
+            <div class="playlist-title"><i class="fa-solid fa-list-check me-2"></i>Playlist Cepat</div>
+            <div class="playlist-buttons">
+                <button class="btn btn-sm btn-outline-success playlist-btn" data-topic="hipertensi">Dasar Hipertensi</button>
+                <button class="btn btn-sm btn-outline-primary playlist-btn" data-topic="gizi">Pola Makan & Gizi</button>
+                <button class="btn btn-sm btn-outline-warning playlist-btn" data-topic="garam">Garam / Lemak / Gula</button>
+                <button class="btn btn-sm btn-outline-info playlist-btn" data-topic="herbal">Herbal Lokal</button>
+            </div>
+        </section>
         
         <!-- Pesan jika pencarian kosong -->
         <div id="noResults" class="text-center py-4 d-none animate__animated animate__fadeIn">
@@ -112,10 +127,11 @@
                             <div class="tag">Pengetahuan</div>
                         </div>
                         <div class="card-actions mt-2">
-                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="Lpi0fUn4stA"><i
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="IQv4DBxsjz4"><i
                                     class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
-                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="Lpi0fUn4stA"><i
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="IQv4DBxsjz4"><i
                                     class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                            <a class="btn btn-sm btn-outline-secondary" href="kalkulator.html#cek-tensi"><i class="fa-solid fa-stethoscope me-1"></i> Coba di Kalkulator</a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +160,7 @@
                                     class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
                             <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="uf4lr89s314"><i
                                     class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                            <a class="btn btn-sm btn-outline-secondary" href="kalkulator.html#kalkulator-natrium"><i class="fa-solid fa-bowl-food me-1"></i> Coba di Kalkulator</a>
                         </div>
                     </div>
                 </div>
@@ -167,10 +184,11 @@
                             <div class="tag">Gula</div>
                         </div>
                         <div class="card-actions mt-2">
-                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="63AUbOlmej8"><i
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="3sdSNU2gLhQ"><i
                                     class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
-                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="63AUbOlmej8"><i
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="3sdSNU2gLhQ"><i
                                     class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                            <a class="btn btn-sm btn-outline-secondary" href="kalkulator.html#kalkulator-natrium"><i class="fa-solid fa-calculator me-1"></i> Coba di Kalkulator</a>
                         </div>
                     </div>
                 </div>
@@ -194,10 +212,11 @@
                             <div class="tag">Hipertensi</div>
                         </div>
                         <div class="card-actions mt-2">
-                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="-lY8C5qoUt8"><i
+                            <button class="btn btn-sm btn-outline-primary share-btn" data-video-id="41J772a9_jM"><i
                                     class="fa-solid fa-share-nodes me-1"></i> Bagikan</button>
-                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="-lY8C5qoUt8"><i
+                            <button class="btn btn-sm btn-outline-success watchlist-btn" data-video-id="41J772a9_jM"><i
                                     class="fa-regular fa-bookmark me-1"></i> Simpan</button>
+                            <a class="btn btn-sm btn-outline-secondary" href="kalkulator.html#kalkulator-natrium"><i class="fa-solid fa-mug-hot me-1"></i> Coba di Kalkulator</a>
                         </div>
                     </div>
                 </div>
@@ -264,11 +283,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="main-footer py-4 mt-4 reveal" style="background: #1b5e20; color: white;">
+    <footer class="main-footer py-4 mt-4 reveal">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Nutri Herbal PLus+</h4>
+                    <h4 class="text-white mb-3"><span class="footer-brand">Nutri Herbal PLus+</span></h4>
                     <p class="small opacity-75">Aplikasi edukasi kesehatan untuk pencegahan hipertensi melalui pola makan dan gaya hidup sehat berbasis herbal alami.</p>
                     <div class="social-links mt-3">
                         <a href="#" class="text-white me-3"><i class="fa-brands fa-instagram fa-lg"></i></a>
@@ -299,7 +318,7 @@
             </div>
             <hr class="my-4 opacity-25">
             <div class="text-center">
-                <p class="mb-0 small opacity-75">&copy; 2026 Nutri Herbal PLus+. Seluruh Hak Cipta Dilindungi.</p>
+                <p class="mb-0 small opacity-75">&copy; 2026 <span class="footer-brand">Nutri Herbal PLus+</span>. Seluruh Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>

@@ -105,6 +105,7 @@ body {
     display: flex;
     gap: .5rem;
     margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .watchlist-btn.active {
@@ -139,6 +140,37 @@ body {
     border-color: rgba(39, 174, 96, .12);
     color: var(--brand); /* Already using var */
     box-shadow: 0 6px 18px rgba(39, 174, 96, .06);
+}
+
+.playlist-quick {
+    background: #ffffff;
+    border: 1px solid rgba(39, 174, 96, 0.14);
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.06);
+}
+
+.playlist-title {
+    font-weight: 700;
+    color: var(--brand);
+    margin-bottom: 8px;
+}
+
+.playlist-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.playlist-btn {
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.playlist-btn.active {
+    color: #fff;
+    border-color: var(--brand);
+    background: linear-gradient(90deg, #2ecc71, var(--brand));
 }
 
 /* responsive */

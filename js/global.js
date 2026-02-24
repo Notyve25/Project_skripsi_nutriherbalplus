@@ -3,6 +3,262 @@ const navLinks = document.querySelectorAll('.nav-link');
 const navbarCollapse = document.querySelector('.navbar-collapse');
 const navbarToggler = document.querySelector('.navbar-toggler');
 
+// Intro gate: user baru diarahkan ke halaman pembuka sebelum beranda
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = (window.location.pathname.split('/').pop() || '').toLowerCase();
+    if (currentPage !== 'awal.html') return;
+
+    const introKey = 'nutri_intro_seen_v1';
+    let hasSeenIntro = false;
+    try {
+        hasSeenIntro = localStorage.getItem(introKey) === 'seen';
+    } catch (error) {
+        hasSeenIntro = false;
+    }
+
+    if (!hasSeenIntro) {
+        window.location.replace('starting.html');
+    }
+});
+
+// Track visited pages for beranda progress widget
+document.addEventListener('DOMContentLoaded', function () {
+    const visitKey = 'nutri_visited_pages_v1';
+    const trackedPages = ['awal.html', 'index.html', 'kalkulator.html', 'vid.html', 'grafik.html'];
+    const currentPage = (window.location.pathname.split('/').pop() || '').toLowerCase();
+
+    if (!trackedPages.includes(currentPage)) return;
+
+    let visited = [];
+    try {
+        visited = JSON.parse(localStorage.getItem(visitKey) || '[]');
+    } catch (error) {
+        visited = [];
+    }
+
+    if (!visited.includes(currentPage)) {
+        visited.push(currentPage);
+        localStorage.setItem(visitKey, JSON.stringify(visited));
+    }
+});
+
+// Guided tour (first visit per page)
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
+    const tourPageOrder = ['awal.html', 'index.html', 'kalkulator.html', 'vid.html', 'grafik.html'];
+    const tourConfig = {
+        'awal.html': [
+            { selector: '.overlay', title: 'Selamat datang di Nutri Herbal', text: 'Platform ini dirancang untuk membantu Anda memahami hipertensi, memeriksa kondisi kesehatan, menghitung asupan natrium dan lemak, serta memantau progres kesehatan secara mandiri.' },
+            { selector: '.quick-start-card', title: 'Mulai dari sini', text: 'Ikuti alur penggunaan yang disarankan: mulai dari Informasi, lanjut ke Kalkulator, kemudian Video Edukasi agar proses pembelajaran lebih terstruktur.' },
+            { selector: '#visitProgressCard', title: 'Pantau progres kunjungan', text: 'Kartu ini menampilkan progres halaman yang telah Anda pelajari untuk membantu memantau aktivitas edukasi Anda' },
+            { selector: '.fitur-section .fitur-card', title: 'Akses fitur utama', text: 'Bagian ini menyediakan akses langsung ke fitur utama sesuai kebutuhan pemantauan dan edukasi kesehatan Anda.' },
+            { selector: '#accordionFAQ', title: 'Buka FAQ cepat', text: 'Jika masih terdapat hal yang belum dipahami, silakan lihat pertanyaan yang sering diajukan sebelum menggunakan fitur lanjutan.' },
+            { selector: '.fitur-card', title: 'Siap mulai?', text: 'Pilih salah satu fitur untuk mulai menggunakan Nutri Herbal sebagai pendukung perjalanan kesehatan Anda.' }
+        ],
+        'index.html': [
+            { selector: '.hero-content', title: 'Halaman Informasi', text: 'Halaman ini menyajikan informasi edukatif mengenai hipertensi sebagai dasar pemahaman sebelum melakukan pemantauan kesehatan.' },
+            { selector: '.quick-summary-card', title: 'Mulai dari informasi inti', text: 'Bacalah ringkasan singkat ini untuk memahami poin penting mengenai hipertensi secara cepat dan ringkas.' },
+            { selector: '.quick-nav-wrap', title: 'Gunakan navigasi cepat', text: 'Gunakan navigasi ini untuk langsung menuju topik yang ingin Anda pelajari tanpa perlu menggulir halaman terlalu panjang.' },
+            { selector: '.references-accordion', title: 'Referensi sumber', text: 'Seluruh materi didukung oleh referensi ilmiah guna memastikan informasi yang disampaikan bersifat akurat dan kredibel.' },
+            { selector: '#faq-informasi', title: 'FAQ informasi', text: 'Temukan jawaban atas pertanyaan umum terkait materi hipertensi pada bagian ini.' },
+            { selector: '.nav-link[href="kalkulator.html"]', title: 'Lanjut ke Kalkulator', text: 'Setelah memahami materi dasar, lanjutkan ke halaman kalkulator untuk mengevaluasi asupan harian Anda.' }
+        ],
+        'kalkulator.html': [
+            { selector: '.quick-access-bar', title: 'Pakai menu pintas', text: 'Gunakan menu pintas ini untuk mengakses perhitungan Natrium, Lemak, IMT, dan Tekanan Darah dengan lebih cepat.' },
+            { selector: '#dashboard-ringkas', title: 'Dashboard ringkas', text: 'Dashboard ini merangkum hasil pemantauan kesehatan Anda selama tujuh hari terakhir secara sederhana dan informatif.' },
+            { selector: '#kalkulator-natrium', title: 'Mulai dari Natrium', text: 'Masukkan data konsumsi makanan dalam 24 jam terakhir untuk mengetahui estimasi asupan natrium harian dan tingkat risikonya.' },
+            { selector: '#selectedFoodSummaryNatrium', title: 'Ringkasan pilihan makanan', text: 'Bagian ini menampilkan rekap makanan yang telah Anda pilih untuk memudahkan evaluasi konsumsi' },
+            { selector: '#kalkulator-lemak', title: 'Lanjut cek Lemak', text: 'Periksa asupan lemak harian Anda dan bandingkan dengan kebutuhan yang dianjurkan.' },
+            { selector: '#kalkulator-imt', title: 'Cek IMT', text: 'Hitung Indeks Massa Tubuh (IMT) untuk mengetahui status berat badan Anda saat ini.' },
+            { selector: '#cek-tensi', title: 'Cek tekanan darah', text: 'Masukkan nilai sistolik dan diastolik untuk mengetahui klasifikasi tekanan darah Anda.' }
+        ],
+        'vid.html': [
+            { selector: '#videoSearch', title: 'Cari video edukasi', text: 'Gunakan kolom pencarian untuk menemukan video edukasi sesuai topik yang Anda butuhkan.' },
+            { selector: '.playlist-quick', title: 'Pilih playlist topik', text: 'Pilih playlist berdasarkan topik agar video yang ditampilkan lebih relevan.”' },
+            { selector: '#videosGrid .video-card', title: 'Putar video edukasi', text: 'Klik tampilan video untuk mulai menonton materi edukasi kesehatan.' },
+            { selector: '#videosGrid .watchlist-btn', title: 'Simpan ke watchlist', text: 'Simpan video yang dianggap penting agar dapat ditonton kembali di lain waktu.' },
+            { selector: '#chipsWrap', title: 'Saring video lebih cepat', text: 'Gunakan filter topik untuk mempermudah pencarian video sesuai kebutuhan Anda.' }
+        ],
+        'grafik.html': [
+            { selector: '.stat-card', title: 'Lihat ringkasan statistik', text: 'Kartu statistik ini menampilkan informasi utama secara ringkas dan mudah dipahami.' },
+            { selector: '#chart-keluhan-kesehatan', title: 'Lihat data utama', text: 'Grafik ini menunjukkan perbandingan persentase kasus kesehatan antar wilayah.' },
+            { selector: '#grafikInsightBox', title: 'Baca insight otomatis', text: 'Bagian ini menyajikan ringkasan interpretasi data untuk membantu pemahaman tanpa analisis yang kompleks.' },
+            { selector: '#downloadInsightBtn', title: 'Unduh insight', text: 'GGunakan tombol ini untuk mengunduh ringkasan insight sebagai bahan catatan atau dokumentasi.' },
+            { selector: '.accordion-button', title: 'Buka tabel rinci', text: 'Buka tabel ini untuk melihat data secara lebih detail berdasarkan wilayah.' },
+            { selector: '.cta-section', title: 'Lanjut ke tindakan', text: 'Setelah memahami data, lanjutkan ke halaman kalkulator untuk mengevaluasi kondisi kesehatan pribadi Anda.' }
+        ]
+    };
+
+    const steps = tourConfig[currentPage];
+    if (!steps || !steps.length) return;
+
+    const storageKey = `nutri_tour_seen_${currentPage}_v1`;
+    try {
+        if (localStorage.getItem(storageKey) === 'seen') return;
+    } catch (error) {
+        // Ignore storage access issue.
+    }
+
+    const availableSteps = steps.filter((step) => document.querySelector(step.selector));
+    if (!availableSteps.length) return;
+
+    let stepIndex = 0;
+    let activeTarget = null;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'tour-overlay';
+    overlay.innerHTML = `
+        <div class="tour-card" role="dialog" aria-live="polite" aria-label="Panduan halaman">
+            <div class="tour-progress"></div>
+            <h5 class="tour-title mb-2"></h5>
+            <p class="tour-text mb-3"></p>
+            <div class="tour-actions">
+                <button type="button" class="btn btn-outline-secondary btn-sm tour-skip">Lewati</button>
+                <button type="button" class="btn btn-success btn-sm tour-next">Lanjut</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const titleEl = overlay.querySelector('.tour-title');
+    const textEl = overlay.querySelector('.tour-text');
+    const progressEl = overlay.querySelector('.tour-progress');
+    const nextBtn = overlay.querySelector('.tour-next');
+    const skipBtn = overlay.querySelector('.tour-skip');
+
+    function clearActiveTarget() {
+        if (!activeTarget) return;
+        activeTarget.classList.remove('tour-target-active');
+        activeTarget = null;
+    }
+
+    function markSeen() {
+        try {
+            localStorage.setItem(storageKey, 'seen');
+        } catch (error) {
+            // Ignore storage access issue.
+        }
+    }
+
+    function getNextTourPage() {
+        const currentIndex = tourPageOrder.indexOf(currentPage);
+        if (currentIndex === -1) return '';
+        return tourPageOrder[currentIndex + 1] || '';
+    }
+
+    function finishTour(shouldNavigateNext) {
+        clearActiveTarget();
+        markSeen();
+
+        overlay.classList.add('is-hide');
+        setTimeout(() => {
+            if (overlay.parentElement) overlay.remove();
+
+            if (shouldNavigateNext) {
+                const nextPage = getNextTourPage();
+                if (nextPage) {
+                    window.location.href = nextPage;
+                }
+            }
+        }, 220);
+    }
+
+    function renderStep() {
+        const step = availableSteps[stepIndex];
+        if (!step) {
+            finishTour();
+            return;
+        }
+
+        clearActiveTarget();
+        const target = document.querySelector(step.selector);
+        if (!target) {
+            stepIndex += 1;
+            renderStep();
+            return;
+        }
+
+        activeTarget = target;
+        activeTarget.classList.add('tour-target-active');
+        activeTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        titleEl.textContent = step.title;
+        textEl.textContent = step.text;
+        progressEl.textContent = `Langkah ${stepIndex + 1} dari ${availableSteps.length}`;
+        nextBtn.textContent = stepIndex === availableSteps.length - 1 ? 'Selesai' : 'Lanjut';
+    }
+
+    nextBtn.addEventListener('click', function () {
+        const isLastStep = stepIndex >= availableSteps.length - 1;
+        if (isLastStep) {
+            finishTour(true);
+            return;
+        }
+
+        stepIndex += 1;
+        renderStep();
+    });
+
+    skipBtn.addEventListener('click', function () {
+        finishTour(false);
+    });
+    document.addEventListener('keydown', function onEsc(event) {
+        if (event.key === 'Escape') {
+            finishTour(false);
+            document.removeEventListener('keydown', onEsc);
+        }
+    });
+
+    renderStep();
+});
+
+// Floating button untuk tour (semua halaman)
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
+
+    const replayBtn = document.createElement('button');
+    replayBtn.type = 'button';
+    replayBtn.className = 'tour-replay-fab-global';
+    replayBtn.setAttribute('aria-label', 'Tour halaman ini');
+    replayBtn.title = 'Tour';
+    replayBtn.innerHTML = '<i class="fa-solid fa-route"></i><span>Tour</span>';
+
+    let compactTimer = null;
+    let revealTimer = null;
+
+    function setCompact() {
+        replayBtn.classList.add('is-compact');
+    }
+
+    function setExpandedTemporarily() {
+        replayBtn.classList.remove('is-compact');
+        if (compactTimer) clearTimeout(compactTimer);
+        compactTimer = setTimeout(setCompact, 2200);
+    }
+
+    function startAutoCompactCycle() {
+        setExpandedTemporarily();
+        if (revealTimer) clearInterval(revealTimer);
+        revealTimer = setInterval(setExpandedTemporarily, 9000);
+    }
+
+    replayBtn.addEventListener('click', function () {
+        try {
+            localStorage.removeItem(`nutri_tour_seen_${currentPage}_v1`);
+        } catch (error) {
+            // Ignore storage access issue.
+        }
+        window.location.reload();
+    });
+
+    replayBtn.addEventListener('mouseenter', setExpandedTemporarily);
+    replayBtn.addEventListener('focus', setExpandedTemporarily);
+    replayBtn.addEventListener('touchstart', setExpandedTemporarily, { passive: true });
+
+    document.body.appendChild(replayBtn);
+    startAutoCompactCycle();
+});
+
 // Fungsi untuk menutup navbar secara instan (reset state)
 function resetNavbarState() {
     if (navbarCollapse) navbarCollapse.classList.remove('show');
