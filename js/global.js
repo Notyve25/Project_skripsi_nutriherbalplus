@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // Guided tour (first visit per page)
 document.addEventListener('DOMContentLoaded', function () {
     const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
-    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
     const tourPageOrder = ['awal.html', 'index.html', 'kalkulator.html', 'vid.html', 'grafik.html'];
     const tourConfig = {
         'awal.html': [
@@ -242,7 +241,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Floating button untuk tour (semua halaman)
 document.addEventListener('DOMContentLoaded', function () {
     const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
-    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    const stackGap = 12;
 
     const replayBtn = document.createElement('button');
     replayBtn.type = 'button';
@@ -259,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function setExpandedTemporarily() {
+        const isMobileViewport = mobileQuery.matches;
         if (isMobileViewport) {
             setCompact();
             return;
@@ -269,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function startAutoCompactCycle() {
+        const isMobileViewport = mobileQuery.matches;
         if (isMobileViewport) {
             setCompact();
             return;
@@ -289,12 +291,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     replayBtn.addEventListener('mouseenter', setExpandedTemporarily);
     replayBtn.addEventListener('focus', setExpandedTemporarily);
-    if (!isMobileViewport) {
+    if (!mobileQuery.matches) {
         replayBtn.addEventListener('touchstart', setExpandedTemporarily, { passive: true });
+    }
+
+    function alignReplayButtonWithHome() {
+        const homeBtn = document.querySelector('.back-home-float a');
+        if (!homeBtn) return;
+
+        const rect = homeBtn.getBoundingClientRect();
+        const targetSize = Math.max(44, Math.round(Math.max(rect.width, rect.height)));
+        const bottom = Math.max(0, (window.innerHeight - rect.bottom) + targetSize + stackGap);
+        const left = Math.round(rect.left + (rect.width - targetSize) / 2);
+
+        replayBtn.style.left = `${left}px`;
+        replayBtn.style.right = 'auto';
+        replayBtn.style.bottom = `${Math.round(bottom)}px`;
+        replayBtn.style.width = `${targetSize}px`;
+        replayBtn.style.minWidth = `${targetSize}px`;
+        replayBtn.style.height = `${targetSize}px`;
+        replayBtn.style.minHeight = `${targetSize}px`;
     }
 
     document.body.appendChild(replayBtn);
     startAutoCompactCycle();
+    alignReplayButtonWithHome();
+    setTimeout(alignReplayButtonWithHome, 150);
+    window.addEventListener('resize', alignReplayButtonWithHome);
+    window.addEventListener('orientationchange', alignReplayButtonWithHome);
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', alignReplayButtonWithHome);
+        window.visualViewport.addEventListener('scroll', alignReplayButtonWithHome);
+    }
 });
 
 // Fungsi untuk menutup navbar secara instan (reset state)
