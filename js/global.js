@@ -3,6 +3,32 @@ const navLinks = document.querySelectorAll('.nav-link');
 const navbarCollapse = document.querySelector('.navbar-collapse');
 const navbarToggler = document.querySelector('.navbar-toggler');
 
+// Reset data kalkulator + progres perjalanan saat rilis GitHub (sekali per versi)
+document.addEventListener('DOMContentLoaded', function () {
+    const isGitHubHost = /(^|\.)github\.io$/i.test(window.location.hostname);
+    if (!isGitHubHost) return;
+
+    const releaseResetKey = 'nutri_release_fresh_state_v1.0.1';
+    const resetPrefixes = ['kalkulator_', 'riwayat_', 'dashboard_', 'nutri_', 'video_'];
+
+    try {
+        if (localStorage.getItem(releaseResetKey) === 'done') return;
+
+        Object.keys(localStorage).forEach((key) => {
+            if (key === releaseResetKey) return;
+            if (resetPrefixes.some((prefix) => key.startsWith(prefix))) {
+                localStorage.removeItem(key);
+            }
+        });
+
+        localStorage.removeItem('nutri_watchlist_v1');
+        localStorage.removeItem('nutri_watched_v1');
+        localStorage.setItem(releaseResetKey, 'done');
+    } catch (error) {
+        // Ignore storage access issue.
+    }
+});
+
 // Intro gate: user baru diarahkan ke halaman pembuka sebelum beranda
 document.addEventListener('DOMContentLoaded', function () {
     const currentPage = (window.location.pathname.split('/').pop() || '').toLowerCase();
@@ -45,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Guided tour (first visit per page)
 document.addEventListener('DOMContentLoaded', function () {
     const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
+    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
     const tourPageOrder = ['awal.html', 'index.html', 'kalkulator.html', 'vid.html', 'grafik.html'];
     const tourConfig = {
         'awal.html': [
@@ -215,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Floating button untuk tour (semua halaman)
 document.addEventListener('DOMContentLoaded', function () {
     const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
+    const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
 
     const replayBtn = document.createElement('button');
     replayBtn.type = 'button';
@@ -231,12 +259,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function setExpandedTemporarily() {
+        if (isMobileViewport) {
+            setCompact();
+            return;
+        }
         replayBtn.classList.remove('is-compact');
         if (compactTimer) clearTimeout(compactTimer);
         compactTimer = setTimeout(setCompact, 2200);
     }
 
     function startAutoCompactCycle() {
+        if (isMobileViewport) {
+            setCompact();
+            return;
+        }
         setExpandedTemporarily();
         if (revealTimer) clearInterval(revealTimer);
         revealTimer = setInterval(setExpandedTemporarily, 9000);
@@ -253,7 +289,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     replayBtn.addEventListener('mouseenter', setExpandedTemporarily);
     replayBtn.addEventListener('focus', setExpandedTemporarily);
-    replayBtn.addEventListener('touchstart', setExpandedTemporarily, { passive: true });
+    if (!isMobileViewport) {
+        replayBtn.addEventListener('touchstart', setExpandedTemporarily, { passive: true });
+    }
 
     document.body.appendChild(replayBtn);
     startAutoCompactCycle();
