@@ -10,6 +10,7 @@
 
 .starting-body {
     min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     background: radial-gradient(circle at 15% 15%, #eef9f0 0%, #dbf0df 48%, #cee8d6 100%);
     position: relative;
@@ -47,6 +48,7 @@
 
 .starting-wrap {
     min-height: 100vh;
+    min-height: 100dvh;
     display: grid;
     place-items: center;
     padding: clamp(10px, 2.2vw, 24px);
@@ -99,6 +101,7 @@
     font-weight: 600;
     font-size: 0.86rem;
     margin-bottom: 12px;
+    animation: textPopIn 0.78s cubic-bezier(0.2, 0.85, 0.3, 1.14) 0.06s both;
 }
 
 .starting-onboarding h1 {
@@ -110,6 +113,7 @@
     max-width: 16ch;
     text-wrap: balance;
     font-weight: 800;
+    animation: titleEntrance 0.98s cubic-bezier(0.16, 0.9, 0.26, 1.2) 0.14s both;
 }
 
 .starting-steps-intro-mobile {
@@ -127,6 +131,7 @@
     font-size: clamp(0.98rem, 1.3vw, 1.08rem);
     line-height: 1.62;
     font-weight: 500;
+    animation: subtitleEntrance 0.92s cubic-bezier(0.2, 0.86, 0.3, 1.14) 0.26s both;
 }
 
 .starting-context {
@@ -147,7 +152,12 @@
     color: var(--starting-green-800);
     background: rgba(255, 255, 255, 0.75);
     border: 1px solid rgba(42, 132, 80, 0.18);
+    animation: textPopIn 0.76s cubic-bezier(0.2, 0.85, 0.3, 1.14) both;
 }
+
+.starting-context span:nth-child(1) { animation-delay: 0.32s; }
+.starting-context span:nth-child(2) { animation-delay: 0.38s; }
+.starting-context span:nth-child(3) { animation-delay: 0.44s; }
 
 .starting-context i {
     color: var(--starting-green-700);
@@ -162,6 +172,7 @@
     display: grid;
     gap: 8px;
     backdrop-filter: blur(2px);
+    animation: textContainerEntrance 0.95s cubic-bezier(0.18, 0.86, 0.3, 1.1) 0.42s both;
 }
 
 .step-item {
@@ -172,7 +183,13 @@
     padding: 8px;
     border-radius: 12px;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    animation: stepTextStagger 0.84s cubic-bezier(0.18, 0.86, 0.3, 1.12) both;
 }
+
+.step-item:nth-child(2) { animation-delay: 0.5s; }
+.step-item:nth-child(3) { animation-delay: 0.62s; }
+.step-item:nth-child(4) { animation-delay: 0.74s; }
 
 @media (hover: hover) and (pointer: fine) {
     .step-item:hover {
@@ -246,6 +263,7 @@
     gap: 6px;
     box-shadow: 0 12px 24px rgba(39, 174, 96, 0.26);
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    animation: buttonEntrance 1.05s ease-out 0.22s both;
 }
 
 .btn-starting-primary:hover {
@@ -266,6 +284,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    animation: subtitleEntrance 0.84s cubic-bezier(0.2, 0.86, 0.3, 1.12) 0.48s both;
 }
 
 .starting-action-note i {
@@ -294,10 +313,12 @@
 .onboarding-right {
     position: relative;
     min-height: clamp(290px, 45vw, 480px);
+    width: min(100%, 430px);
     display: grid;
     place-items: center;
     isolation: isolate;
     padding-block: 8px;
+    margin-inline: auto;
 }
 
 .phone-mockup {
@@ -312,7 +333,8 @@
     transform: rotate(11deg);
     position: relative;
     z-index: 3;
-    animation: phoneFloat 5s ease-in-out infinite;
+    animation: phoneEntrance 1.28s cubic-bezier(0.16, 0.9, 0.3, 1.22) both,
+        phoneFloat 5s ease-in-out 1.28s infinite;
 }
 
 .phone-notch {
@@ -365,6 +387,8 @@
     display: grid;
     place-items: center;
     z-index: 4;
+    animation: doctorEntrance 1.02s cubic-bezier(0.22, 0.61, 0.36, 1) 0.28s both,
+        doctorFloat 4.8s ease-in-out 1.3s infinite;
 }
 
 .doctor-card i {
@@ -387,12 +411,29 @@
     backdrop-filter: blur(2px);
     box-shadow: 0 4px 10px rgba(22, 90, 48, 0.1);
     white-space: nowrap;
+    --chip-entry-x: 0px;
+    --chip-entry-y: 12px;
+    --chip-entry-rot: 0deg;
+    animation: chipEntrance 1.08s cubic-bezier(0.16, 0.84, 0.26, 1.2) both,
+        chipFloat 4.2s ease-in-out 1.08s infinite;
 }
+
+.chip-na { animation-delay: 0.14s, 1.1s; }
+.chip-fat { animation-delay: 0.22s, 1.18s; }
+.chip-imt { animation-delay: 0.3s, 1.26s; }
+.chip-makanan { animation-delay: 0.38s, 1.34s; }
+.chip-tensi { animation-delay: 0.46s, 1.42s; }
 
 .chip-na {
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.24), rgba(125, 211, 252, 0.18));
     border-color: rgba(14, 165, 233, 0.38);
     color: #0b4b77;
+}
+
+.chip-na {
+    --chip-entry-x: -34px;
+    --chip-entry-y: -20px;
+    --chip-entry-rot: -14deg;
 }
 
 .chip-fat {
@@ -401,10 +442,22 @@
     color: #7b4b03;
 }
 
+.chip-fat {
+    --chip-entry-x: 34px;
+    --chip-entry-y: -18px;
+    --chip-entry-rot: 14deg;
+}
+
 .chip-imt {
     background: linear-gradient(135deg, rgba(74, 222, 128, 0.26), rgba(134, 239, 172, 0.2));
     border-color: rgba(22, 163, 74, 0.36);
     color: #155b2f;
+}
+
+.chip-imt {
+    --chip-entry-x: 30px;
+    --chip-entry-y: 22px;
+    --chip-entry-rot: 12deg;
 }
 
 .chip-makanan {
@@ -413,10 +466,22 @@
     color: #5d2c86;
 }
 
+.chip-makanan {
+    --chip-entry-x: -26px;
+    --chip-entry-y: 14px;
+    --chip-entry-rot: -10deg;
+}
+
 .chip-tensi {
     background: linear-gradient(135deg, rgba(251, 113, 133, 0.24), rgba(254, 202, 202, 0.2));
     border-color: rgba(244, 63, 94, 0.36);
     color: #7f1d1d;
+}
+
+.chip-tensi {
+    --chip-entry-x: 24px;
+    --chip-entry-y: 12px;
+    --chip-entry-rot: 10deg;
 }
 
 .chip-na { top: 16%; left: 8%; }
@@ -434,7 +499,11 @@
     background: linear-gradient(135deg, #3ac773, #249b4d);
     box-shadow: 0 8px 18px rgba(19, 117, 59, 0.24);
     z-index: 5;
-    animation: iconPulse 3.4s ease-in-out infinite;
+    --icon-entry-x: 0px;
+    --icon-entry-y: 14px;
+    --icon-entry-rot: 0deg;
+    animation: iconEntrance 1.02s cubic-bezier(0.18, 0.88, 0.25, 1.2) both,
+        iconPulse 3.4s ease-in-out 1.32s infinite;
 }
 
 .floating-icon i {
@@ -443,6 +512,18 @@
 
 .icon-play { right: 10%; bottom: 30%; }
 .icon-health { left: 20%; bottom: 12%; }
+.icon-play {
+    --icon-entry-x: 24px;
+    --icon-entry-y: -10px;
+    --icon-entry-rot: 20deg;
+}
+.icon-health {
+    --icon-entry-x: -24px;
+    --icon-entry-y: 12px;
+    --icon-entry-rot: -20deg;
+}
+.icon-play { animation-delay: 0.34s, 1.34s; }
+.icon-health { animation-delay: 0.46s, 1.46s; }
 
 .starting-loading {
     position: fixed;
@@ -499,6 +580,179 @@
 @keyframes phoneFloat {
     0%, 100% { transform: rotate(11deg) translateY(0); }
     50% { transform: rotate(11deg) translateY(-5px); }
+}
+
+@keyframes phoneEntrance {
+    from {
+        opacity: 0;
+        transform: rotate(11deg) translateY(58px) translateX(20px) scale(0.72);
+        filter: blur(10px) saturate(1.2);
+    }
+    60% {
+        opacity: 1;
+        transform: rotate(11deg) translateY(-12px) translateX(-4px) scale(1.06);
+        filter: blur(0) saturate(1.08);
+    }
+    82% {
+        transform: rotate(11deg) translateY(4px) scale(0.985);
+        filter: blur(0) saturate(1.02);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(11deg) translateY(0) scale(1);
+        filter: blur(0) saturate(1);
+    }
+}
+
+@keyframes chipEntrance {
+    from {
+        opacity: 0;
+        transform: translate(var(--chip-entry-x), var(--chip-entry-y)) rotate(var(--chip-entry-rot)) scale(0.58);
+        filter: blur(6px);
+    }
+    62% {
+        opacity: 1;
+        transform: translate(calc(var(--chip-entry-x) * -0.12), calc(var(--chip-entry-y) * -0.12)) rotate(calc(var(--chip-entry-rot) * -0.2)) scale(1.12);
+        filter: blur(0);
+    }
+    84% {
+        transform: translate(0, 2px) rotate(0deg) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes chipFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes titleEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(26px) scale(0.94);
+        letter-spacing: -0.03em;
+        filter: blur(5px);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.02);
+        letter-spacing: -0.014em;
+        filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        letter-spacing: -0.015em;
+        filter: blur(0);
+    }
+}
+
+@keyframes subtitleEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes textPopIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+        filter: blur(3px);
+    }
+    68% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.04);
+        filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes textContainerEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes stepTextStagger {
+    from {
+        opacity: 0;
+        transform: translateX(-10px) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes doctorEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes doctorFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes iconEntrance {
+    from {
+        opacity: 0;
+        transform: translate(var(--icon-entry-x), var(--icon-entry-y)) rotate(var(--icon-entry-rot)) scale(0.52);
+        filter: blur(5px);
+        box-shadow: 0 0 0 rgba(19, 117, 59, 0);
+    }
+    64% {
+        opacity: 1;
+        transform: translate(calc(var(--icon-entry-x) * -0.14), calc(var(--icon-entry-y) * -0.14)) rotate(calc(var(--icon-entry-rot) * -0.18)) scale(1.14);
+        filter: blur(0);
+        box-shadow: 0 14px 26px rgba(19, 117, 59, 0.32);
+    }
+    84% {
+        transform: translate(0, 2px) rotate(0deg) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        filter: blur(0);
+        box-shadow: 0 8px 18px rgba(19, 117, 59, 0.24);
+    }
 }
 
 @keyframes iconPulse {
@@ -569,13 +823,35 @@
     .phone-mockup {
         width: clamp(168px, 42vw, 220px);
         transform: rotate(6deg);
-        animation-name: phoneFloatTablet;
+        animation: phoneEntranceTablet 1.16s cubic-bezier(0.16, 0.9, 0.3, 1.22) both,
+            phoneFloatTablet 5s ease-in-out 1.16s infinite;
     }
 }
 
 @keyframes phoneFloatTablet {
     0%, 100% { transform: rotate(6deg) translateY(0); }
     50% { transform: rotate(6deg) translateY(-4px); }
+}
+
+@keyframes phoneEntranceTablet {
+    from {
+        opacity: 0;
+        transform: rotate(6deg) translateY(52px) translateX(16px) scale(0.74);
+        filter: blur(9px) saturate(1.16);
+    }
+    60% {
+        opacity: 1;
+        transform: rotate(6deg) translateY(-10px) translateX(-3px) scale(1.06);
+        filter: blur(0) saturate(1.06);
+    }
+    82% {
+        transform: rotate(6deg) translateY(3px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(6deg) translateY(0) scale(1);
+        filter: blur(0) saturate(1);
+    }
 }
 
 @media (max-width: 860px) {
@@ -655,12 +931,34 @@
     .phone-mockup {
         width: clamp(154px, 46vw, 196px);
         transform: rotate(5deg);
-        animation-name: phoneFloat768;
+        animation: phoneEntrance768 1.08s cubic-bezier(0.16, 0.9, 0.3, 1.22) both,
+            phoneFloat768 4.8s ease-in-out 1.08s infinite;
     }
 
     @keyframes phoneFloat768 {
         0%, 100% { transform: rotate(5deg) translateY(0); }
         50% { transform: rotate(5deg) translateY(-3px); }
+    }
+
+    @keyframes phoneEntrance768 {
+        from {
+            opacity: 0;
+            transform: rotate(5deg) translateY(46px) translateX(12px) scale(0.76);
+            filter: blur(8px) saturate(1.14);
+        }
+        60% {
+            opacity: 1;
+            transform: rotate(5deg) translateY(-8px) translateX(-2px) scale(1.05);
+            filter: blur(0) saturate(1.04);
+        }
+        82% {
+            transform: rotate(5deg) translateY(2px) scale(0.99);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(5deg) translateY(0) scale(1);
+            filter: blur(0) saturate(1);
+        }
     }
 
     .doctor-card {
@@ -727,12 +1025,34 @@
         width: clamp(146px, 48vw, 182px);
         border-width: 8px;
         transform: rotate(4deg);
-        animation-name: phoneFloatMobile;
+        animation: phoneEntranceMobile 1s cubic-bezier(0.16, 0.9, 0.3, 1.22) both,
+            phoneFloatMobile 4.6s ease-in-out 1s infinite;
     }
 
     @keyframes phoneFloatMobile {
         0%, 100% { transform: rotate(4deg) translateY(0); }
         50% { transform: rotate(4deg) translateY(-3px); }
+    }
+
+    @keyframes phoneEntranceMobile {
+        from {
+            opacity: 0;
+            transform: rotate(4deg) translateY(40px) translateX(10px) scale(0.78);
+            filter: blur(7px) saturate(1.12);
+        }
+        60% {
+            opacity: 1;
+            transform: rotate(4deg) translateY(-7px) translateX(-2px) scale(1.04);
+            filter: blur(0) saturate(1.03);
+        }
+        82% {
+            transform: rotate(4deg) translateY(2px) scale(0.99);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(4deg) translateY(0) scale(1);
+            filter: blur(0) saturate(1);
+        }
     }
 
     .screen-header {
@@ -859,12 +1179,34 @@
     .phone-mockup {
         width: clamp(132px, 50vw, 166px);
         transform: rotate(3deg);
-        animation-name: phoneFloatTiny;
+        animation: phoneEntranceTiny 0.94s cubic-bezier(0.16, 0.9, 0.3, 1.22) both,
+            phoneFloatTiny 4.4s ease-in-out 0.94s infinite;
     }
 
     @keyframes phoneFloatTiny {
         0%, 100% { transform: rotate(3deg) translateY(0); }
         50% { transform: rotate(3deg) translateY(-2px); }
+    }
+
+    @keyframes phoneEntranceTiny {
+        from {
+            opacity: 0;
+            transform: rotate(3deg) translateY(36px) translateX(9px) scale(0.8);
+            filter: blur(7px) saturate(1.1);
+        }
+        60% {
+            opacity: 1;
+            transform: rotate(3deg) translateY(-6px) translateX(-1px) scale(1.04);
+            filter: blur(0) saturate(1.02);
+        }
+        82% {
+            transform: rotate(3deg) translateY(1px) scale(0.99);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(3deg) translateY(0) scale(1);
+            filter: blur(0) saturate(1);
+        }
     }
 
     .visual-chip {
@@ -918,6 +1260,152 @@
 
     .step-item {
         padding: 6px;
+    }
+}
+
+@media (max-height: 760px) and (max-width: 1024px) {
+    .starting-wrap {
+        align-items: start;
+    }
+
+    .starting-onboarding {
+        margin-block: 6px;
+    }
+
+    .onboarding-right {
+        min-height: 252px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .starting-onboarding {
+        width: min(94vw, 1320px);
+        grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+        gap: clamp(18px, 1.8vw, 34px);
+        padding: clamp(22px, 2.2vw, 38px);
+    }
+
+    .starting-onboarding h1 {
+        font-size: clamp(2.25rem, 3.2vw, 3.4rem);
+        max-width: 17ch;
+    }
+
+    .starting-subtitle {
+        font-size: clamp(1.02rem, 1vw, 1.14rem);
+        max-width: 58ch;
+    }
+
+    .step-item h2 {
+        font-size: clamp(1.04rem, 1vw, 1.2rem);
+    }
+
+    .step-item p {
+        font-size: clamp(0.9rem, 0.86vw, 0.98rem);
+    }
+
+    .step-hint {
+        font-size: clamp(0.8rem, 0.76vw, 0.88rem);
+    }
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+    .starting-wrap {
+        padding: 6px;
+    }
+
+    .starting-onboarding {
+        padding: 10px;
+        border-radius: 14px;
+        gap: 10px;
+        grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.9fr);
+    }
+
+    .onboarding-right {
+        min-height: 176px;
+        --floating-size: clamp(20px, 2.5vw, 24px);
+        --floating-icon-size: clamp(0.62rem, 0.9vw, 0.74rem);
+        --doctor-size: clamp(38px, 5.8vw, 46px);
+        --chip-font-size: clamp(0.52rem, 0.76vw, 0.6rem);
+        --chip-pad-y: 2px;
+        --chip-pad-x: 5px;
+        --chip-min-h: 16px;
+    }
+
+    .phone-mockup {
+        width: clamp(106px, 15vw, 140px);
+        border-width: 7px;
+    }
+
+    .starting-onboarding h1 {
+        font-size: clamp(1.2rem, 3.2vw, 1.66rem);
+        margin-bottom: 6px;
+    }
+
+    .starting-subtitle {
+        font-size: 0.8rem;
+        line-height: 1.32;
+        margin-bottom: 7px;
+    }
+
+    .starting-context {
+        margin-bottom: 6px;
+        gap: 5px;
+    }
+
+    .starting-context span {
+        font-size: 0.64rem;
+        padding: 3px 7px;
+    }
+
+    .starting-steps {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .step-item {
+        grid-template-columns: 22px 1fr;
+        gap: 6px;
+        padding: 4px;
+    }
+
+    .step-number {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+
+    .step-item h2 {
+        font-size: 0.82rem;
+        gap: 5px;
+    }
+
+    .step-item h2 i {
+        width: 14px;
+        font-size: 0.68rem;
+    }
+
+    .step-item p {
+        font-size: 0.72rem;
+        line-height: 1.24;
+    }
+
+    .step-hint {
+        font-size: 0.62rem;
+        margin-top: 2px;
+    }
+
+    .btn-starting-primary {
+        min-width: 120px;
+        font-size: 0.82rem;
+        padding: 8px 12px;
+    }
+
+    .starting-action-note {
+        font-size: 0.65rem;
+    }
+
+    .starting-pagination {
+        margin-top: 6px;
     }
 }
 
@@ -1105,9 +1593,196 @@
     }
 }
 
+@media (max-height: 540px) and (orientation: landscape) {
+    .starting-wrap {
+        padding: 8px;
+        align-items: start;
+    }
+
+    .starting-onboarding {
+        width: min(98vw, 1100px);
+        grid-template-columns: minmax(0, 1.08fr) minmax(220px, 0.92fr);
+        gap: 12px;
+        padding: 12px;
+        border-radius: 16px;
+    }
+
+    .onboarding-right {
+        order: 0;
+        min-height: 210px;
+        border-radius: 12px;
+        overflow: hidden;
+        --floating-size: clamp(22px, 2.9vw, 28px);
+        --floating-icon-size: clamp(0.66rem, 1vw, 0.82rem);
+        --doctor-size: clamp(42px, 6.6vw, 54px);
+        --doctor-left: 6%;
+        --doctor-bottom: 8%;
+        --chip-font-size: clamp(0.56rem, 0.86vw, 0.66rem);
+        --chip-pad-y: 2px;
+        --chip-pad-x: 6px;
+        --chip-min-h: 18px;
+        --na-top: 14%;
+        --na-left: 4%;
+        --fat-top: 14%;
+        --fat-right: 5%;
+        --imt-bottom: 8%;
+        --imt-right: 5%;
+        --makanan-top: 30%;
+        --makanan-left: 4%;
+        --tensi-top: 30%;
+        --tensi-right: 5%;
+        --play-right: 7%;
+        --play-bottom: 20%;
+        --health-left: 8%;
+        --health-bottom: 34%;
+    }
+
+    .phone-mockup {
+        width: clamp(126px, 18vw, 168px);
+    }
+
+    .starting-onboarding h1 {
+        font-size: clamp(1.38rem, 3.6vw, 2rem);
+        margin-bottom: 8px;
+    }
+
+    .starting-subtitle {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .starting-context {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .starting-context span {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .starting-steps {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .step-item {
+        grid-template-columns: 26px 1fr;
+        gap: 8px;
+        padding: 6px;
+    }
+
+    .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.78rem;
+    }
+
+    .step-item h2 {
+        font-size: 0.9rem;
+        gap: 6px;
+    }
+
+    .step-item h2 i {
+        width: 16px;
+        font-size: 0.76rem;
+    }
+
+    .step-item p {
+        font-size: 0.78rem;
+        line-height: 1.34;
+    }
+
+    .step-hint {
+        margin-top: 3px;
+        font-size: 0.67rem;
+    }
+
+    .starting-actions {
+        margin-top: 10px;
+    }
+
+    .btn-starting-primary {
+        min-width: 132px;
+        font-size: 0.88rem;
+        padding: 9px 13px;
+    }
+
+    .starting-action-note {
+        margin-top: 6px;
+        font-size: 0.7rem;
+    }
+
+    .starting-pagination {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 340px) {
+    .starting-wrap {
+        padding: 7px;
+    }
+
+    .starting-onboarding {
+        padding: 10px;
+        border-radius: 13px;
+        gap: 12px;
+    }
+
+    .starting-badge {
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+        padding: 4px 8px;
+    }
+
+    .starting-onboarding h1 {
+        font-size: clamp(1.3rem, 6.8vw, 1.58rem);
+    }
+
+    .starting-subtitle {
+        font-size: 0.84rem;
+        margin-bottom: 8px;
+    }
+
+    .starting-context span {
+        font-size: 0.66rem;
+        padding: 4px 6px;
+    }
+
+    .onboarding-right {
+        min-height: 228px;
+        --floating-size: clamp(22px, 7.6vw, 25px);
+        --floating-icon-size: clamp(0.64rem, 2.8vw, 0.74rem);
+        --doctor-size: clamp(40px, 13.5vw, 46px);
+        --chip-font-size: clamp(0.56rem, 2.4vw, 0.62rem);
+        --chip-pad-x: 5px;
+    }
+
+    .phone-mockup {
+        width: clamp(124px, 52vw, 154px);
+    }
+
+    .btn-starting-primary {
+        min-width: 136px;
+        font-size: 0.86rem;
+    }
+
+    .starting-action-note {
+        font-size: 0.68rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .starting-bg-orb,
+    .starting-badge,
+    .starting-onboarding h1,
+    .starting-subtitle,
+    .starting-context span,
+    .starting-steps,
     .phone-mockup,
+    .visual-chip,
+    .doctor-card,
     .floating-icon,
     .starting-spinner,
     .btn-starting-primary,

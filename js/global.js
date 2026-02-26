@@ -375,9 +375,73 @@ window.addEventListener('load', function () {
             preloader.classList.add('hide');
             setTimeout(() => {
                 preloader.style.display = 'none';
+                document.body.classList.add('page-ready');
+                window.dispatchEvent(new CustomEvent('nutri:pageReady'));
             }, 500);
         }, 600); // Delay sedikit agar transisi halus
+    } else {
+        document.body.classList.add('page-ready');
+        window.dispatchEvent(new CustomEvent('nutri:pageReady'));
     }
+});
+
+// First viewport enter sequence (non-destructive, excludes beranda)
+document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = (window.location.pathname.split('/').pop() || 'awal.html').toLowerCase();
+    if (currentPage === 'awal.html') return;
+
+    const sequenceSelectors = [
+        'main .reveal',
+        'main .quick-summary-card',
+        'main .quick-access-bar',
+        'main .playlist-quick',
+        'main .stat-card',
+        'main .insight-box',
+        'main .cta-section'
+    ];
+
+    const candidateElements = Array.from(document.querySelectorAll(sequenceSelectors.join(',')));
+    if (!candidateElements.length) return;
+
+    const seen = new Set();
+    const firstViewportItems = [];
+    const viewportLimit = window.innerHeight * 0.98;
+
+    candidateElements.forEach((element) => {
+        if (seen.has(element)) return;
+        seen.add(element);
+
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom <= 0 || rect.top >= viewportLimit) return;
+        if (element.closest('.modal, .offcanvas')) return;
+
+        firstViewportItems.push(element);
+    });
+
+    if (!firstViewportItems.length) return;
+
+    firstViewportItems.sort((first, second) => {
+        const a = first.getBoundingClientRect().top;
+        const b = second.getBoundingClientRect().top;
+        return a - b;
+    });
+
+    firstViewportItems.forEach((element, index) => {
+        element.classList.add('enter-seq-item');
+        element.style.setProperty('--enter-seq-delay', `${Math.min(index * 85, 520)}ms`);
+    });
+
+    let started = false;
+    const startEnterSequence = () => {
+        if (started) return;
+        started = true;
+        requestAnimationFrame(() => {
+            document.body.classList.add('page-enter-start');
+        });
+    };
+
+    window.addEventListener('nutri:pageReady', startEnterSequence, { once: true });
+    window.setTimeout(startEnterSequence, 1450);
 });
 
 // 3. Scroll Effects (Navbar & Back to Top)
@@ -447,8 +511,15 @@ const tipsKesehatan = [
 ];
 const tipWidget = document.getElementById('dailyHealthTip');
 
+let isHealthTipClosed = false;
+try {
+    isHealthTipClosed = sessionStorage.getItem('healthTipClosed') === 'true';
+} catch (error) {
+    isHealthTipClosed = false;
+}
+
 // Cek apakah user sudah menutup widget di sesi ini
-if (tipWidget && !sessionStorage.getItem('healthTipClosed')) {
+if (tipWidget && !isHealthTipClosed) {
     const randomTip = tipsKesehatan[Math.floor(Math.random() * tipsKesehatan.length)];
     tipWidget.className = 'health-tip-widget d-flex align-items-start';
     tipWidget.innerHTML = `
@@ -462,7 +533,11 @@ if (tipWidget && !sessionStorage.getItem('healthTipClosed')) {
 
     // Event listener untuk menutup dan menyimpan status ke sessionStorage
     document.getElementById('btnCloseTip').addEventListener('click', function () {
-        sessionStorage.setItem('healthTipClosed', 'true');
+        try {
+            sessionStorage.setItem('healthTipClosed', 'true');
+        } catch (error) {
+            // Ignore storage access issue.
+        }
         tipWidget.style.transition = 'opacity 0.3s, transform 0.3s';
         tipWidget.style.opacity = '0';
         tipWidget.style.transform = 'translateY(-10px)';

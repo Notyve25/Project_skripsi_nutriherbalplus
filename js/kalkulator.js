@@ -59,6 +59,16 @@ function formatMg(value) {
     return new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(number);
 }
 
+function readStorageJSON(key, fallback) {
+    try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        return JSON.parse(raw);
+    } catch (error) {
+        return fallback;
+    }
+}
+
 function updateFoodCountNatrium(category, item, change) {
     const key = `${category}|${item}`;
     if (userFoodLogNatrium[key] === undefined) userFoodLogNatrium[key] = 0;
@@ -362,10 +372,10 @@ const NATRIUM_DATABASE = {
     },
     masakan: {
         nasi_goreng: { nama: "Nasi Goreng", natrium: 850, urt: "1 porsi (200g)" },
-        mie_goreng_resto: { nama: "Mie Goreng (Resto/Warung)", natrium: 980, urt: "1 porsi" },
+        mie_goreng_resto: { nama: "Mie Goreng (Resto/Warung)", natrium: 600, urt: "1 porsi" },
         mie_instan_rebus: { nama: "Mie Instan Rebus", natrium: 1050, urt: "1 bungkus" },
         mie_instan_goreng: { nama: "Mie Instan Goreng", natrium: 950, urt: "1 bungkus" },
-        bubur_ayam: { nama: "Bubur Ayam", natrium: 650, urt: "1 mangkuk" },
+        bubur_ayam: { nama: "Bubur Ayam", natrium: 200, urt: "1 mangkuk" },
         lontong_sayur: { nama: "Lontong Sayur", natrium: 190, urt: "1 porsi" },
         gudeg_jogja: { nama: "Gudeg Nangka (Jogja)", natrium: 10, urt: "1 porsi" },
         soto_kadipiro: { nama: "Soto Bening (Kadipiro/Sleman)", natrium: 150, urt: "1 mangkuk" },
@@ -373,15 +383,15 @@ const NATRIUM_DATABASE = {
         mangut_lele: { nama: "Mangut Lele", natrium: 220, urt: "1 ekor" }
     },
     lauk_pauk: {
-        ayam_goreng: { nama: "Ayam Goreng / kalasan", natrium: 132, urt: "1 potong" },
-        rendang: { nama: "Rendang Daging", natrium: 100, urt: "1 potong" },
+        ayam_goreng: { nama: "Ayam Goreng / kalasan", natrium: 60, urt: "1 potong" },
+        rendang: { nama: "Rendang Daging", natrium: 50, urt: "1 potong" },
         telur_dadar: { nama: "Telur Dadar", natrium: 10, urt: "1 butir" },
         ikan_asin: { nama: "Ikan Asin Goreng", natrium: 200, urt: "1 potong sdg" },
         telur_asin: { nama: "Telur Asin", natrium: 120, urt: "1 butir" },
         bakso: { nama: "Bakso Sapi", natrium: 150, urt: "1 butir besar" },
         sosis: { nama: "Sosis Sapi/Ayam", natrium: 383, urt: "1 potong" },
         nugget: { nama: "Chicken Nugget", natrium: 120, urt: "1 potong" },
-        tempe_goreng: { nama: "Tempe Goreng", natrium: 50, urt: "1 potong" },
+        tempe_goreng: { nama: "Tempe Goreng", natrium: 3.5, urt: "1 potong" },
         tahu_goreng: { nama: "Tahu Goreng", natrium: 3.5, urt: "1 potong" },
         sarden_kaleng: { nama: "Sarden Kaleng", natrium: 266, urt: "1 kaleng (setara)" },
         kornet_sapi: { nama: "Kornet Sapi", natrium: 397, urt: "1 porsi (50g)" },
@@ -398,11 +408,11 @@ const NATRIUM_DATABASE = {
     },
     camilan: {
         kerupuk_putih: { nama: "Kerupuk Putih", natrium: 150, urt: "1 keping" },
-        emping: { nama: "Emping Melinjo", natrium: 100, urt: "5 keping" },
-        kentang_goreng: { nama: "Kentang Goreng", natrium: 350, urt: "1 porsi kecil" },
+        emping: { nama: "Emping Melinjo", natrium: 50, urt: "5 keping" },
+        kentang_goreng_Instan: { nama: "Kentang Goreng", natrium: 350, urt: "1 porsi kecil" },
         kecap_manis: { nama: "Kecap Manis", natrium: 200, urt: "1 sdm" },
-        bakpia_pathok: { nama: "Bakpia Pathok", natrium: 85, urt: "1 biji" },
-        geblek_sleman: { nama: "Geblek (Sleman)", natrium: 124, urt: "1 biji" },
+        bakpia_pathok: { nama: "Bakpia Pathok", natrium: 40, urt: "1 biji" },
+        geblek_sleman: { nama: "Geblek (Sleman)", natrium: 62, urt: "1 biji" },
     },
     Bumbu_Masak: {
         saus_sambal: { nama: "Saus Sambal/Tomat", natrium: 160, urt: "1 sdm" },
@@ -416,7 +426,8 @@ const NATRIUM_DATABASE = {
         mayones: { nama: "Mayones", natrium: 220, urt: "1 sdm" },
         mustard: { nama: "Mustard", natrium: 350, urt: "1 sdm" },
         saus_pesto: { nama: "Saus Pesto", natrium: 200, urt: "1 sdm" },
-        saus_tomat: { nama: "Saus Tomat", natrium: 200, urt: "1 sdm" }
+        saus_tomat: { nama: "Saus Tomat", natrium: 200, urt: "1 sdm" },
+        tauco_instan: { nama: "Tauco Instan", natrium: 200, urt: "1 sdm" }
     }
 };
 
@@ -443,6 +454,8 @@ const natriumGoalDisplay = document.getElementById('displayGoalNatrium');
 
 
 function hitungAKGv5() {
+    if (!natriumUsiaInput || !natriumJkSelect || !natriumHasilEl || !natriumBtn || !natriumSpinner || !natriumBtnLabel) return;
+
     // [REFAKTOR] Menggunakan konstanta yang sudah di-cache.
     const usia = parseInt(natriumUsiaInput.value, 10);
     const jk = natriumJkSelect.value;
@@ -557,13 +570,15 @@ function hitungAKGv5() {
         const valueEl = document.getElementById('akgNatriumValue');
         const percentBarEl = document.getElementById('akgPercentBar');
         animateNumber(valueEl, natrium, 700, 0);
-        const safePct = Math.min(pct, 100);
-        animateProgress(percentBarEl, safePct, 700);
-        percentBarEl.classList.remove('pulse-danger', 'pulse-warning');
-        percentBarEl.style.backgroundColor = '#3182ce';
-        if (pct > 100) { percentBarEl.classList.add('pulse-danger'); }
-        else if (pct > 80) { percentBarEl.classList.add('pulse-warning'); }
-        percentBarEl.setAttribute('aria-valuenow', String(safePct));
+        if (percentBarEl) {
+            const safePct = Math.min(pct, 100);
+            animateProgress(percentBarEl, safePct, 700);
+            percentBarEl.classList.remove('pulse-danger', 'pulse-warning');
+            percentBarEl.style.backgroundColor = '#3182ce';
+            if (pct > 100) { percentBarEl.classList.add('pulse-danger'); }
+            else if (pct > 80) { percentBarEl.classList.add('pulse-warning'); }
+            percentBarEl.setAttribute('aria-valuenow', String(safePct));
+        }
         const inlineTip = document.getElementById('akgInlineTip');
         if (inlineTip) {
             if (pct > 80) {
@@ -576,7 +591,7 @@ function hitungAKGv5() {
         }
 
         // tampilkan wrap & fokus
-        natriumWrapEl.style.display = 'block';
+        if (natriumWrapEl) natriumWrapEl.style.display = 'block';
         natriumHasilEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         // tip & highlight untuk usia 30-50
@@ -597,8 +612,13 @@ function hitungAKGv5() {
 
 // Load data dari localStorage saat halaman dimuat
 function loadNatriumData() {
-    const savedData = JSON.parse(localStorage.getItem(NATRIUM_KEY));
-    if (savedData) {
+    if (!natriumUsiaInput || !natriumJkSelect) {
+        renderFoodSelectorNatrium();
+        return;
+    }
+
+    const savedData = readStorageJSON(NATRIUM_KEY, null);
+    if (savedData && typeof savedData === 'object') {
         natriumUsiaInput.value = savedData.usia;
         natriumJkSelect.value = savedData.jk;
         hitungAKGv5(); // Hitung otomatis
@@ -740,7 +760,7 @@ const AKG_LEMAK = {
         { umurMin: 30, umurMax: 49, lemak: 70 },
         { umurMin: 50, umurMax: 64, lemak: 60 },
         { umurMin: 65, umurMax: 80, lemak: 50 },
-        { umurMin: 80, umurMax: 120, lemak: 50 }
+        { umurMin: 80, umurMax: 120, lemak: 45 }
     ],
     P: [
         { umurMin: 10, umurMax: 12, lemak: 65 },
@@ -748,49 +768,57 @@ const AKG_LEMAK = {
         { umurMin: 16, umurMax: 18, lemak: 70 },
         { umurMin: 19, umurMax: 29, lemak: 65 },
         { umurMin: 30, umurMax: 49, lemak: 60 },
-        { umurMin: 50, umurMax: 64, lemak: 55 },
+        { umurMin: 50, umurMax: 64, lemak: 50 },
         { umurMin: 65, umurMax: 80, lemak: 45 },
-        { umurMin: 80, umurMax: 120, lemak: 45 }
+        { umurMin: 80, umurMax: 120, lemak: 40 }
     ]
 };
 
 const TKPI_DATABASE = {
     gorengan: {
-        tempe: { nama: "Tempe Goreng tepung", lemak: 10.4, urt: "1 potong" },
+        tempe: { nama: "Tempe Goreng tepung", lemak: 5.4, urt: "1 potong" },
         tahu: { nama: "Tahu Goreng", lemak: 4.25, urt: "1 potong" },
         bakwan: { nama: "Bakwan/Bala-bala", lemak: 5.1, urt: "1 potong" },
         pisang_goreng: { nama: "Pisang Goreng", lemak: 3.6, urt: "1 potong" },
         emping: { nama: "Emping Melinjo Goreng", lemak: 1.1, urt: "1 keping" },
-        cireng: { nama: "Cireng Goreng", lemak: 1.6, urt: "1 potong" },
-        mendoan: { nama: "Tempe Mendoan", lemak: 12.5, urt: "1 lembar" },
-        tahu_susur: { nama: "Tahu Susur (Isi)", lemak: 8.2, urt: "1 biji" },
-        geblek: { nama: "Geblek (Khas Kulon Progo/Sleman)", lemak: 0.59, urt: "1 biji" },
+        cireng: { nama: "Cireng Goreng", lemak: 3.5, urt: "1 potong" },
+        mendoan: { nama: "Tempe Mendoan", lemak: 6.5, urt: "1 lembar" },
+        tahu_susur: { nama: "Tahu Susur (Isi)", lemak: 8.2, urt: "1 potong" },
+        Piscok: { nama: "Piscok", lemak: 8.5, urt: "1 potong" },
+        Risoles: { nama: "Risoles", lemak: 3.75, urt: "1 potong" },
+        onde_onde: { nama: "Onde Onde", lemak: 1.8, urt: "1 potong" },
+        Molen_pisang: { nama: "Molen pisang", lemak: 11.6, urt: "1 potong" },
+        singkong_goreng: { nama: "singkong goreng", lemak: 1.58, urt: "1 potong" },
+        Combro: { nama: "Combro", lemak: 4.58, urt: "1 potong" },
+        kerupuk: { nama: "Kerupuk Udang/Ikan", lemak: 2.5, urt: "1 keping" },
+        geblek: { nama: "Geblek (Khas Kulon Progo/Sleman)", lemak: 2.5, urt: "1 potong" },
+        kerupuk_kaleng: { nama: "Kerupuk Putih/Warung", lemak: 2.1, urt: "1 keping" },
         jadah_goreng: { nama: "Jadah Goreng", lemak: 4.8, urt: "1 potong" }
     },
     lauk_hewani: {
         rendang: { nama: "Rendang Daging", lemak: 5.92, urt: "1 potong" },
         ayam_goreng: { nama: "Ayam Goreng (Kulit)", lemak: 9.15, urt: "1 potong" },
-        sosis: { nama: "Sosis Sapi/Ayam", lemak: 21.15, urt: "1 buah" },
-        kornet_sapi: { nama: "Kornet Sapi", lemak: 12.5, urt: "1 porsi (50g)" },
-        sarden_kaleng: { nama: "Sarden Kaleng", lemak: 1.8, urt: "1 kaleng (setara)" },
-        telur_dadar: { nama: "Telur Dadar", lemak: 12.8, urt: "1 butir" },
-        ikan_goreng: { nama: "Ikan Goreng", lemak: 8.4, urt: "1 ekor sdg" },
-        sate_usus: { nama: "Sate Usus Goreng", lemak: 13.5, urt: "1 tusuk" },
+        sosis: { nama: "Sosis Sapi/Ayam", lemak: 10.15, urt: "1 buah" },
+        kornet_sapi: { nama: "Kornet Sapi", lemak: 6.5, urt: "1 porsi (50g)" },
+        sarden_kaleng: { nama: "Sarden Kaleng", lemak: 12.8, urt: "1 kaleng (setara)" },
+        telur_dadar: { nama: "Telur Dadar", lemak: 6.8, urt: "1 butir" },
+        ikan_goreng: { nama: "Ikan Goreng", lemak: 4.4, urt: "1 ekor sdg" },
+        sate_usus: { nama: "Sate Usus Goreng", lemak: 5.5, urt: "1 tusuk" },
         bakso: { nama: "Bakso Daging Sapi", lemak: 2.1, urt: "1 butir" },
-        empal_daging: { nama: "Empal Daging Sapi", lemak: 12.2, urt: "1 potong" },
+        empal_daging: { nama: "Empal Daging Sapi", lemak: 6.2, urt: "1 potong" },
         perkedel_kentang: { nama: "Perkedel Kentang", lemak: 4.5, urt: "1 biji" },
-        ayam_bakar: { nama: "Ayam Bakar", lemak: 7.2, urt: "1 potong" },
-        ikan_bakar: { nama: "Ikan Bakar", lemak: 4.5, urt: "1 ekor sdg" },
-        lele_goreng: { nama: "Lele Goreng", lemak: 9.2, urt: "1 ekor sdg" },
-        telur_ceplok: { nama: "Telur Ceplok", lemak: 9.5, urt: "1 butir" },
+        ayam_bakar: { nama: "Ayam Bakar", lemak: 3.2, urt: "1 potong" },
+        ikan_bakar: { nama: "Ikan Bakar", lemak: 2.5, urt: "1 ekor sdg" },
+        lele_goreng: { nama: "Lele Goreng", lemak: 4.2, urt: "1 ekor sdg" },
+        telur_ceplok: { nama: "Telur Ceplok", lemak: 4.5, urt: "1 butir" },
         ati_ampela_goreng: { nama: "Ati Ampela Goreng", lemak: 8.8, urt: "1 potong" },
-        belut_goreng: { nama: "Belut Goreng (Godean)", lemak: 11.2, urt: "3-5 ekor kecil" }
+        belut_goreng: { nama: "Belut Goreng (Godean)", lemak: 5.2, urt: "3-5 ekor kecil" }
     },
     masakan: {
         gulai: { nama: "Masakan Santan (Gulai)", lemak: 14.5, urt: "1 mangkuk" },
         mie_goreng: { nama: "Mie Goreng", lemak: 18.5, urt: "1 porsi" },
         nasi_goreng: { nama: "Nasi Goreng", lemak: 14.2, urt: "1 porsi" },
-        mie_instan: { nama: "Mie Instan", lemak: 15.0, urt: "1 bungkus" },
+        mie_instan: { nama: "Mie Instan", lemak: 6.0, urt: "1 bungkus" },
         sate_kacang: { nama: "Sate Ayam (Bumbu Kacang)", lemak: 2.2, urt: "1 tusuk" },
         soto_santan: { nama: "Soto Betawi (Santan)", lemak: 12.5, urt: "1 mangkuk" },
         opor_ayam: { nama: "Opor Ayam", lemak: 10.8, urt: "1 potong" },
@@ -800,26 +828,22 @@ const TKPI_DATABASE = {
         krecek: { nama: "Sambal Goreng Krecek", lemak: 12.8, urt: "2 sdm" },
         soto_bening: { nama: "Soto Bening (Soto Kadipiro/Sleman)", lemak: 4.25, urt: "1 mangkuk" },
         lotek: { nama: "Lotek (Bumbu Kacang)", lemak: 9.5, urt: "1 porsi" },
-        mangut_lele: { nama: "Mangut Lele", lemak: 15.6, urt: "1 ekor" },
+        mangut_lele: { nama: "Mangut Lele", lemak: 7.6, urt: "1/2 ekor" },
         oseng_mercon: { nama: "Oseng Mercon (Tetelan)", lemak: 22.4, urt: "1 porsi" },
+        martabak: { nama: "Martabak Manis", lemak: 6.0, urt: "1 potong" },
         seblak: { nama: "Seblak", lemak: 20.0, urt: "1 porsi (200g)" }
     },
     bumbu: {
-        kerupuk: { nama: "Kerupuk Udang/Ikan", lemak: 2.5, urt: "1 keping" },
-        martabak: { nama: "Martabak Manis", lemak: 12.0, urt: "1 potong" },
         margarin: { nama: "Margarin", lemak: 12.5, urt: "1 sdm" },
         santan_kental: { nama: "Santan Kental", lemak: 5.5, urt: "1 sdm" },
         keju: { nama: "Keju", lemak: 6.5, urt: "1 lembar" },
         mayones: { nama: "Mayones", lemak: 11.0, urt: "1 sdm" },
         minyak_goreng: { nama: "Minyak Goreng (Tambahan)", lemak: 10.0, urt: "1 sdm" },
-        kerupuk_kaleng: { nama: "Kerupuk Putih/Warung", lemak: 2.1, urt: "1 keping" },
         kacang_goreng: { nama: "Kacang Tanah Goreng", lemak: 5.4, urt: "1 sdm" },
         bakpia_pathok: { nama: "Bakpia Pathok", lemak: 2.68, urt: "1 biji" },
         yangko: { nama: "Yangko", lemak: 1.2, urt: "1 biji" },
         peyek_kacang: { nama: "Peyek Kacang", lemak: 5.8, urt: "1 keping sdg" },
         telur_asin: { nama: "Telur Asin", lemak: 9.4, urt: "1 butir" },
-        kaldu_bubuk: { nama: "Kaldu Bubuk (Masako/Royco)", lemak: 0.1, urt: "1 sdt (5g)" },
-        kaldu_jamur: { nama: "Kaldu Jamur (Totole/dll)", lemak: 0.1, urt: "1 sdt (5g)" }
     }
 };
 
@@ -863,6 +887,12 @@ function resetFoodCalc() {
         });
     });
     calculateTotalSelectedFat();
+}
+
+function resetFoodSelectionOnlyIfAny() {
+    const hasSelectedFood = Object.values(userFoodLog).some((count) => Number(count) > 0);
+    if (!hasSelectedFood) return;
+    resetFoodCalc();
 }
 
 function toggleCategory(categoryId) {
@@ -1137,6 +1167,8 @@ const lemakSpinner = document.getElementById("lemakSpinner");
 const lemakBtnLabel = document.getElementById("lemakBtnLabel");
 
 function hitungLemak() {
+    if (!lemakUsiaInput || !lemakJkSelect || !lemakHasilEl || !lemakBtn || !lemakSpinner || !lemakBtnLabel) return;
+
     // [REFAKTOR] Menggunakan konstanta yang sudah di-cache.
     const usia = parseInt(lemakUsiaInput.value);
     const jk = lemakJkSelect.value;
@@ -1230,7 +1262,7 @@ function hitungLemak() {
                         <i class="fa-solid fa-bacon fs-5"></i>
                         <span>Cek Menu Berlemakmu Hari Ini</span>
                     </div>
-                    <button type="button" class="result-badge-pill reset-button" onclick="resetLemak()" title="Reset Semua">
+                    <button type="button" class="result-badge-pill reset-button" onclick="resetFoodSelectionOnlyIfAny()" title="Reset Pilihan Makanan">
                         <i class="fa-solid fa-rotate-left"></i> Reset
                     </button>
                 </div>
@@ -1560,8 +1592,10 @@ function konversiSendokMakan(gram) {
 //end kalkulator lemak
 
 function loadLemakData() {
-    const savedData = JSON.parse(localStorage.getItem(LEMAK_KEY));
-    if (savedData) {
+    if (!lemakUsiaInput || !lemakJkSelect) return;
+
+    const savedData = readStorageJSON(LEMAK_KEY, null);
+    if (savedData && typeof savedData === 'object') {
         lemakUsiaInput.value = savedData.usia;
         lemakJkSelect.value = savedData.jk;
         hitungLemak();
@@ -1589,22 +1623,11 @@ const imtHasilEl = document.getElementById('hasilIMT');
 const imtBtn = document.getElementById("imtBtn");
 const imtSpinner = document.getElementById("imtSpinner");
 const imtBtnLabel = document.getElementById("imtBtnLabel");
-const imtEvaluasiCheckbox = document.getElementById('evaluasiBB');
-const imtEvaluasiSection = document.getElementById('evaluasiBBSection');
-const imtBbSebelumnyaInput = document.getElementById('bbSebelumnya');
-const imtJangkaWaktuSelect = document.getElementById('jangkaWaktu');
-
-
 // start Kalkulator IMT Script
-function toggleEvaluasiBB() {
-    if (imtEvaluasiCheckbox.checked) {
-        imtEvaluasiSection.classList.remove('d-none');
-    } else {
-        imtEvaluasiSection.classList.add('d-none');
-    }
-}
 
 function hitungIMT() {
+    if (!imtBeratBadanInput || !imtTinggiBadanInput || !imtHasilEl || !imtBtn || !imtSpinner || !imtBtnLabel) return;
+
     // [REFAKTOR] Menggunakan konstanta yang sudah di-cache, bukan document.getElementById lagi.
     const berat = parseFloat(imtBeratBadanInput.value);
     const tinggi = parseFloat(imtTinggiBadanInput.value);
@@ -1647,49 +1670,6 @@ function hitungIMT() {
         // Rentang Berat Badan Normal berdasarkan IMT 18.5 - 25.0
         const bbMin = (18.5 * (tinggiMeter * tinggiMeter)).toFixed(1);
         const bbMax = (25.0 * (tinggiMeter * tinggiMeter)).toFixed(1);
-
-        // Logika Penurunan Berat Badan (Tabel 2.5)
-        let penurunanBBHtml = '';
-        const isEvalBB = imtEvaluasiCheckbox.checked;
-        const bbLama = parseFloat(imtBbSebelumnyaInput.value);
-        const jangka = imtJangkaWaktuSelect.value;
-
-        if (isEvalBB && bbLama && bbLama > berat) {
-            const selisih = bbLama - berat;
-            const persen = (selisih / bbLama) * 100;
-            let statusPenurunan = 'Normal';
-            let colorPenurunan = '#27ae60';
-
-            // Logika Tabel 2.5
-            if (jangka === '1_minggu') {
-                if (persen > 2) { statusPenurunan = 'Tingkat Berat'; colorPenurunan = '#e74c3c'; }
-                else if (persen >= 1) { statusPenurunan = 'Bermakna'; colorPenurunan = '#f1c40f'; }
-            } else if (jangka === '1_bulan') {
-                if (persen > 5) { statusPenurunan = 'Tingkat Berat'; colorPenurunan = '#e74c3c'; }
-                else if (persen === 5) { statusPenurunan = 'Bermakna'; colorPenurunan = '#f1c40f'; }
-            } else if (jangka === '3_bulan') {
-                if (persen > 7.5) { statusPenurunan = 'Tingkat Berat'; colorPenurunan = '#e74c3c'; }
-                else if (persen === 7.5) { statusPenurunan = 'Bermakna'; colorPenurunan = '#f1c40f'; }
-            } else if (jangka === '6_bulan') {
-                if (persen > 10) { statusPenurunan = 'Tingkat Berat'; colorPenurunan = '#e74c3c'; }
-                else if (persen === 10) { statusPenurunan = 'Bermakna'; colorPenurunan = '#f1c40f'; }
-            }
-
-            penurunanBBHtml = `
-                <div class="result-info-item col-12 border-top pt-3 mt-2">
-                    <div class="result-info-icon" style="background: ${colorPenurunan}10; color: ${colorPenurunan};">
-                        <i class="fa-solid fa-chart-line-down"></i>
-                    </div>
-                    <div>
-                        <div class="fw-bold small">Evaluasi Penurunan BB (${jangka.replace('_', ' ')})</div>
-                        <div class="fw-bold" style="color: ${colorPenurunan};">Penurunan ${persen.toFixed(1)}% (${statusPenurunan})</div>
-                        <div class="text-muted" style="font-size: 0.7rem;">
-                            ${statusPenurunan === 'Normal' ? 'Penurunan masih dalam batas wajar.' : 'Penurunan ini memerlukan perhatian gizi lebih lanjut.'}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
 
         // Sumber referensi yang konsisten
         const sourceText = '<div class="mt-2 pt-2 border-top small text-muted">Sumber: Pedoman Gizi Seimbang 2014</div>';
@@ -1783,8 +1763,6 @@ function hitungIMT() {
                     </div>
                 </div>
 
-                ${penurunanBBHtml}
-
                 <div class="mt-2 pt-2 border-top col-12">
                     <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.65rem;">
                         <i class="fa-solid fa-book-medical"></i>
@@ -1810,8 +1788,10 @@ function hitungIMT() {
 
 // Load data dari localStorage saat halaman dimuat
 function loadIMTData() {
-    const savedData = JSON.parse(localStorage.getItem(IMT_KEY));
-    if (savedData) {
+    if (!imtBeratBadanInput || !imtTinggiBadanInput) return;
+
+    const savedData = readStorageJSON(IMT_KEY, null);
+    if (savedData && typeof savedData === 'object') {
         imtBeratBadanInput.value = savedData.berat;
         imtTinggiBadanInput.value = savedData.tinggi;
         hitungIMT(); // Hitung otomatis
@@ -1819,6 +1799,8 @@ function loadIMTData() {
 }
 
 function resetIMT() {
+    if (!imtBeratBadanInput || !imtTinggiBadanInput || !imtHasilEl) return;
+
     imtBeratBadanInput.value = '';
     imtTinggiBadanInput.value = '';
     imtHasilEl.className = 'result';
@@ -1848,7 +1830,7 @@ const RIWAYAT_KEY = 'riwayat_tensi_v1';
 const DASHBOARD_KEY = 'dashboard_ringkas_v1';
 
 function saveRiwayat(sbp, dbp, status) {
-    const riwayat = JSON.parse(localStorage.getItem(RIWAYAT_KEY) || '[]');
+    const riwayat = readStorageJSON(RIWAYAT_KEY, []);
     const newItem = {
         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
         sbp,
@@ -1873,7 +1855,7 @@ function renderRiwayat() {
     const container = document.getElementById('riwayatTekanan');
     if (!listEl || !container) return;
 
-    const riwayat = JSON.parse(localStorage.getItem(RIWAYAT_KEY) || '[]');
+    const riwayat = readStorageJSON(RIWAYAT_KEY, []);
     if (riwayat.length === 0) {
         container.classList.add('d-none');
         return;
@@ -1917,7 +1899,7 @@ function normalizeStatusText(text) {
 }
 
 function loadDashboardEntries() {
-    return JSON.parse(localStorage.getItem(DASHBOARD_KEY) || '{}');
+    return readStorageJSON(DASHBOARD_KEY, {});
 }
 
 function saveDashboardEntries(entries) {
@@ -2252,7 +2234,7 @@ if (dbpInput_v2) dbpInput_v2.addEventListener('input', validateDBP_v2);
     const rfCheckboxes = document.querySelectorAll('.rf-check');
     const medConditionSelect = document.getElementById('medCondition');
 
-    if (!cekBtn) return; // Guard clause jika elemen utama tidak ditemukan
+    if (!sbpInput || !dbpInput || !cekBtn || !resetBtn || !spinner || !cekLabel || !medConditionSelect) return;
 
     function setLoading(loading) {
         cekBtn.disabled = loading;
@@ -2351,9 +2333,11 @@ if (dbpInput_v2) dbpInput_v2.addEventListener('input', validateDBP_v2);
                 teksStatus = '✅ <b>Tekanan Darah Optimal</b>';
             }
 
-            const rfSelected = Array.from(document.querySelectorAll('.rf-check:checked')).map(cb => cb.nextElementSibling.querySelector('span').textContent);
-            const medCondText = medConditionSelect.options[medConditionSelect.selectedIndex].text;
-            const medCondVal = medConditionSelect.value;
+            const rfSelected = Array.from(document.querySelectorAll('.rf-check:checked'))
+                .map(cb => cb.nextElementSibling?.querySelector('span')?.textContent?.trim())
+                .filter(Boolean);
+            const medCondText = medConditionSelect.options[medConditionSelect.selectedIndex]?.text || 'Tanpa kondisi penyerta';
+            const medCondVal = medConditionSelect.value || 'none';
             const statusKesehatan = {
                 hasHMOD: medCondVal === 'hmod',
                 hasDM_NoOrganDamage: medCondVal === 'dm_no_organ',

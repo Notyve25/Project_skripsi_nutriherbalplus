@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    min-width: 320px;
+    min-width: 0;
     overflow-x: hidden;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
@@ -203,6 +203,24 @@ iframe {
         height: min(82dvh, 720px) !important;
     }
 
+    #main-body .hero-section {
+        min-height: min(75dvh, 650px) !important;
+    }
+
+    #main-body .hero-slider {
+        height: min(75dvh, 650px) !important;
+    }
+
+    #main-body .overlay {
+        top: 49%;
+        max-height: calc(min(75dvh, 650px) - 58px);
+    }
+
+    #main-body .fitur-section {
+        margin-top: 12px !important;
+        padding-top: 18px !important;
+    }
+
     .overlay {
         width: min(94%, 680px);
         max-height: calc(100dvh - 110px);
@@ -325,6 +343,34 @@ iframe {
     #cek-tensi .risk-profile-subtitle {
         font-size: 0.84rem !important;
     }
+
+    #main-body .hero-section {
+        min-height: min(70dvh, 590px) !important;
+    }
+
+    #main-body .hero-slider {
+        height: min(70dvh, 590px) !important;
+    }
+
+    #main-body .overlay {
+        width: min(94%, 640px);
+        top: 48%;
+        padding: 1.08rem 0.95rem;
+        max-height: calc(min(70dvh, 590px) - 54px);
+    }
+
+    #main-body .hero-text-container {
+        min-height: 2.4rem;
+    }
+
+    #main-body .hero-subtitle-container {
+        min-height: 1.4rem;
+    }
+
+    #main-body .fitur-section {
+        margin-top: 10px !important;
+        padding-top: 16px !important;
+    }
 }
 
 /* Tablet portrait */
@@ -340,5 +386,135 @@ iframe {
 
     .overlay {
         width: min(90%, 760px);
+    }
+}
+
+/* Extra-small phones (320-359px) */
+@media (max-width: 359.98px) {
+    .container,
+    .container-fluid,
+    .container-sm {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    section,
+    .section-padding {
+        padding-top: clamp(14px, 3.2vh, 22px);
+        padding-bottom: clamp(14px, 3.2vh, 22px);
+    }
+
+    .btn,
+    button,
+    .form-control,
+    .form-select {
+        min-height: 40px;
+    }
+
+    .breadcrumb {
+        font-size: 0.82rem;
+    }
+
+    .quick-access-bar .btn {
+        font-size: 0.72rem;
+        padding-inline: 10px;
+    }
+
+    .health-tip-widget {
+        padding: 10px 12px;
+        margin-bottom: 14px;
+    }
+
+    .health-tip-content h6 {
+        font-size: 0.86rem;
+    }
+
+    .health-tip-content p {
+        font-size: 0.78rem;
+        line-height: 1.32;
+    }
+}
+
+/* Short landscape devices (e.g., 1024x600, mobile landscape) */
+@media (max-height: 620px) and (orientation: landscape) {
+    section,
+    .section-padding {
+        padding-top: clamp(12px, 2.8vh, 18px);
+        padding-bottom: clamp(12px, 2.8vh, 18px);
+    }
+
+    .navbar {
+        --bs-navbar-padding-y: 0.35rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.95rem;
+    }
+
+    .hero-section {
+        min-height: min(88dvh, 540px);
+    }
+
+    .hero-slider {
+        height: min(88dvh, 540px) !important;
+    }
+
+    .overlay {
+        max-height: calc(min(88dvh, 540px) - 72px);
+    }
+
+    .page-title {
+        font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    }
+
+    .page-subtitle,
+    .hero-content .lead {
+        font-size: 0.86rem;
+        line-height: 1.32;
+    }
+
+    .quick-access-bar {
+        margin-bottom: 0.75rem !important;
+        padding-bottom: 0 !important;
+    }
+
+    .quick-access-bar .btn {
+        font-size: 0.76rem;
+        min-height: 36px;
+    }
+
+    .card,
+    .akg-card,
+    .cek-card,
+    .video-card,
+    .result-container,
+    .info-section-formal {
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 0.9rem;
+    }
+}
+
+/* Tablet landscape and low-height tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (max-height: 700px) {
+    .container,
+    .container-md,
+    .container-sm {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .overlay {
+        width: min(92%, 720px);
+    }
+
+    .quick-access-bar .btn {
+        font-size: 0.78rem;
+    }
+
+    .page-title {
+        font-size: clamp(1.25rem, 2.6vw, 1.7rem);
     }
 }

@@ -1,6 +1,8 @@
 (function () {
     const modalContainer = document.getElementById('videoContainer');
     const videoModalEl = document.getElementById('videoModal');
+    if (!modalContainer || !videoModalEl || typeof bootstrap === 'undefined') return;
+
     const modal = new bootstrap.Modal(videoModalEl);
     const watchlistKey = 'nutri_watchlist_v1';
     const watchedKey = 'nutri_watched_history_v1';
@@ -74,12 +76,14 @@
                     title: document.title,
                     url
                 }).catch(() => { /* ignore */ });
-            } else {
+            } else if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(url).then(() => {
                     const prev = shareBtn.innerHTML;
                     shareBtn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin';
                     setTimeout(() => shareBtn.innerHTML = prev, 1400);
-                });
+                }).catch(() => { /* ignore */ });
+            } else {
+                window.prompt('Salin tautan video ini:', url);
             }
             return;
         }
@@ -108,7 +112,8 @@
     });
 
     /* search (title + tags) */
-    document.getElementById('videoSearch').addEventListener('input', function () {
+    const videoSearchInput = document.getElementById('videoSearch');
+    if (videoSearchInput) videoSearchInput.addEventListener('input', function () {
         const q = this.value.toLowerCase().trim();
         document.querySelectorAll('#videosGrid > .col').forEach(col => {
             const title = (col.getAttribute('data-title') || '').toLowerCase();
@@ -120,6 +125,7 @@
     /* tag chips (collect unique tags) */
     function initChips() {
         const chipsWrap = document.getElementById('chipsWrap');
+        if (!chipsWrap) return;
         const tags = new Set();
         document.querySelectorAll('#videosGrid > .col').forEach(col => {
             const t = (col.getAttribute('data-tags') || '').split(',').map(x => x.trim()).filter(Boolean);
@@ -147,7 +153,7 @@
     function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
     function showAll() {
         document.querySelectorAll('#videosGrid > .col').forEach(c => c.style.display = '');
-        document.getElementById('videoSearch').value = '';
+        if (videoSearchInput) videoSearchInput.value = '';
     }
 
     function filterByTag(tag) {
@@ -167,7 +173,7 @@
             const id = poster ? poster.getAttribute('data-video-id') : '';
             col.style.display = !watched.includes(id) ? '' : 'none';
         });
-        document.getElementById('videoSearch').value = '';
+        if (videoSearchInput) videoSearchInput.value = '';
     }
 
     function filterByTopic(topic) {
@@ -183,7 +189,7 @@
             col.style.display = isMatch ? '' : 'none';
         });
 
-        document.getElementById('videoSearch').value = '';
+        if (videoSearchInput) videoSearchInput.value = '';
         document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
     }
 
@@ -230,6 +236,7 @@
         const list = loadWatched();
         document.querySelectorAll('.video-card').forEach(card => {
             const poster = card.querySelector('.video-poster');
+            if (!poster) return;
             const id = poster.getAttribute('data-video-id');
 
             if (list.includes(id)) {
@@ -250,6 +257,7 @@
         const list = loadWatchlist();
         const wrap = document.getElementById('watchlistList');
         const empty = document.getElementById('watchlistEmpty');
+        if (!wrap || !empty) return;
         wrap.innerHTML = '';
         if (!list.length) {
             empty.style.display = '';
