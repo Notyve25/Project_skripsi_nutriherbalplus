@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
         'awal.html': [
             { selector: '.overlay', title: 'Selamat datang di Nutri Herbal', text: 'Platform ini dirancang untuk membantu Anda memahami hipertensi, memeriksa kondisi kesehatan, menghitung asupan natrium dan lemak, serta memantau progres kesehatan secara mandiri.' },
             { selector: '.quick-start-card', title: 'Mulai dari sini', text: 'Ikuti alur penggunaan yang disarankan: mulai dari Informasi, lanjut ke Kalkulator, kemudian Video Edukasi agar proses pembelajaran lebih terstruktur.' },
-            { selector: '#visitProgressCard', title: 'Pantau progres kunjungan', text: 'Kartu ini menampilkan progres halaman yang telah Anda pelajari untuk membantu memantau aktivitas edukasi Anda' },
             { selector: '.fitur-section .fitur-card', title: 'Akses fitur utama', text: 'Bagian ini menyediakan akses langsung ke fitur utama sesuai kebutuhan pemantauan dan edukasi kesehatan Anda.' },
             { selector: '#accordionFAQ', title: 'Buka FAQ cepat', text: 'Jika masih terdapat hal yang belum dipahami, silakan lihat pertanyaan yang sering diajukan sebelum menggunakan fitur lanjutan.' },
             { selector: '.fitur-card', title: 'Siap mulai?', text: 'Pilih salah satu fitur untuk mulai menggunakan Nutri Herbal sebagai pendukung perjalanan kesehatan Anda.' }
@@ -132,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let activeTarget = null;
 
     const overlay = document.createElement('div');
-    overlay.className = 'tour-overlay';
+    overlay.className = 'tour-overlay tour-overlay-spotlight';
     overlay.innerHTML = `
         <div class="tour-card" role="dialog" aria-live="polite" aria-label="Panduan halaman">
             <div class="tour-progress"></div>
@@ -151,6 +150,42 @@ document.addEventListener('DOMContentLoaded', function () {
     const progressEl = overlay.querySelector('.tour-progress');
     const nextBtn = overlay.querySelector('.tour-next');
     const skipBtn = overlay.querySelector('.tour-skip');
+    const rectSpotlight = document.createElement('div');
+    let spotlightSyncRaf = null;
+
+    rectSpotlight.className = 'tour-rect-spotlight';
+    overlay.appendChild(rectSpotlight);
+
+    function updateSpotlight(target) {
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const radius = Math.max(120, Math.round(Math.max(rect.width, rect.height) * 0.72) + 42);
+
+        overlay.style.setProperty('--tour-hole-x', `${centerX}px`);
+        overlay.style.setProperty('--tour-hole-y', `${centerY}px`);
+        overlay.style.setProperty('--tour-hole-r', `${radius}px`);
+
+        const pad = 10;
+        rectSpotlight.style.left = `${Math.max(8, rect.left - pad)}px`;
+        rectSpotlight.style.top = `${Math.max(8, rect.top - pad)}px`;
+        rectSpotlight.style.width = `${Math.max(28, rect.width + pad * 2)}px`;
+        rectSpotlight.style.height = `${Math.max(28, rect.height + pad * 2)}px`;
+    }
+
+    function syncSpotlightFrames(frameCount = 32) {
+        if (spotlightSyncRaf) cancelAnimationFrame(spotlightSyncRaf);
+
+        let remaining = frameCount;
+        const tick = () => {
+            if (!activeTarget || remaining <= 0) return;
+            updateSpotlight(activeTarget);
+            remaining -= 1;
+            spotlightSyncRaf = requestAnimationFrame(tick);
+        };
+        spotlightSyncRaf = requestAnimationFrame(tick);
+    }
 
     function clearActiveTarget() {
         if (!activeTarget) return;
@@ -173,6 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function finishTour(shouldNavigateNext) {
+        if (spotlightSyncRaf) {
+            cancelAnimationFrame(spotlightSyncRaf);
+            spotlightSyncRaf = null;
+        }
+
         clearActiveTarget();
         markSeen();
 
@@ -208,11 +248,21 @@ document.addEventListener('DOMContentLoaded', function () {
         activeTarget.classList.add('tour-target-active');
         activeTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+        syncSpotlightFrames(38);
+
         titleEl.textContent = step.title;
         textEl.textContent = step.text;
         progressEl.textContent = `Langkah ${stepIndex + 1} dari ${availableSteps.length}`;
         nextBtn.textContent = stepIndex === availableSteps.length - 1 ? 'Selesai' : 'Lanjut';
     }
+
+    window.addEventListener('resize', function () {
+        updateSpotlight(activeTarget);
+    });
+
+    window.addEventListener('scroll', function () {
+        updateSpotlight(activeTarget);
+    }, { passive: true });
 
     nextBtn.addEventListener('click', function () {
         const isLastStep = stepIndex >= availableSteps.length - 1;

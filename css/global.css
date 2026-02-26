@@ -549,7 +549,7 @@ body.page-enter-start .reveal.enter-seq-item.active {
 .tour-overlay {
     position: fixed;
     inset: 0;
-    background: transparent;
+    background: rgba(15, 23, 42, 0.58);
     z-index: 1400;
     display: flex;
     align-items: flex-end;
@@ -557,6 +557,23 @@ body.page-enter-start .reveal.enter-seq-item.active {
     padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     animation: tourFadeIn 220ms ease-out;
     pointer-events: none;
+}
+
+.tour-overlay.tour-overlay-spotlight {
+    background: transparent;
+}
+
+.tour-rect-spotlight {
+    position: fixed;
+    left: 50vw;
+    top: 35vh;
+    width: 220px;
+    height: 120px;
+    border-radius: 14px;
+    box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.62);
+    pointer-events: none;
+    z-index: 1455;
+    transition: left 180ms ease, top 180ms ease, width 180ms ease, height 180ms ease;
 }
 
 .tour-overlay.is-hide {
@@ -612,11 +629,22 @@ body.page-enter-start .reveal.enter-seq-item.active {
 
 .tour-target-active {
     position: relative;
-    z-index: 1450;
+    z-index: 1465;
     isolation: isolate;
     border-radius: 12px;
-    box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55), 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 10px rgba(250, 204, 21, 0.22);
+    outline: 3px solid rgba(250, 204, 21, 0.98);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 10px rgba(250, 204, 21, 0.22);
     animation: tourPulse 900ms ease-in-out infinite;
+}
+
+.tour-target-active::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: inherit;
+    border: 2px solid rgba(250, 204, 21, 0.75);
+    pointer-events: none;
 }
 
 @keyframes tourFadeIn {
@@ -625,8 +653,8 @@ body.page-enter-start .reveal.enter-seq-item.active {
 }
 
 @keyframes tourPulse {
-    0%, 100% { box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55), 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 10px rgba(250, 204, 21, 0.22); }
-    50% { box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55), 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 14px rgba(250, 204, 21, 0.12); }
+    0%, 100% { box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 10px rgba(250, 204, 21, 0.22); }
+    50% { box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.95), 0 0 0 14px rgba(250, 204, 21, 0.12); }
 }
 
 @media (max-width: 576px) {
